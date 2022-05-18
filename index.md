@@ -1,5 +1,10 @@
 # Welcome to Aonynation.github.io
 
+## 个人简介
+来自 ASDFZ 的没脑子选手。/ll \
+同时也是一个乐子人。\
+[我的 cnblogs](https://www.cnblogs.com/Oier-GGG/)
+
 ## 校内资源
 [**初等数论.pptx**](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA.pptx)
 
