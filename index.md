@@ -1,4 +1,20 @@
 # Welcome to Aonynation.github.io
+
+## Code
+```cpp
+#include <bits/stdc++.h>
+
+#define file(a) freopen(a".in", "r", stdin), freopen(a".out", "w", stdout)
+
+#define Enter putchar('\n')
+#define quad putchar(' ')
+
+signed main(void) {
+  file("1");
+  return 0;
+}
+```
+
 ## 校内资源
 [**初等数论.pptx**](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA.pptx)
 
