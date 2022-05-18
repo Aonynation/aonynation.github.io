@@ -1,7 +1,5 @@
 # Welcome to Aonynation.github.io
-### [边三联通分量论文.pdf](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E8%BE%B9%E4%B8%89%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F.pdf)
-就是英文论文，休闲娱乐佳品。 /tuu
-
+## 校内资源
 ------
 ### [初等数论.pptx](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA.pptx)
 教练课件，包括原根，exgcd，线性同余方程，BSGS，CRT，不定方程ax+by=c，素数判定，大整数的因子分解。
@@ -23,3 +21,11 @@
 教练课件，计算几何全家桶
 
 ----
+### [网络流练习题](https://raw.githubusercontent.com/Aonynation/Classppt/main/%E7%BD%91%E7%BB%9C%E6%B5%81.pdf)
+学长课件，
+
+-----
+## 校外资源
+
+### [边三联通分量论文.pdf](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E8%BE%B9%E4%B8%89%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F.pdf)
+就是英文论文，休闲娱乐佳品。 /tuu
