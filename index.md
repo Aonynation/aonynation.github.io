@@ -102,3 +102,12 @@ template <class T, class ...rest> inline void write(T x, rest ...a) {
 }
 }
 ```
+
+### o2 优化以及 cin,cout 关闭同步流
+```cpp
+#pragma GCC optimize(2)
+
+std::ios::sync_with_stdio(false);
+std::cin.tie(0);
+std::cout.tie(0);
+```
