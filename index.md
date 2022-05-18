@@ -68,32 +68,32 @@ template <class T, class ...rest> inline void write(T x, rest ...a);
 
 namespace IO {
 template <class T> inline void read(T &a) {
-	T s = 0, t = 1;
-	char c = getchar();
-	while ((c < '0' || c > '9') && c != '-')
-		c = getchar();
-	if (c == '-')
-		c = getchar(), t = -1;
-	while (c >= '0' && c <= '9')
-		s = (s << 1) + (s << 3) + (c ^ 48), c = getchar();
-	a = s * t;
+  T s = 0, t = 1;
+  char c = getchar();
+  while ((c < '0' || c > '9') && c != '-')
+    c = getchar();
+  if (c == '-')
+    c = getchar(), t = -1;
+  while (c >= '0' && c <= '9')
+    s = (s << 1) + (s << 3) + (c ^ 48), c = getchar();
+  a = s * t;
 }
 template <class T, class ...rest> inline void read(T &a, rest &...x) {
-	read(a); read(x...);
+  read(a); read(x...);
 }
 
 template <class T> inline void write(T x) {
-	if (x == 0) putchar('0');
-	if (x < 0) putchar('-'), x = -x;
-	int top = 0, sta[50] = {0};
-	while (x)
-		sta[++top] = x % 10, x /= 10;
-	while (top)
-	 putchar(sta[top] + '0'), top --;
-	 return ;
+  if (x == 0) putchar('0');
+  if (x < 0) putchar('-'), x = -x;
+  int top = 0, sta[50] = {0};
+  while (x)
+    sta[++top] = x % 10, x /= 10;
+  while (top)
+   putchar(sta[top] + '0'), top --;
+  return ;
 }
 template <class T, class ...rest> inline void write(T x, rest ...a) {
-	write(x); quad; write(a...);
+  write(x); quad; write(a...);
 }
 }
 ```
