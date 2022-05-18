@@ -1,20 +1,5 @@
 # Welcome to Aonynation.github.io
 
-## Code
-```cpp
-#include <bits/stdc++.h>
-
-#define file(a) freopen(a".in", "r", stdin), freopen(a".out", "w", stdout)
-
-#define Enter putchar('\n')
-#define quad putchar(' ')
-
-signed main(void) {
-  file("1");
-  return 0;
-}
-```
-
 ## 校内资源
 [**初等数论.pptx**](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA.pptx)
 
@@ -53,3 +38,62 @@ signed main(void) {
 [**算法学习笔记 知乎**](https://zhuanlan.zhihu.com/p/105467597)
 
 [**各校老师 金牌，钻石 课件**](https://github.com/hzwer/shareOI)
+
+
+## Code
+
+### 本人常用缺省源：
+```cpp
+#include <bits/stdc++.h>
+
+#define file(a) freopen(a".in", "r", stdin), freopen(a".out", "w", stdout)
+
+#define Enter putchar('\n')
+#define quad putchar(' ')
+
+signed main(void) {
+  file("1");
+  return 0;
+}
+```
+
+### FastIO 模板：
+```cpp
+namespace IO {
+template <class T> inline void read(T &a);
+template <class T, class ...rest> inline void read(T &a, rest &...x);
+template <class T> inline void write(T x);
+template <class T, class ...rest> inline void write(T x, rest ...a);
+}
+
+namespace IO {
+template <class T> inline void read(T &a) {
+	T s = 0, t = 1;
+	char c = getchar();
+	while ((c < '0' || c > '9') && c != '-')
+		c = getchar();
+	if (c == '-')
+		c = getchar(), t = -1;
+	while (c >= '0' && c <= '9')
+		s = (s << 1) + (s << 3) + (c ^ 48), c = getchar();
+	a = s * t;
+}
+template <class T, class ...rest> inline void read(T &a, rest &...x) {
+	read(a); read(x...);
+}
+
+template <class T> inline void write(T x) {
+	if (x == 0) putchar('0');
+	if (x < 0) putchar('-'), x = -x;
+	int top = 0, sta[50] = {0};
+	while (x)
+		sta[++top] = x % 10, x /= 10;
+	while (top)
+	 putchar(sta[top] + '0'), top --;
+	 return ;
+}
+template <class T, class ...rest> inline void write(T x, rest ...a) {
+	write(x); quad; write(a...);
+}
+}
+```
