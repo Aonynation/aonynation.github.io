@@ -1,3 +1,1 @@
-$$
-\text{Welcome to Aonynation.github.io}
-$$
+# Welcome to Aonynation.github.io
