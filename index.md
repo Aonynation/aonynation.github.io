@@ -9,9 +9,11 @@
 ### [可持久化数据结构.ppt](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/Persistent%20Data%20Structures%201.ppt)
 学长课件，可持久化线段树以及练习题。
 ### [计算几何.pptx](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%88%9D%E6%AD%A5.pptx)
-教练课件，计算几何全家桶
-### [网络流练习题](https://raw.githubusercontent.com/Aonynation/Classppt/main/%E7%BD%91%E7%BB%9C%E6%B5%81.pdf)
-学长课件，
+教练课件，计算几何全家桶。
+### [网络流练习题.pdf](https://raw.githubusercontent.com/Aonynation/Classppt/main/%E7%BD%91%E7%BB%9C%E6%B5%81.pdf)
+学长课件，全是题目资源，没有题解。。。
+### [高等数学全家桶.zip](https://raw.githubusercontent.com/Aonynation/aonynation.github.io/main/Higher%20Mathematics.zip)
+学长课件，以讲解为主，包括极限，三分，积分等。
 
 ## 校外资源
 
