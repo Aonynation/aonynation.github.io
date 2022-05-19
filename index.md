@@ -175,3 +175,6 @@ template <class T> T rand(T l, T r) {
 }
 
 ```
+
+## Pictures
+<img src="https://github.com/Aonynation/aonynation.github.io/blob/main/2.jpg?raw=true" width="10%" height="10%" /> <img src="https://github.com/Aonynation/aonynation.github.io/blob/main/3.jpg?raw=true" width="20%" height="20%" />
