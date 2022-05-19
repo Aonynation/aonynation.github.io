@@ -167,3 +167,11 @@ std::cout.tie(0);
 #pragma GCC optimize("Ofast", "inline", "-ffast-math")
 #pragma GCC target("avx,sse2,sse3,sse4,mmx")
 ```
+### mt19937 随机数函数用法
+```cpp
+std::mt19937 seed(114514);
+template <class T> T rand(T l, T r) {
+  return std::uniform_int_distribution<int>(l, r)(seed);
+}
+
+```
