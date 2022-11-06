@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言 颓废的时候发现了这个非常有趣的问题，在这里分享一下。 当然，原题给出了 \(7\) 种证明，没脑子选手冥思苦想一年只看懂两种。 正文 第一种证明 我们考虑假设素数的个数是有限个。 那么我们运用一个集合 \(\mathbb{P} &#x3D; \{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\) 来表示。 现在考虑构造一个数 \(n\) ，使得： \[ \be">
+    <meta name="description" content="前言 听同学说这个东西是 \(O(1)\) 的，速度会比手写的要快很多，赶快来学一下。 其实也不是很难，直接给出位运算的用法和功能，直接当成是 \(O(1)\) 的就好了。。。 12345__builtin_popcount(unsigned int n) -&gt; 该函数时判断n的二进制中有多少个1__builtin_parity(unsigned int n) -&gt; 该函数是判">
 <meta property="og:type" content="article">
-<meta property="og:title" content="素数个数的证明">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16172438/index.html">
+<meta property="og:title" content="C++ 位运算 __builtin_">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/07/builtin/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="前言 颓废的时候发现了这个非常有趣的问题，在这里分享一下。 当然，原题给出了 \(7\) 种证明，没脑子选手冥思苦想一年只看懂两种。 正文 第一种证明 我们考虑假设素数的个数是有限个。 那么我们运用一个集合 \(\mathbb{P} &#x3D; \{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\) 来表示。 现在考虑构造一个数 \(n\) ，使得： \[ \be">
+<meta property="og:description" content="前言 听同学说这个东西是 \(O(1)\) 的，速度会比手写的要快很多，赶快来学一下。 其实也不是很难，直接给出位运算的用法和功能，直接当成是 \(O(1)\) 的就好了。。。 12345__builtin_popcount(unsigned int n) -&gt; 该函数时判断n的二进制中有多少个1__builtin_parity(unsigned int n) -&gt; 该函数是判">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:15:01.530Z">
+<meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-06T16:21:29.014Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>素数个数的证明 - Aonynation&#39;s Blog</title>
+  <title>C++ 位运算 __builtin_ - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="素数个数的证明"></span>
+            <span id="subtitle" data-typed-text="C++ 位运算 __builtin_"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-06 00:00" pubdate>
-          2022年11月6日 凌晨
+        <time datetime="2022-11-07 00:00" pubdate>
+          2022年11月7日 凌晨
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          359 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          14 分钟
+          3 分钟
         
       </span>
     
@@ -272,102 +272,17 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">素数个数的证明</h1>
+            <h1 style="display: none">C++ 位运算 __builtin_</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="前言">前言</h2>
-<p>颓废的时候发现了这个非常有趣的问题，在这里分享一下。<br />
-当然，原题给出了 <span class="math inline">\(7\)</span>
-种证明，没脑子选手冥思苦想一年只看懂两种。</p>
-<h2 id="正文">正文</h2>
-<h3 id="第一种证明">第一种证明</h3>
-<p>我们考虑假设素数的个数是有限个。<br />
-那么我们运用一个集合 <span class="math inline">\(\mathbb{P} =
-\{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\)</span> 来表示。<br />
-现在考虑构造一个数 <span class="math inline">\(n\)</span> ，使得： <span
-class="math display">\[
-\begin{split}
-n&amp;=\prod_{i=1}^{m}p_i + 1\\
-&amp;=p_1\times p_2\times p_3\times \cdots \times p_{m-1}\times p_m + 1
-\end{split}
-\]</span></p>
-<p>因为所有的素数都在上述的集合中，所以 <span
-class="math inline">\(n\)</span> 是合数。<br />
-即 <span class="math inline">\(n\)</span> 存在质数因子 <span
-class="math inline">\(pr\)</span> 且 <span class="math inline">\(pr \in
-\mathbb{P}\)</span>。</p>
-<p>现在我们假设以上所有的都是成立的。<br />
-<span class="math inline">\(\because\)</span> <span
-class="math inline">\(n\)</span> 存在质数因子 <span
-class="math inline">\(pr\)</span> 且 <span class="math inline">\(pr \in
-\mathbb{P}\)</span><br />
-<span class="math inline">\(\therefore\)</span> <span
-class="math inline">\(pr|n\)</span> 且 <span
-class="math inline">\(pr|(p_1\times p_2\times p_3\times \cdots \times
-p_{m-1}\times p_m)\)</span><br />
-我们设 <span class="math inline">\(n = pr\times k_1 \ \ (k_1 \in
-\mathbb{N}^+)\)</span>。<br />
-设 <span class="math inline">\(Mul_P = (p_1\times p_2\times \cdots
-\times p_{m-1}\times p_m) = pr\times k_2\ \ (k_2 \in
-\mathbb{N}^+)\)</span><br />
-<span class="math inline">\(\therefore\)</span> <span
-class="math inline">\(n - Mul_P = pr\times (k_1-k_2) = 1\)</span><br />
-<span class="math inline">\(\therefore\)</span> <span
-class="math inline">\(pr \in \mathbb{P}\)</span> 且 <span
-class="math inline">\(pr = 1\)</span><br />
-</p>
-<p>非常显然，这是矛盾的。<br />
-由此得出，一定有无穷多个素数。</p>
-<hr />
-<h3 id="第二种证明">第二种证明</h3>
-<p>先确定方向，我们从 <span class="math inline">\(\gcd\)</span>
-的角度来解析这个问题。<br />
-很显然的是，如果两个数 <span class="math inline">\(a\)</span> 和 <span
-class="math inline">\(b\)</span> ，<span
-class="math inline">\(\gcd(a,b)=1\)</span> 即 <span
-class="math inline">\(a\)</span> 和 <span
-class="math inline">\(b\)</span> 互质。<br />
-那么我们一定可以推出 <span class="math inline">\(a\)</span> 和 <span
-class="math inline">\(b\)</span> 拥有的质因数互不相同。<br />
-所以，我们如果能够找到一个无穷的序列使得序列中的数两两互质即可。</p>
-<p>在证明中，采用了一个名字叫做 <span
-class="math inline">\(Fermat\)</span> 的序列，序列的公式为 <span
-class="math inline">\(F_i=2^{2^n}+1\)</span><br />
-首先，这个序列一定是无穷无尽的。<br />
-所以我们需要做的事只有证明： <span class="math display">\[
-\forall a,b\in \{F_i\},a \neq b\ \rightarrow \gcd(a,b)=1
-\]</span></p>
-<p>不过这好像并不是一个非常好证明的东西。<br />
-所以证明中吧其转化成了验证下面的这个式子。 <span class="math display">\[
-F_{n-2}=\prod_{k=0}^{n-1} F_k
-\]</span></p>
-<p>等式子列数来后在理解我们会发现非常巧妙：<br />
-同样采取反证法，我们假设存在相同的质因数 <span
-class="math inline">\(pr\)</span>。 <span class="math display">\[
-\begin{split}
-F_n- 2&amp;=\prod_{k=0}^{n-1} F_k\\
-F_n-\prod_{k=0}^{n-1} F_k&amp;=2\\
-pr\times k_1-pr\times k_2&amp;=2\\
-pr\times (k_1-k_2)&amp;=2\\
-\end{split}
-\]</span></p>
-<p>由此我们可以得出：<span class="math inline">\(pr|2\)</span><br />
-所以，<span class="math inline">\(pr\)</span> 只可能是 <span
-class="math inline">\(1\)</span> 或 <span
-class="math inline">\(2\)</span>。<br />
-又因为所有的 <span class="math inline">\(Fermat\)</span>
-数都是奇数。<br />
-所以上述的假设是不成立的。</p>
-<p>现在考虑我们如何来验证上面的这个式子。 <span class="math display">\[
-\begin{split}
-\prod_{k=0}^nF_k&amp;=(\prod_{k=0}^{n-1}F_k)\times F_n\\
-&amp;=(F_n-2)F_n\\
-&amp;=(2^{2^n}-1)(2^{2^n}+1)\\
-&amp;=2^{2^{n+1}}-1=F_{n+1}-2
-\end{split}
-\]</span> 由此得证，素数有无穷多个。</p>
+<p>听同学说这个东西是 <span class="math inline">\(O(1)\)</span>
+的，速度会比手写的要快很多，赶快来学一下。</p>
+<p>其实也不是很难，直接给出位运算的用法和功能，直接当成是 <span
+class="math inline">\(O(1)\)</span> 的就好了。。。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">__builtin_popcount(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n) -&gt; 该函数时判断n的二进制中有多少个<span class="hljs-number">1</span><br>__builtin_parity(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n) -&gt; 该函数是判断n的二进制中<span class="hljs-number">1</span>的个数的奇偶性<br>__builtin_ffs(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n) -&gt; 该函数判断n的二进制末尾最后一个<span class="hljs-number">1</span>的位置，从一开始<br>__builtin_ctz(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n) -&gt; 该函数判断n的二进制末尾后面<span class="hljs-number">0</span>的个数，当n为<span class="hljs-number">0</span>时，和n的类型有关<br>__builtin_clz (<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> x) -&gt; 返回前导的<span class="hljs-number">0</span>的个数。<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -392,8 +307,8 @@ class="math inline">\(2\)</span>。<br />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>素数个数的证明</div>
-      <div>https://aonynation.github.io/2022/11/06/16172438/</div>
+      <div>C++ 位运算 __builtin_</div>
+      <div>https://aonynation.github.io/2022/11/07/builtin/</div>
     </div>
     <div class="license-meta">
       
@@ -405,7 +320,7 @@ class="math inline">\(2\)</span>。<br />
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月6日</div>
+          <div>2022年11月7日</div>
         </div>
       
       
@@ -437,18 +352,12 @@ class="math inline">\(2\)</span>。<br />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16155981/" title="高斯约旦消元法学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">高斯约旦消元法学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16348650/" title="ARC087D 补题记录">
-                        <span class="hidden-mobile">ARC087D 补题记录</span>
+                      <a href="/2022/11/06/16155981/" title="高斯约旦消元法学习笔记">
+                        <span class="hidden-mobile">高斯约旦消元法学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
