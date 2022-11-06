@@ -24,7 +24,7 @@
 <meta property="og:description" content="引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:06:32.125Z">
+<meta property="article:modified_time" content="2022-11-06T15:09:10.307Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
         
         
         
-          75 mins
+          74 mins
         
       </span>
     
@@ -290,9 +290,9 @@ FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换�
 <p>反正我没脑子我看不懂。<br />
 对我来说，<span class="math inline">\(\text{FFT}\)</span>
 就是能把多项式乘法从 <span class="math inline">\(O(n^2)\)</span> 变成
-<span class="math inline">\(O(n\log n)\)</span> 的神仙玩意。 # 正文 ##
-系数表示法和点值表示法
-对于系数表示法，就是用多项式的系数来表示这个多项式。<br />
+<span class="math inline">\(O(n\log n)\)</span> 的神仙玩意。 # 正文</p>
+<h2 id="系数表示法和点值表示法">系数表示法和点值表示法</h2>
+<p>对于系数表示法，就是用多项式的系数来表示这个多项式。<br />
 比如说： <span class="math display">\[
 f(x)=a_1x^3+a_2x^2+a_3x+a_4\Leftrightarrow f(x)=\{a_1,a_2,a_3,a_4\}
 \]</span>
@@ -313,8 +313,8 @@ F(x) = f(x)\times g(x)\\
 \]</span> <span class="math display">\[
 F(x)=\{(x_0,g(x_0)\times f(x_0)),(x_1,g(x_1)\times
 f(x_1)),\cdots,(x_n,g(x_n)\times f(x_n))\}
-\]</span> ## 复数 <span class="math inline">\(复数 = 实数 +
-虚数\)</span><br />
+\]</span> ## 复数</p>
+<p><span class="math inline">\(复数 = 实数 + 虚数\)</span><br />
 实在一点吧，直接上干货，我们定义 :<br />
 <span class="math display">\[i=\sqrt{-1}\]</span>
 这样我们就可以表示我们在实数范围内不能表示的数了。<br />
@@ -338,8 +338,8 @@ ac+adi+bci+bdi^2\\
 \]</span> <span class="math display">\[
 (r_1,\theta_1)\times(r_2,\theta_2)=(r_1\times r_2,\theta_1+\theta_2)
 \]</span> ## <span class="math inline">\(\tt DFT\)</span>
-（离散傅里叶变换）
-现在已经介绍完了<strong>点值表示法</strong>和<strong>复数</strong>的相关知识，接下来就是干货部分了。</p>
+（离散傅里叶变换）</p>
+<p>现在已经介绍完了<strong>点值表示法</strong>和<strong>复数</strong>的相关知识，接下来就是干货部分了。</p>
 <p>上面我们已经通过这样的例子说明了点值表示法算多项式乘法的方便。<br />
 接下来我们来看怎么先把多项式从系数表示法转换为点值表示法，这种过程叫
 <span class="math inline">\(\text{DFT}\)</span> 。</p>
@@ -387,20 +387,23 @@ class="math display">\[
 \]</span> 我们称 <span class="math inline">\(\omega_n^1\)</span> 为
 <span class="math inline">\(n\)</span> 次单位根。<br />
 所以可以发现，我们直接带入 <span
-class="math inline">\(\omega_n^i\)</span> 就可以了。 ###
-单位根的一些有用的性质 在了解一切的性质之前，我们要先知道单位根 <span
+class="math inline">\(\omega_n^i\)</span> 就可以了。</p>
+<h3 id="单位根的一些有用的性质">单位根的一些有用的性质</h3>
+<p>在了解一切的性质之前，我们要先知道单位根 <span
 class="math inline">\(\omega_n^i\)</span> 如何表示： <span
 class="math display">\[
 \omega_n^k=\cos\frac{k}{n}2\pi+i\times\sin\frac{k}{n}2\pi
 \]</span>
-这东西的证明你直接照着单位圆上画一个点然后三角函数入门知识即可。 ####
-性质一 <span class="math display">\[
+这东西的证明你直接照着单位圆上画一个点然后三角函数入门知识即可。</p>
+<h4 id="性质一">性质一</h4>
+<p><span class="math display">\[
 \omega_n^k=\omega_{2n}^{2k}
 \]</span> 证明的话直接照着上面给出的式子套即可，然后发现可以约分。<br />
 那我认为进一步的可以得到： <span class="math display">\[
 \omega_n^k=\omega_{Pn}^{Pk} \quad (p\in \tt Z^+)
-\]</span> 很显然不过好像没有什么大用。 #### 性质二 <span
-class="math display">\[
+\]</span> 很显然不过好像没有什么大用。</p>
+<h4 id="性质二">性质二</h4>
+<p><span class="math display">\[
 \omega_n^{k+\frac{n}{2}}=-\omega_n^k
 \]</span> 证明的话稍微写一下吧： <span class="math display">\[
 \omega_n^k=\cos\frac{k}{n}2\pi+i\times\sin\frac{k}{n}2\pi\\
@@ -411,12 +414,14 @@ class="math display">\[
 &amp;=\cos(\frac{k}{n}2\pi+\pi)+i\times\sin(\frac{k}{n}2\pi+\pi)
 \end{split}
 \]</span>
-都化成这一步了就不在进行下一步证明，还看不懂的建议重修初中数学。 ####
-性质三 <span class="math display">\[
+都化成这一步了就不在进行下一步证明，还看不懂的建议重修初中数学。</p>
+<h4 id="性质三">性质三</h4>
+<p><span class="math display">\[
 \omega_n^0=\omega_n^n
-\]</span> 比较憨，我就不讲为什么了。 ### <span class="math inline">\(\tt
-FFT\)</span> （快速傅里叶变换）
-<del>他来了，他来了，等到现在他终于来了。。。。</del></p>
+\]</span> 比较憨，我就不讲为什么了。</p>
+<h3 id="tt-fft-快速傅里叶变换"><span class="math inline">\(\tt
+FFT\)</span> （快速傅里叶变换）</h3>
+<p><del>他来了，他来了，等到现在他终于来了。。。。</del></p>
 <p>之前讲到我们直接带入 <span class="math inline">\(\omega_n^i\)</span>
 来计算点值。<br />
 是的，我认为这种方法高效，巧妙，逼格高，体现了人类智慧。<br />
@@ -502,9 +507,12 @@ IFF\)</span> (快速傅里叶逆变换)</h3>
 <span class="math inline">\(n\)</span> 即为原多项式的每一项系数</p>
 </blockquote>
 <p>也就是再做一遍 <span class="math inline">\(\tt FFT\)</span>
-输出时每一位除以 <span class="math inline">\(n\)</span> 就可以了。 ###
-代码实现及其优化 #### Code 复数类型封装 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">cp</span> &#123;<br>  <span class="hljs-type">double</span> x, y;<br>  <span class="hljs-built_in">cp</span> (<span class="hljs-type">double</span> xx = <span class="hljs-number">0</span>, <span class="hljs-type">double</span> yy = <span class="hljs-number">0</span>) &#123;x = xx; y = yy;&#125;;<br><br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> +(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x + q.x, p.y + q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> -(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x - q.x, p.y - q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> *(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x * q.x - p.y * q.y, p.y * q.x + p.x * q.y);&#125;<br>&#125;a[N], b[N];<br></code></pre></td></tr></table></figure> #### Code 无优化
-不是我写的代码，反正就是照着之前的公式模拟，看看就好了。</p>
+输出时每一位除以 <span class="math inline">\(n\)</span> 就可以了。</p>
+<h3 id="代码实现及其优化">代码实现及其优化</h3>
+<h4 id="code-复数类型封装">Code 复数类型封装</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">cp</span> &#123;<br>  <span class="hljs-type">double</span> x, y;<br>  <span class="hljs-built_in">cp</span> (<span class="hljs-type">double</span> xx = <span class="hljs-number">0</span>, <span class="hljs-type">double</span> yy = <span class="hljs-number">0</span>) &#123;x = xx; y = yy;&#125;;<br><br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> +(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x + q.x, p.y + q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> -(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x - q.x, p.y - q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> *(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x * q.x - p.y * q.y, p.y * q.x + p.x * q.y);&#125;<br>&#125;a[N], b[N];<br></code></pre></td></tr></table></figure>
+<h4 id="code-无优化">Code 无优化</h4>
+<p>不是我写的代码，反正就是照着之前的公式模拟，看看就好了。</p>
 <details>
 <summary>
 点击查看代码
@@ -605,9 +613,9 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16105177/" title="行列式学习笔记（二）">
+                      <a href="/2022/11/06/16172438/" title="素数个数的证明">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">行列式学习笔记（二）</span>
+                        <span class="hidden-mobile">素数个数的证明</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -615,8 +623,8 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16489040/" title="CF1137E 做题报告">
-                        <span class="hidden-mobile">CF1137E 做题报告</span>
+                      <a href="/2022/11/06/16348650/" title="ARC087D 补题记录">
+                        <span class="hidden-mobile">ARC087D 补题记录</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

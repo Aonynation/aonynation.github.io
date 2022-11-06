@@ -24,7 +24,7 @@
 <meta property="og:description" content="题目链接 本人再次认为是一道不错的题目，可能是我菜。 判定可行解 首先假定我们已经得到了 \(a\) 和 \(b\) 这两个序列，我们如何判断是否是有解的。 从图论的角度去分解这个问题，我们设当前序列为 \(c\) 。 当 \(c_i&#x3D;c_j\) 时，我们连一条 \((i,j)\) 双向边，代表第 \(i\) 位和第 \(j\) 位的数字应是相同的。 很显然，这几条边把相同数字的点">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T14:43:31.429Z">
+<meta property="article:modified_time" content="2022-11-06T15:10:28.552Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
@@ -303,19 +303,19 @@ class="math inline">\(\frac{n-p}{2}\)</span>
 条边，因为要求只有一个连通块所以边数至少为 <span
 class="math inline">\(n-1\)</span> ，可以得出 <span
 class="math inline">\(p\leq 2\)</span> 的结论。</p>
-<p>到现在为止，我们已经判断了是否有可行解的情况，现在考虑构造方案。 ####
-<span class="math inline">\(p = 0\)</span> 先从 <span
-class="math inline">\(p=0\)</span> 也就是说 <span
+<p>到现在为止，我们已经判断了是否有可行解的情况，现在考虑构造方案。</p>
+<h4 id="p-0"><span class="math inline">\(p = 0\)</span></h4>
+<p>先从 <span class="math inline">\(p=0\)</span> 也就是说 <span
 class="math inline">\(a\)</span> 中没有奇数元素的情况进行构造。<br />
 我们发现 <span class="math inline">\(a\)</span>
 可以保持不动，最主要的是要把相邻组的数字和同一组不同对的数组搞成一样。<br />
 这里直接给出结论： <span class="math display">\[
 B=\{A_1+1,A_2,A_3,\cdots,A_{m-1},A_m-1\}
 \]</span> <strong>注意，当 <span class="math inline">\(A_m-1 =0\)</span>
-的时候直接把最后一位省略即可。</strong> #### <span
-class="math inline">\(p=1\)</span> 和 <span
-class="math inline">\(p=2\)</span> 其实我们只要构造出 <span
-class="math inline">\(A\)</span> 那么 <span
+的时候直接把最后一位省略即可。</strong></p>
+<h4 id="p1-和-p2"><span class="math inline">\(p=1\)</span> 和 <span
+class="math inline">\(p=2\)</span></h4>
+<p>其实我们只要构造出 <span class="math inline">\(A\)</span> 那么 <span
 class="math inline">\(B\)</span> 直接按照上述的情况构造即可。<br />
 当 <span class="math inline">\(p=1\)</span> 时，我们可以把奇数的元素
 <span class="math inline">\(A_{odd}\)</span> 放到 <span
@@ -395,9 +395,9 @@ class="math inline">\(A\)</span> 的最后一个位置。<br />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16526794/" title="范德蒙德卷积 学习笔记">
+                      <a href="/2022/11/06/16534076/" title="AGC002F 做题体验">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">范德蒙德卷积 学习笔记</span>
+                        <span class="hidden-mobile">AGC002F 做题体验</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     

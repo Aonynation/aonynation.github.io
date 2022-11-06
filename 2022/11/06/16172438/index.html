@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="直接放结论，反正我也不会证。 \[ \sum_{i&#x3D;0}^k\dbinom{n}{i}\dbinom{m}{k-i}&#x3D;\dbinom{n+m}{k} \] 下面有几个推论，可以稍微不那么严谨的证明一下。 首先你要知道的是这个东西： \[ \dbinom{m}{i}&#x3D;\dbinom{m}{m-i} \] 感性理解一下就是杨辉三角的对称性，其实直接拆式子也不是什么难事。 下面来看几">
+    <meta name="description" content="前言 颓废的时候发现了这个非常有趣的问题，在这里分享一下。 当然，原题给出了 \(7\) 种证明，没脑子选手冥思苦想一年只看懂两种。 正文 第一种证明 我们考虑假设素数的个数是有限个。 那么我们运用一个集合 \(\mathbb{P} &#x3D; \{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\) 来表示。 现在考虑构造一个数 \(n\) ，使得： \[ \be">
 <meta property="og:type" content="article">
-<meta property="og:title" content="范德蒙德卷积 学习笔记">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16526794/index.html">
+<meta property="og:title" content="素数个数的证明">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16172438/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="直接放结论，反正我也不会证。 \[ \sum_{i&#x3D;0}^k\dbinom{n}{i}\dbinom{m}{k-i}&#x3D;\dbinom{n+m}{k} \] 下面有几个推论，可以稍微不那么严谨的证明一下。 首先你要知道的是这个东西： \[ \dbinom{m}{i}&#x3D;\dbinom{m}{m-i} \] 感性理解一下就是杨辉三角的对称性，其实直接拆式子也不是什么难事。 下面来看几">
+<meta property="og:description" content="前言 颓废的时候发现了这个非常有趣的问题，在这里分享一下。 当然，原题给出了 \(7\) 种证明，没脑子选手冥思苦想一年只看懂两种。 正文 第一种证明 我们考虑假设素数的个数是有限个。 那么我们运用一个集合 \(\mathbb{P} &#x3D; \{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\) 来表示。 现在考虑构造一个数 \(n\) ，使得： \[ \be">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:10:01.159Z">
+<meta property="article:modified_time" content="2022-11-06T15:15:01.530Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>范德蒙德卷积 学习笔记 - Aonynation&#39;s Blog</title>
+  <title>素数个数的证明 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="范德蒙德卷积 学习笔记"></span>
+            <span id="subtitle" data-typed-text="素数个数的证明"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          764 words
+          1.6k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          7 mins
+          14 mins
         
       </span>
     
@@ -272,51 +272,102 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">范德蒙德卷积 学习笔记</h1>
+            <h1 style="display: none">素数个数的证明</h1>
             
             
               <div class="markdown-body">
                 
-                <p>直接放结论，反正我也不会证。</p>
-<p><span class="math display">\[
-\sum_{i=0}^k\dbinom{n}{i}\dbinom{m}{k-i}=\dbinom{n+m}{k}
-\]</span></p>
-<p>下面有几个推论，可以稍微不那么严谨的证明一下。</p>
-<p>首先你要知道的是这个东西：</p>
-<p><span class="math display">\[
-\dbinom{m}{i}=\dbinom{m}{m-i}
-\]</span></p>
-<p>感性理解一下就是杨辉三角的对称性，其实直接拆式子也不是什么难事。<br />
-下面来看几个推论：</p>
-<h3 id="推论一">推论一</h3>
-<p><span class="math display">\[
-\sum_{i=1}^{n}\dbinom{n}{i}\dbinom{n}{i-1}=\dbinom{2n}{n+1}
-\]</span> 关于证明，我们可以把 <span
-class="math inline">\(\binom{n}{i-1}\)</span> 转化成为 <span
-class="math inline">\(\binom{n}{n-i+1}\)</span> 。<br />
-然后原式变成 <span class="math display">\[
-\sum_{i=1}^{n}\dbinom{n}{i}\dbinom{n}{n-i+1}
-\]</span> 直接套用公式就可以了。</p>
-<h3 id="推论二">推论二</h3>
-<p><span class="math display">\[
-\sum_{i=0}^n\dbinom{n}{i}^2=\dbinom{2n}{n}
-\]</span> 证明的话先把式子的平方拆开，变成这样 <span
+                <h2 id="前言">前言</h2>
+<p>颓废的时候发现了这个非常有趣的问题，在这里分享一下。<br />
+当然，原题给出了 <span class="math inline">\(7\)</span>
+种证明，没脑子选手冥思苦想一年只看懂两种。</p>
+<h2 id="正文">正文</h2>
+<h3 id="第一种证明">第一种证明</h3>
+<p>我们考虑假设素数的个数是有限个。<br />
+那么我们运用一个集合 <span class="math inline">\(\mathbb{P} =
+\{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\)</span> 来表示。<br />
+现在考虑构造一个数 <span class="math inline">\(n\)</span> ，使得： <span
 class="math display">\[
-\sum_{i=0}^n\dbinom{n}{i}\times\dbinom{n}{i}
-\]</span> 然后考虑这样的一个转换： <span class="math display">\[
-\dbinom{n}{i}=\dbinom{n}{n-i}
-\]</span> 带入原式可以发现，又变成了范德蒙德卷积的形式 <span
-class="math display">\[
-\sum_{i=0}^n\dbinom{n}{i}\dbinom{n}{n-i}
+\begin{split}
+n&amp;=\prod_{i=1}^{m}p_i + 1\\
+&amp;=p_1\times p_2\times p_3\times \cdots \times p_{m-1}\times p_m + 1
+\end{split}
 \]</span></p>
-<h3 id="推论三">推论三</h3>
-<p><span class="math display">\[
-\sum_{i=0}^m\dbinom{n}{i}\dbinom{m}{i}=\dbinom{n+m}{m}
-\]</span> 证明也很简单，考虑这样的一个转换 <span class="math display">\[
-\dbinom{m}{i}=\dbinom{m}{m-i}
-\]</span> 带入以后成为范德蒙德卷积的形式： <span class="math display">\[
-\sum_{i=0}^m\dbinom{n}{i}\dbinom{m}{m-i}
+<p>因为所有的素数都在上述的集合中，所以 <span
+class="math inline">\(n\)</span> 是合数。<br />
+即 <span class="math inline">\(n\)</span> 存在质数因子 <span
+class="math inline">\(pr\)</span> 且 <span class="math inline">\(pr \in
+\mathbb{P}\)</span>。</p>
+<p>现在我们假设以上所有的都是成立的。<br />
+<span class="math inline">\(\because\)</span> <span
+class="math inline">\(n\)</span> 存在质数因子 <span
+class="math inline">\(pr\)</span> 且 <span class="math inline">\(pr \in
+\mathbb{P}\)</span><br />
+<span class="math inline">\(\therefore\)</span> <span
+class="math inline">\(pr|n\)</span> 且 <span
+class="math inline">\(pr|(p_1\times p_2\times p_3\times \cdots \times
+p_{m-1}\times p_m)\)</span><br />
+我们设 <span class="math inline">\(n = pr\times k_1 \ \ (k_1 \in
+\mathbb{N}^+)\)</span>。<br />
+设 <span class="math inline">\(Mul_P = (p_1\times p_2\times \cdots
+\times p_{m-1}\times p_m) = pr\times k_2\ \ (k_2 \in
+\mathbb{N}^+)\)</span><br />
+<span class="math inline">\(\therefore\)</span> <span
+class="math inline">\(n - Mul_P = pr\times (k_1-k_2) = 1\)</span><br />
+<span class="math inline">\(\therefore\)</span> <span
+class="math inline">\(pr \in \mathbb{P}\)</span> 且 <span
+class="math inline">\(pr = 1\)</span><br />
+</p>
+<p>非常显然，这是矛盾的。<br />
+由此得出，一定有无穷多个素数。</p>
+<hr />
+<h3 id="第二种证明">第二种证明</h3>
+<p>先确定方向，我们从 <span class="math inline">\(\gcd\)</span>
+的角度来解析这个问题。<br />
+很显然的是，如果两个数 <span class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> ，<span
+class="math inline">\(\gcd(a,b)=1\)</span> 即 <span
+class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 互质。<br />
+那么我们一定可以推出 <span class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 拥有的质因数互不相同。<br />
+所以，我们如果能够找到一个无穷的序列使得序列中的数两两互质即可。</p>
+<p>在证明中，采用了一个名字叫做 <span
+class="math inline">\(Fermat\)</span> 的序列，序列的公式为 <span
+class="math inline">\(F_i=2^{2^n}+1\)</span><br />
+首先，这个序列一定是无穷无尽的。<br />
+所以我们需要做的事只有证明： <span class="math display">\[
+\forall a,b\in \{F_i\},a \neq b\ \rightarrow \gcd(a,b)=1
 \]</span></p>
+<p>不过这好像并不是一个非常好证明的东西。<br />
+所以证明中吧其转化成了验证下面的这个式子。 <span class="math display">\[
+F_{n-2}=\prod_{k=0}^{n-1} F_k
+\]</span></p>
+<p>等式子列数来后在理解我们会发现非常巧妙：<br />
+同样采取反证法，我们假设存在相同的质因数 <span
+class="math inline">\(pr\)</span>。 <span class="math display">\[
+\begin{split}
+F_n- 2&amp;=\prod_{k=0}^{n-1} F_k\\
+F_n-\prod_{k=0}^{n-1} F_k&amp;=2\\
+pr\times k_1-pr\times k_2&amp;=2\\
+pr\times (k_1-k_2)&amp;=2\\
+\end{split}
+\]</span></p>
+<p>由此我们可以得出：<span class="math inline">\(pr|2\)</span><br />
+所以，<span class="math inline">\(pr\)</span> 只可能是 <span
+class="math inline">\(1\)</span> 或 <span
+class="math inline">\(2\)</span>。<br />
+又因为所有的 <span class="math inline">\(Fermat\)</span>
+数都是奇数。<br />
+所以上述的假设是不成立的。</p>
+<p>现在考虑我们如何来验证上面的这个式子。 <span class="math display">\[
+\begin{split}
+\prod_{k=0}^nF_k&amp;=(\prod_{k=0}^{n-1}F_k)\times F_n\\
+&amp;=(F_n-2)F_n\\
+&amp;=(2^{2^n}-1)(2^{2^n}+1)\\
+&amp;=2^{2^{n+1}}-1=F_{n+1}-2
+\end{split}
+\]</span> 由此得证，素数有无穷多个。</p>
 
                 
               </div>
@@ -341,8 +392,8 @@ class="math display">\[
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>范德蒙德卷积 学习笔记</div>
-      <div>https://aonynation.github.io/2022/11/06/16526794/</div>
+      <div>素数个数的证明</div>
+      <div>https://aonynation.github.io/2022/11/06/16172438/</div>
     </div>
     <div class="license-meta">
       
@@ -386,9 +437,9 @@ class="math display">\[
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16491716/" title="CF850D 做题感想">
+                      <a href="/2022/11/06/16155981/" title="高斯约旦消元法学习笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CF850D 做题感想</span>
+                        <span class="hidden-mobile">高斯约旦消元法学习笔记</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -396,8 +447,8 @@ class="math display">\[
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16534076/" title="AGC002F 做题体验">
-                        <span class="hidden-mobile">AGC002F 做题体验</span>
+                      <a href="/2022/11/06/16325376/" title="FFT 学习笔记">
+                        <span class="hidden-mobile">FFT 学习笔记</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

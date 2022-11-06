@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="上次介绍了行列式的基本性质，我们继续探索由性质得出的有用结论（以二阶行列式为基准）。 #### 结论一 如果行列式两行相同，则行列式的值是 \(0\) 。 证明： \[ \because \begin{vmatrix} a&amp;b\\ c&amp;d\\ \end{vmatrix} &#x3D;-\begin{vmatrix} c&amp;d\\ a&amp;b\\ \end{vma">
+    <meta name="description" content="前言 没有什么意外，发现学过的东西又忘了。 我真的是 AH 第一没脑子选手。 正题  相对于传统的高斯消元，约旦消元法的精度更好、代码更简单，没有回带的过程。——某洛谷博客  算法流程 约旦消元法大致思路如下： 1. 选择一个尚未被选过的未知数作为主元，选择一个包含这个主元的方程。 2. 将这个方程主元的系数化为1。 3. 通过加减消元，消掉其它方程中的这个未知数。 4.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="行列式学习笔记（二）">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16105177/index.html">
+<meta property="og:title" content="高斯约旦消元法学习笔记">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16155981/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="上次介绍了行列式的基本性质，我们继续探索由性质得出的有用结论（以二阶行列式为基准）。 #### 结论一 如果行列式两行相同，则行列式的值是 \(0\) 。 证明： \[ \because \begin{vmatrix} a&amp;b\\ c&amp;d\\ \end{vmatrix} &#x3D;-\begin{vmatrix} c&amp;d\\ a&amp;b\\ \end{vma">
+<meta property="og:description" content="前言 没有什么意外，发现学过的东西又忘了。 我真的是 AH 第一没脑子选手。 正题  相对于传统的高斯消元，约旦消元法的精度更好、代码更简单，没有回带的过程。——某洛谷博客  算法流程 约旦消元法大致思路如下： 1. 选择一个尚未被选过的未知数作为主元，选择一个包含这个主元的方程。 2. 将这个方程主元的系数化为1。 3. 通过加减消元，消掉其它方程中的这个未知数。 4.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T14:54:47.431Z">
+<meta property="article:modified_time" content="2022-11-06T15:18:37.287Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>行列式学习笔记（二） - Aonynation&#39;s Blog</title>
+  <title>高斯约旦消元法学习笔记 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="行列式学习笔记（二）"></span>
+            <span id="subtitle" data-typed-text="高斯约旦消元法学习笔记"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          1.8k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          27 mins
+          15 mins
         
       </span>
     
@@ -272,196 +272,72 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">行列式学习笔记（二）</h1>
+            <h1 style="display: none">高斯约旦消元法学习笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <p>上次介绍了行列式的基本性质，我们继续探索由性质得出的有用结论（以二阶行列式为基准）。
-#### 结论一 <strong>如果行列式两行相同，则行列式的值是 <span
-class="math inline">\(0\)</span> 。</strong> 证明： <span
-class="math display">\[
-\because
-\begin{vmatrix}
-a&amp;b\\
-c&amp;d\\
-\end{vmatrix}
-=-\begin{vmatrix}
-c&amp;d\\
-a&amp;b\\
-\end{vmatrix}\\
-\therefore
-\begin{vmatrix}
-a&amp;b\\
-a&amp;b\\
-\end{vmatrix}
-=-\begin{vmatrix}
-a&amp;b\\
-a&amp;b\\
-\end{vmatrix}=0
-\]</span></p>
-<h4 id="结论二">结论二</h4>
-<p><strong>如果有一行是 <span class="math inline">\(0\)</span>
-则行列式值是 <span class="math inline">\(0\)</span></strong> 证明：
-我们假设第一行是 <span class="math inline">\(0\)</span> 。 <span
-class="math display">\[
-\because
-\begin{vmatrix}
-ka&amp;kb\\
-c&amp;d\\
-\end{vmatrix}
-=k\begin{vmatrix}
-a&amp;b\\
-c&amp;d\\
-\end{vmatrix}\\
-\begin{split}
-\therefore
-\begin{vmatrix}
-0&amp;0\\
-c&amp;d\\
-\end{vmatrix}
-&amp;=
-\begin{vmatrix}
-0\times a&amp; 0 \times b\\
-c&amp;d\\
-\end{vmatrix}\\
-&amp;=
-0\times\begin{vmatrix}
-a&amp;b\\
-c&amp;d\\
-\end{vmatrix}\\
-&amp;=0
-\end{split}
-\]</span></p>
-<h4 id="结论三">结论三</h4>
-<p><strong>如果一行是另一行的 <span class="math inline">\(k\)</span>
-倍，则答案为 <span class="math inline">\(0\)</span> 。</strong> 证明：
-我们假设第一行是第二行的 <span class="math inline">\(k\)</span> 倍。
-<span class="math display">\[
-\begin{split}
-\det(A) &amp;=
-\begin {vmatrix}
-ka &amp;kb\\
-a &amp;b\\
-\end {vmatrix}\\
-&amp;=k
-\begin{vmatrix}
-a &amp; b\\
-a &amp; b\\
-\end {vmatrix}
-\end{split}
-\]</span> 由结论一可知： <span class="math display">\[
-\begin{vmatrix}
-a &amp; b\\
-a &amp; b\\
-\end{vmatrix}
-= 0\\
-\therefore
-\det(A) = k
-\begin{vmatrix}
-a &amp; b\\
-a &amp; b\\
-\end {vmatrix}=0
-\]</span></p>
-<h4 id="结论四">结论四</h4>
-<p><strong>如果某一行是其他行的线性组合，行列式的值是 <span
-class="math inline">\(0\)</span> 。</strong> 证明： <span
-class="math display">\[
-\begin{split}
-\det (A) &amp;=
-\begin {vmatrix}
-a &amp; b &amp;c\\
-d&amp;e&amp;f\\
-k_1a+k_2d&amp;k_1b+k_2e&amp;k1_c+k_2f\\
-\end {vmatrix}\\
-&amp;=
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-k_1a&amp;k_1b&amp;k_1c\\
-\end {vmatrix}+
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-k_2d&amp;k_2e&amp;k_2f\\
-\end {vmatrix}\\
-&amp;= 0 + 0 = 0
-\end{split}\\
-\]</span></p>
-<h3 id="计算行列式">计算行列式</h3>
-<p>先来介绍一个很好的性质。</p>
+                <h3 id="前言">前言</h3>
+<p>没有什么意外，发现学过的东西又忘了。<br />
+我真的是 AH 第一没脑子选手。</p>
+<h3 id="正题">正题</h3>
 <blockquote>
-<p>一个行列式的一行加（减）另一行的 <span
-class="math inline">\(k\)</span> 倍，行列式的值不变。</p>
+<p>相对于传统的高斯消元，约旦消元法的精度更好、代码更简单，没有回带的过程。——某洛谷博客</p>
 </blockquote>
-<p>用数学公式表达：</p>
-<p><span class="math display">\[
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-g&amp;h&amp;i\\
-\end {vmatrix}
-=
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-g-ka&amp;h-kb&amp;i-kc\\
-\end {vmatrix}
-\]</span> 证明一下： <span class="math display">\[
-\begin {split}
-\det (A) &amp;=
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-g-ka&amp;h-kb&amp;i-kc\\
-\end {vmatrix}\\
-&amp;=
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-g&amp;h&amp;i\\
-\end {vmatrix}
--
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-ka&amp;kb&amp;kc\\
-\end {vmatrix}\\
-&amp;=
-\begin {vmatrix}
-a&amp;b&amp;c\\
-d&amp;e&amp;f\\
-g&amp;h&amp;i\\
-\end {vmatrix} \\
-\end {split}
-\]</span></p>
-直接对行列式进行 <span class="math inline">\(Gauss-Jordan\)</span>
-消元。<br />
-之后矩阵变成这样的一个存在，也就是对角矩阵。 <span
+<h4 id="算法流程">算法流程</h4>
+<p>约旦消元法大致思路如下：<br />
+1.
+选择一个尚未被选过的未知数作为主元，选择一个包含这个主元的方程。<br />
+2. 将这个方程主元的系数化为1。<br />
+3. 通过加减消元，消掉其它方程中的这个未知数。<br />
+4. 重复以上步骤，直到把每一行都变成只有一项有系数。<br />
+</p>
+<h4 id="算法验证">算法验证</h4>
+<p>先随便列一个方程组： <span class="math display">\[
+\begin{cases}
+3x+y+3z=6\\
+-2x+7y+8z=17\\
+9x-7y+2z=20\\
+\end{cases}
+\]</span> 用 <strong>高斯-约旦消元</strong>
+的方法接触当前方程的解。<br />
+</p>
+<ul>
+<li>先把方程组转化成为矩阵的形式。</li>
+</ul>
+<p>以上文的方程组为例，我们列出这样的一个矩阵： <span
 class="math display">\[
-\det(A)
-=
-\begin {vmatrix}
-a_1 &amp; 0 &amp; \cdots &amp;0\\
-0 &amp; a_2 &amp; \cdots &amp;0\\
-\vdots &amp; \vdots &amp; \ddots &amp;\vdots\\
-0&amp;0&amp;\cdots &amp; a_n\\
-\end {vmatrix}
-\]</span> 考虑对角矩阵的行列式求法。 $$
-<p>$$
-进一步的，我们推广到<strong>上三角矩阵以及下三角矩阵</strong><br />
-发现这样的情况：</p>
-<blockquote>
-<p>我们定义对角线的值为 <span
-class="math inline">\(a_1,a_2,\cdots,a_{n-1},a_n\)</span> 。
-那么，行列式的值都是 <span class="math display">\[
-\prod_{i=1}^n a_i
-\]</span></p>
-</blockquote>
-<p>所以不需要 <span class="math inline">\(Gauss-Jordan\)</span> 直接
-<span class="math inline">\(Gauss\)</span> 就可以啦！</p>
-<h3 id="code">Code</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> file(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> quad putchar(<span class="hljs-string">&#x27; &#x27;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Enter putchar(<span class="hljs-string">&#x27;\n&#x27;</span>)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long </span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 605</span><br><br><span class="hljs-type">int</span> n, mod, a[N][N], flag = <span class="hljs-number">1</span>;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br><span class="hljs-comment">//  file(&quot;P7112&quot;);</span><br>  std::cin &gt;&gt; n &gt;&gt; mod;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++)<br>      <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;a[i][j]);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>      <span class="hljs-keyword">while</span> (a[i][i]) &#123;<br>        <span class="hljs-type">int</span> x = a[j][i] / a[i][i];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = i; k &lt;= n; k++)<br>          a[j][k] = (a[j][k] - x * a[i][k] % mod + mod) % mod;<br>        std::<span class="hljs-built_in">swap</span>(a[j], a[i]);<br>        flag *= (<span class="hljs-number">-1</span>);<br>      &#125;<span class="hljs-function">a</span><br><span class="hljs-function">      <span class="hljs-title">std::swap</span><span class="hljs-params">(a[i], a[j])</span></span>;<br>      flag *= <span class="hljs-number">-1</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-type">int</span> ans = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    ans = (ans * a[i][i]) % mod;<br>   std::cout &lt;&lt; (ans * flag + mod) % mod&lt;&lt; std::endl; <br>&#125;<br></code></pre></td></tr></table></figure>
+\begin{bmatrix}
+3 &amp; 1 &amp; 3 &amp; 6\\
+-2&amp; 7 &amp; 8 &amp; 17\\
+9 &amp;-7 &amp; 2 &amp; 20\\
+\end{bmatrix}
+\]</span> * 看第一列，从上到下扫描，发现绝对值更大的就直接交换。 <span
+class="math display">\[
+\begin{bmatrix}
+3 &amp; 1 &amp; 3 &amp; 6\\
+-2&amp; 7 &amp; 8 &amp; 17\\
+9 &amp;-7 &amp; 2 &amp; 20\\
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+9 &amp;-7 &amp; 2 &amp; 20\\
+-2&amp; 7 &amp; 8 &amp; 17\\
+3 &amp; 1 &amp; 3 &amp; 6\\
+\end{bmatrix}
+\]</span> *
+然后运用消元的办法消元就可以了捏。（太懒了不想再算这种申必的系数）<br />
+* 之后的直接重复上面的两步就可以了。</p>
+<p>最后会变成一个类似这样的东西： <span class="math display">\[
+\begin{bmatrix}
+a_{1,1} &amp;0 &amp; 0 &amp; a\\
+0&amp; a_{2,2} &amp; 0 &amp; b\\
+0 &amp; 1 &amp; a_{3,3} &amp; c\\
+\end{bmatrix}
+\]</span> 直接算就好了。</p>
+<p><strong>注意：当出现有一列全部为零时，说明无解。</strong></p>
+<h4 id="code">Code</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> file(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Enter putchar(<span class="hljs-string">&#x27;\n&#x27;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> quad putchar(<span class="hljs-string">&#x27; &#x27;</span>)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 1005</span><br><br><span class="hljs-type">int</span> n;<br><span class="hljs-type">double</span> a[N][N];<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  <span class="hljs-comment">// file(&quot;P3389&quot;);</span><br>  std::cin &gt;&gt; n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n + <span class="hljs-number">1</span>; j++)<br>      <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, &amp;a[i][j]);<br>  <br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>    <span class="hljs-type">int</span> maxn = i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt;= n; j++)<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(a[j][i]) &gt; <span class="hljs-built_in">fabs</span>(a[maxn][i])) maxn = j;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n + <span class="hljs-number">1</span>; j++)<br>      std::<span class="hljs-built_in">swap</span>(a[i][j], a[maxn][j]);<br>    <span class="hljs-keyword">if</span> (!a[i][i]) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;No Solution\n&quot;</span>); <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>      <span class="hljs-keyword">if</span> (j == i) <span class="hljs-keyword">continue</span>;<br>      <span class="hljs-type">double</span> tmp = a[j][i] / a[i][i];<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k= i + <span class="hljs-number">1</span>; k &lt;= n + <span class="hljs-number">1</span>; k++)<br>        a[j][k] -= a[i][k] * tmp;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2lf\n&quot;</span>, a[i][n + <span class="hljs-number">1</span>] / a[i][i]);<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -486,8 +362,8 @@ class="math inline">\(a_1,a_2,\cdots,a_{n-1},a_n\)</span> 。
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>行列式学习笔记（二）</div>
-      <div>https://aonynation.github.io/2022/11/06/16105177/</div>
+      <div>高斯约旦消元法学习笔记</div>
+      <div>https://aonynation.github.io/2022/11/06/16155981/</div>
     </div>
     <div class="license-meta">
       
@@ -535,8 +411,8 @@ class="math inline">\(a_1,a_2,\cdots,a_{n-1},a_n\)</span> 。
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16325376/" title="FFT 学习笔记">
-                        <span class="hidden-mobile">FFT 学习笔记</span>
+                      <a href="/2022/11/06/16172438/" title="素数个数的证明">
+                        <span class="hidden-mobile">素数个数的证明</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
