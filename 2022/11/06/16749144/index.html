@@ -24,7 +24,7 @@
 <meta property="og:description" content="题目链接 一道牛逼的题目。 上来先来一波推式子： \[ \begin{split} S_n&amp;&#x3D;\sum_{i&#x3D;1}^n w_i\\ &amp;&#x3D;\sum_{i&#x3D;1}^n\begin{cases}\dfrac{a_i}{P}&amp;a_i&gt;0\\\dfrac{a_i}{|N|}&amp;a_i&lt;0\end{cases}\\ &amp;&#x3D;\frac{1}{P}\sum">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T14:18:30.410Z">
+<meta property="article:modified_time" content="2022-11-06T14:19:55.222Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
@@ -119,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                Startseite
               </a>
             </li>
           
@@ -131,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                Archiv
               </a>
             </li>
           
@@ -143,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                Kategorien
               </a>
             </li>
           
@@ -155,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                Schlagwörter
               </a>
             </li>
           
@@ -167,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                Über
               </a>
             </li>
           
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k words
+          4.6k wörter
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          39 mins
+          39 minuten
         
       </span>
     
@@ -304,16 +304,17 @@ class="math inline">\(P_iN_n-N_iP_n\)</span>
 的形式非常符合向量的叉积运算，所以上面的这个可以看成是 <span
 class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
 <p>认真思考后发现，对于 <span class="math inline">\(S_i\)</span>
-大小可能有贡献的点一定是在一个右下凸壳上，证明略。
+大小可能有贡献的点一定是在一个右下凸壳上，证明略。<br />
 那么现在的问题是：对于一个不断更新的点集，求这个点集的下凸壳。</p>
 <p>本人太菜，不会 <span class="math inline">\(poly\)</span>
-的做法，所以退而求其次采用分块维护下凸壳。</p>
+的做法，所以退而求其次采用分块维护下凸壳。<br />
+</p>
 <p>预处理的地方非常简单，就是对于每个块分别求出下凸壳。</p>
-<p>对于修改的操作，我们发现所谓的区间修改也就是后缀的修改，散块直接重构，整块打标记。
-同时还有一种不需要打标记的方法，发现向量叉积运算有分配律，所以可以直接维护一个类似前缀和的东西，这样可以不用打标记。
+<p>对于修改的操作，我们发现所谓的区间修改也就是后缀的修改，散块直接重构，整块打标记。<br />
+同时还有一种不需要打标记的方法，发现向量叉积运算有分配律，所以可以直接维护一个类似前缀和的东西，这样可以不用打标记。<br />
 具体的方法是在查询的时候累计之前块最后一个点的答案。</p>
-<p>查询操作对于每一个块找到最有可能成为答案的位置，然后所有的块进行比较。
-对于一个块我们怎么找到一个最优秀的点，方法是这样的：
+<p>查询操作对于每一个块找到最有可能成为答案的位置，然后所有的块进行比较。<br />
+对于一个块我们怎么找到一个最优秀的点，方法是这样的：<br />
 发现对于一个下凸壳，斜率是不断递增的，所以可以利用这样的性质直接二分即可。</p>
 <details>
 <summary>
@@ -351,20 +352,20 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>Beitragsautor</div>
           <div>Aonynation</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
+          <div>Veröffentlicht am</div>
           <div>2022年11月6日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
@@ -390,13 +391,19 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/11/06/16749085/" title="luoguP6965 [NEERC2016]Binary Code 题解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">luoguP6965 [NEERC2016]Binary Code 题解</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
                       <a href="/2022/11/06/ji_chu_zu_he_lian_xi_ti/" title="基础组合数练习题">
                         <span class="hidden-mobile">基础组合数练习题</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -415,7 +422,7 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Inhaltsverzeichnis</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -476,7 +483,7 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -484,7 +491,7 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -706,7 +713,7 @@ class="math inline">\((P_i,\ N_i)\times(P_n,\ N_n)\)</span> 。</p>
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

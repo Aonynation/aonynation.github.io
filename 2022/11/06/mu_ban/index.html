@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/usericon/47531.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aonynation">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Fastmod   点击查看代码  12345678910111213141516171819202122232425262728#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;ctime&gt;typedef un">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各种模板的集合">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/mu_ban/index.html">
+<meta property="og:site_name" content="Aonynation&#39;s Blog">
+<meta property="og:description" content="Fastmod   点击查看代码  12345678910111213141516171819202122232425262728#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;ctime&gt;typedef un">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-06T14:38:13.760Z">
+<meta property="article:author" content="Aonynation">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>各种模板的集合 - Aonynation&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"aonynation.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"cpp"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Aonynation&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Startseite
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archiv
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Kategorien
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Schlagwörter
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                Über
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="各种模板的集合"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-06 00:00" pubdate>
+          2022年11月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k wörter
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          119 minuten
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">各种模板的集合</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="fastmod">Fastmod</h2>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ctime&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ull;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">__uint128_t</span> L;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">FastMod</span> &#123;<br>  ull b, m;<br>  <span class="hljs-built_in">FastMod</span>() &#123;&#125;<br>  <span class="hljs-built_in">FastMod</span>(ull b) : <span class="hljs-built_in">b</span>(b), <span class="hljs-built_in">m</span>(<span class="hljs-built_in">ull</span>((<span class="hljs-built_in">L</span>(<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-number">64</span>) / b)) &#123;&#125;<br>  <span class="hljs-function">ull <span class="hljs-title">getmod</span><span class="hljs-params">(ull a)</span> </span>&#123;<br>    ull q = (ull)((<span class="hljs-built_in">L</span>(m) * a) &gt;&gt; <span class="hljs-number">64</span>);<br>    ull r = a - q * b;<br>    <span class="hljs-keyword">return</span> r &gt;= b ? r - b : r;<br>  &#125;<br>&#125; Mod;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> getmod Mod.getmod</span><br><br><span class="hljs-type">int</span> n;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  std::cin &gt;&gt; n;<br>  Mod = <span class="hljs-built_in">FastMod</span>(<span class="hljs-number">114514</span>);<br>  std::cout &lt;&lt; <span class="hljs-built_in">getmod</span>(n) &lt;&lt; std::endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+</details>
+<h2 id="lct">LCT</h2>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">namespace</span> LCT &#123;<br><span class="hljs-type">int</span> f[N], c[N][<span class="hljs-number">2</span>], s[N], st[N];<br><span class="hljs-type">bool</span> r[N];<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">bool</span> <span class="hljs-title">nroot</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushr</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">access</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">makeroot</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">findroot</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>; <span class="hljs-comment">// split(x, y) 表示取出 x,y 的路径</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">cut</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;<br>&#125;<br><span class="hljs-keyword">using</span> LCT::s;<br><br><span class="hljs-keyword">namespace</span> LCT &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rc c[x][1]</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> lc c[x][0]</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">bool</span> <span class="hljs-title">nroot</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> c[f[x]][<span class="hljs-number">0</span>] == x || c[f[x]][<span class="hljs-number">1</span>] == x; &#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123; s[x] = s[lc] + s[rc]+????; &#125; <span class="hljs-comment">// s 数组是记录结果。</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushr</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<span class="hljs-type">int</span> t = lc; lc = rc; rc = t; r[x] ^= <span class="hljs-number">1</span>;&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (r[x]) &#123;<br>    <span class="hljs-keyword">if</span> (lc) <span class="hljs-built_in">pushr</span>(lc);<br>    <span class="hljs-keyword">if</span> (rc) <span class="hljs-built_in">pushr</span>(rc);<br>    r[x] = <span class="hljs-number">0</span>;<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  <span class="hljs-type">int</span> y = f[x], z = f[y], k = c[y][<span class="hljs-number">1</span>] == x, w = c[x][!k];<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">nroot</span>(y)) c[z][c[z][<span class="hljs-number">1</span>] == y] = x; c[x][!k] = y; c[y][k] = w;<br>  <span class="hljs-keyword">if</span> (w)f[w] = y; f[y] = x; f[x] = z;<br>  <span class="hljs-built_in">pushup</span>(y);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  <span class="hljs-type">int</span> y = x, z = <span class="hljs-number">0</span>;<br>  st[++z] = y; <br>  <span class="hljs-keyword">while</span> (<span class="hljs-built_in">nroot</span>(y)) st[++z] = y = f[y];<br>  <span class="hljs-keyword">while</span> (z) <span class="hljs-built_in">pushdown</span>(st[z--]);<br>  <span class="hljs-keyword">while</span> (<span class="hljs-built_in">nroot</span>(x)) &#123;<br>    y = f[x]; z = f[y];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">nroot</span>(y)) <span class="hljs-built_in">rotate</span>((c[y][<span class="hljs-number">0</span>] == x) ^ (c[z][<span class="hljs-number">0</span>] == y) ? x : y);<br>    <span class="hljs-built_in">rotate</span>(x);<br>  &#125;<br>  <span class="hljs-built_in">pushup</span>(x);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">access</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> y = <span class="hljs-number">0</span>; x; x = f[y = x])<br>    <span class="hljs-built_in">splay</span>(x), rc = y, <span class="hljs-built_in">pushup</span>(x);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">makeroot</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123; <span class="hljs-built_in">access</span>(x); <span class="hljs-built_in">splay</span>(x); <span class="hljs-built_in">pushr</span>(x); &#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">findroot</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  <span class="hljs-built_in">access</span>(x); <span class="hljs-built_in">splay</span>(x);<br>  <span class="hljs-keyword">while</span> (lc) <span class="hljs-built_in">pushdown</span>(x), x = lc;<br>  <span class="hljs-built_in">splay</span>(x);<br>  <span class="hljs-keyword">return</span> x;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123; <span class="hljs-built_in">makeroot</span>(x); <span class="hljs-built_in">access</span>(y); <span class="hljs-built_in">splay</span>(y); &#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>  <span class="hljs-built_in">makeroot</span>(x);<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">findroot</span>(y) != x)f[x] = y;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">cut</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>  <span class="hljs-built_in">makeroot</span>(x);<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">findroot</span>(y) == x &amp;&amp; f[y] == x &amp;&amp; !c[y][<span class="hljs-number">0</span>]) &#123;<br>    f[y] = c[x][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">pushup</span>(x);<br>  &#125;<br>&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+<h2 id="fhq-treap">fhq treap</h2>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">namespace</span> Fhq_Treap &#123;<br><br><span class="hljs-type">int</span> ch[N][<span class="hljs-number">3</span>], siz[N], val[N], cnt, rnd[N];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">newnode</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">Kth</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> k)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> &amp;x, <span class="hljs-type">int</span> &amp;y)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> A, <span class="hljs-type">int</span> B)</span></span>;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">Delete</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_rank</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_Kth</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_pre</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_nxt</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;<br>&#125;<br><br><br><span class="hljs-keyword">namespace</span> Fhq_Treap &#123;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123; siz[x] = <span class="hljs-number">1</span> + siz[ch[x][<span class="hljs-number">0</span>]] + siz[ch[x][<span class="hljs-number">1</span>]]; &#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">newnode</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>  val[++cnt] = x; siz[cnt] = <span class="hljs-number">1</span>;<br>  rnd[cnt] = <span class="hljs-built_in">rand</span>();<br>  <span class="hljs-keyword">return</span> cnt;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">Kth</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">if</span> (k &lt;= siz[ch[now][<span class="hljs-number">0</span>]])now = ch[now][<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (k == siz[ch[now][<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> now;<br>    <span class="hljs-keyword">else</span> k -= siz[ch[now][<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span>, now = ch[now][<span class="hljs-number">1</span>];<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> &amp;x, <span class="hljs-type">int</span> &amp;y)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (now == <span class="hljs-number">0</span>) &#123;<br>    x = y = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> ;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (val[now] &lt;= k) &#123;<br>    x = now; <span class="hljs-built_in">split</span>(ch[now][<span class="hljs-number">1</span>], k, ch[now][<span class="hljs-number">1</span>], y);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    y = now; <span class="hljs-built_in">split</span>(ch[now][<span class="hljs-number">0</span>], k, x, ch[now][<span class="hljs-number">0</span>]);<br>  &#125;<br>  <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> A, <span class="hljs-type">int</span> B)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (!A || !B)<span class="hljs-keyword">return</span> A + B;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rnd[A] &lt; rnd[B]) &#123;<br>    ch[A][<span class="hljs-number">1</span>] = <span class="hljs-built_in">merge</span>(ch[A][<span class="hljs-number">1</span>], B);<br>    <span class="hljs-built_in">update</span>(A); <span class="hljs-keyword">return</span> A;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    ch[B][<span class="hljs-number">0</span>] = <span class="hljs-built_in">merge</span>(A, ch[B][<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">update</span>(B); <span class="hljs-keyword">return</span> B;<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>  <span class="hljs-built_in">split</span>(root, a, x, y);<br>  root = <span class="hljs-built_in">merge</span>(<span class="hljs-built_in">merge</span>(x, <span class="hljs-built_in">newnode</span>(a)), y);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">Delete</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>  <span class="hljs-built_in">split</span>(root, a, x, z);<br>  <span class="hljs-built_in">split</span>(x, a - <span class="hljs-number">1</span>, x, y);<br>  y = <span class="hljs-built_in">merge</span>(ch[y][<span class="hljs-number">0</span>], ch[y][<span class="hljs-number">1</span>]);<br>  root = <span class="hljs-built_in">merge</span>(<span class="hljs-built_in">merge</span>(x, y), z);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_rank</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>  <span class="hljs-built_in">split</span>(root, a - <span class="hljs-number">1</span>, x, y);<br>  <span class="hljs-type">int</span> ret = siz[x] + <span class="hljs-number">1</span>;<br>  root = <span class="hljs-built_in">merge</span>(x, y);<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_Kth</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123; <span class="hljs-keyword">return</span> val[<span class="hljs-built_in">Kth</span>(root, a)]; &#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_pre</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>  <span class="hljs-built_in">split</span>(root, a - <span class="hljs-number">1</span>, x, y);<br>  <span class="hljs-type">int</span> ret = val[<span class="hljs-built_in">Kth</span>(x, siz[x])];<br>  root = <span class="hljs-built_in">merge</span>(x, y);<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find_nxt</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>  <span class="hljs-built_in">split</span>(root, a, x, y);<br>  <span class="hljs-type">int</span> ret = val[<span class="hljs-built_in">Kth</span>(y, <span class="hljs-number">1</span>)];<br>  root = <span class="hljs-built_in">merge</span>(x, y);<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+<h2 id="拉格朗日插值法">拉格朗日插值法</h2>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> *y, <span class="hljs-type">int</span> xi)</span> </span>&#123;<br>  <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>  s1[<span class="hljs-number">0</span>] = (xi - x[<span class="hljs-number">0</span>]) % mod, s2[n + <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) <br>    s1[i] = <span class="hljs-number">1ll</span> * s1[i - <span class="hljs-number">1</span>] * (xi - x[i]) % mod;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n; i &gt;= <span class="hljs-number">0</span>; i--) <br>    s2[i] = <span class="hljs-number">1ll</span> * s2[i + <span class="hljs-number">1</span>] * (xi - x[i]) % mod;<br>  ifac[<span class="hljs-number">0</span>] = ifac[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) <br>    ifac[i] = <span class="hljs-number">-1ll</span> * mod / i * ifac[mod % i] % mod;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) <br>    ifac[i] = <span class="hljs-number">1ll</span> * ifac[i] * ifac[i - <span class="hljs-number">1</span>] % mod;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;<br>    (ans += <span class="hljs-number">1ll</span> * y[i] * (i == <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : s1[i - <span class="hljs-number">1</span>]) % mod * s2[i + <span class="hljs-number">1</span>] % mod<br>            * ifac[i] % mod * (((n - i) &amp; <span class="hljs-number">1</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>) * ifac[n - i] % mod) %= mod;<br>  &#125;<br>  <span class="hljs-keyword">return</span> (ans + mod) % mod;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+<h2 id="mt19937-随机数">mt19937 随机数</h2>
+</details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::mt19937 <span class="hljs-title">seed</span><span class="hljs-params">(<span class="hljs-number">114514</span>)</span></span>;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-function">T <span class="hljs-title">rand</span><span class="hljs-params">(T l, T r)</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">uniform_int_distribution</span>&lt;<span class="hljs-type">int</span>&gt;(l, r)(seed);<br>&#125;<br></code></pre></td></tr></table></figure>
+</details>
+<h2 id="最新-ccf-各类赛事-latex-模板">最新 CCF 各类赛事 <span
+class="math inline">\(LaTex\)</span> 模板</h2>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\documentclass</span>[UTF8,a4paper]&#123;ctexart&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;geometry&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;multicol&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;multirow&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;tabu&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;xeCJK&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;CJK&#125;     <br><span class="hljs-keyword">\usepackage</span>&#123;xeCJKfntef&#125;                     <br><span class="hljs-keyword">\usepackage</span>&#123;fancyhdr&#125;               <br><span class="hljs-keyword">\usepackage</span>&#123;graphicx&#125;                 <br><span class="hljs-keyword">\usepackage</span>&#123;lastpage&#125;    <br><span class="hljs-keyword">\usepackage</span>&#123;listings&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;xcolor&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;fontspec&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;layout&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;titletoc&#125;<br><span class="hljs-keyword">\usepackage</span>[colorlinks,linkcolor=blue]&#123;hyperref&#125; <br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\filename</span>[1]&#123;<span class="hljs-keyword">\emph</span>&#123;<span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;&#125;<br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\udot</span>[1]&#123;<span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-keyword">\color</span>&#123;black&#125;<span class="hljs-keyword">\CJKunderdot</span>&#123;<span class="hljs-keyword">\color</span>&#123;black&#125;<span class="hljs-params">#1</span>&#125;&#125;&#125; <span class="hljs-comment">% 第一个 color 调整加粗字体下着重号的颜色</span><br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\newprob</span>[2]&#123;<br>    <span class="hljs-keyword">\newpage</span><br>    <span class="hljs-keyword">\pagestyle</span>&#123;fancy&#125;<br>    <span class="hljs-keyword">\lhead</span>&#123;ChineseContestName&#125; <span class="hljs-keyword">\rhead</span>&#123;<span class="hljs-params">#1</span>（<span class="hljs-params">#2</span>）&#125;<br>    <span class="hljs-keyword">\cfoot</span>&#123;第 <span class="hljs-keyword">\thepage</span> 页 <span class="hljs-keyword">\qquad</span> 共 <span class="hljs-keyword">\pageref</span>&#123;LastPage&#125; 页&#125;<br>    <span class="hljs-keyword">\phantomsection</span><br>    <span class="hljs-keyword">\addcontentsline</span>&#123;toc&#125;&#123;section&#125;&#123;<span class="hljs-params">#1</span>（<span class="hljs-params">#2</span>）&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;center&#125;<br>        <span class="hljs-keyword">\LARGE</span><br>        <span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#1</span>&#125;（<span class="hljs-params">#2</span>）<br>    <span class="hljs-keyword">\end</span>&#123;center&#125;<br>    <span class="hljs-keyword">\large</span><br>    <span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\textbf</span>&#123;【题目描述】&#125;<br>    <span class="hljs-keyword">\phantomsection</span><br>    <span class="hljs-keyword">\addcontentsline</span>&#123;toc&#125;&#123;subsection&#125;&#123;【题目描述】&#125;<br>&#125;<br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\para</span>[1]&#123;<br>    <span class="hljs-built_in">$</span> <span class="hljs-built_in">$</span> <span class="hljs-keyword">\\</span> <br>    <span class="hljs-keyword">\textbf</span>&#123;【<span class="hljs-params">#1</span>】&#125;<br>    <span class="hljs-keyword">\phantomsection</span><br>    <span class="hljs-keyword">\addcontentsline</span>&#123;toc&#125;&#123;subsection&#125;&#123;【<span class="hljs-params">#1</span>】&#125;<br>&#125;<br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\sample</span>[2]&#123;<br>    <span class="hljs-built_in">$</span> <span class="hljs-built_in">$</span> <span class="hljs-keyword">\\</span> <br>    <span class="hljs-keyword">\textbf</span>&#123;【样例&#125; <span class="hljs-params">#1</span><span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#2</span>】&#125;<br>    <span class="hljs-keyword">\phantomsection</span><br>    <span class="hljs-keyword">\addcontentsline</span>&#123;toc&#125;&#123;subsection&#125;&#123;【样例 <span class="hljs-params">#1</span> <span class="hljs-params">#2</span>】&#125;<br>&#125;<br><span class="hljs-keyword">\lstset</span>&#123;<br>    basicstyle=&#123;      <br>        <span class="hljs-keyword">\color</span>&#123;black&#125;<br>        <span class="hljs-keyword">\fontspec</span>&#123;Consolas&#125;<br>    &#125;,<br>    keywordstyle=&#123;<br>        <span class="hljs-keyword">\color</span>&#123;blue&#125;<br>        <span class="hljs-keyword">\fontspec</span>&#123;Consolas&#125;<br>    &#125;,<br>    numberstyle=&#123;<br>        <span class="hljs-keyword">\color</span>&#123;black&#125;<br>        <span class="hljs-keyword">\textbf</span><br>    &#125;,<br>    rulecolor=<span class="hljs-keyword">\color</span>&#123;blue&#125;,<br>    numbers=left,                               <br>    frame=single,                            <br>    frameround=tttt,<br>    morekeywords=&#123;Sample, Input, Output&#125;,   <span class="hljs-comment">% 可以手动添加关键字</span><br>&#125;<br><span class="hljs-keyword">\setmonofont</span>&#123;Consolas&#125;<br><span class="hljs-keyword">\geometry</span>&#123;left=2.52cm,right=2.52cm,top=2.5cm,bottom=2.5cm&#125;<br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br>    <span class="hljs-keyword">\pagestyle</span>&#123;fancy&#125;<br>    <span class="hljs-keyword">\lhead</span>&#123;ChineseContestName&#125; <span class="hljs-keyword">\rhead</span>&#123;&#125;<br>    <span class="hljs-keyword">\cfoot</span>&#123;第 <span class="hljs-keyword">\thepage</span> 页 <span class="hljs-keyword">\qquad</span> 共 <span class="hljs-keyword">\pageref</span>&#123;LastPage&#125; <span class="hljs-keyword">\color</span>&#123;black&#125; 页&#125;<br>    <span class="hljs-keyword">\thispagestyle</span>&#123;empty&#125;<br>    <span class="hljs-keyword">\addcontentsline</span>&#123;toc&#125;&#123;section&#125;&#123;注意事项&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;center&#125;<br>        <span class="hljs-keyword">\Huge</span><br>        <span class="hljs-keyword">\textbf</span>&#123;ChineseContestName&#125;<br>        <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\Huge</span> <br>        EnglishContestName<br>        <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\huge</span><br>        <span class="hljs-keyword">\textit</span>&#123;SecondTitle&#125;<br>        <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\Large</span><br>        <span class="hljs-keyword">\textbf</span>&#123;时间：&#125;2021<span class="hljs-keyword">\textbf</span>&#123;年&#125;1<span class="hljs-keyword">\textbf</span>&#123;月&#125;1<span class="hljs-keyword">\textbf</span>&#123;日&#125; 08:30 <span class="hljs-built_in">$</span><span class="hljs-keyword">\sim</span><span class="hljs-built_in">$</span> 1:00<br>        <span class="hljs-keyword">\\</span><br>    <span class="hljs-keyword">\end</span>&#123;center&#125;<br>    <span class="hljs-keyword">\large</span><br>    <span class="hljs-keyword">\begin</span>&#123;center&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;|p&#123;3.1cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|&#125;<br>        <span class="hljs-keyword">\hline</span><br>        题目名称 <span class="hljs-built_in">&amp;</span> First <span class="hljs-built_in">&amp;</span> Second <span class="hljs-built_in">&amp;</span> Third <span class="hljs-built_in">&amp;</span> Forth <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        题目类型 <span class="hljs-built_in">&amp;</span> 传统型 <span class="hljs-built_in">&amp;</span> 传统型 <span class="hljs-built_in">&amp;</span> 传统型 <span class="hljs-built_in">&amp;</span> 传统型 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        目录 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        可执行文件名 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        输入文件名 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first.in&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second.in&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third.in&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth.in&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        输出文件名 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first.out&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second.out&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third.out&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth.out&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        每个测试点时限 <span class="hljs-built_in">&amp;</span> 1.0 秒 <span class="hljs-built_in">&amp;</span> 1.0 秒 <span class="hljs-built_in">&amp;</span> 1.0 秒 <span class="hljs-built_in">&amp;</span> 1.0 秒 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        内存限制 <span class="hljs-built_in">&amp;</span> 256 MB <span class="hljs-built_in">&amp;</span> 256 MB <span class="hljs-built_in">&amp;</span> 256 MB <span class="hljs-built_in">&amp;</span> 256 MB <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        测试点数目 <span class="hljs-built_in">&amp;</span> 5 <span class="hljs-built_in">&amp;</span> 5 <span class="hljs-built_in">&amp;</span> 5 <span class="hljs-built_in">&amp;</span> 5 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        测试点是否等分 <span class="hljs-built_in">&amp;</span> 是 <span class="hljs-built_in">&amp;</span> 是 <span class="hljs-built_in">&amp;</span> 是 <span class="hljs-built_in">&amp;</span> 是 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;center&#125;<br>提交源程序文件名<br>    <span class="hljs-keyword">\begin</span>&#123;center&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;|p&#123;3.1cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|p&#123;2.5cm&#125;|&#125;<br>        <span class="hljs-keyword">\hline</span><br>        对于 C++ <span class="hljs-keyword">\ </span> 语言 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first.cpp&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second.cpp&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third.cpp&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth.cpp&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        对于 C <span class="hljs-keyword">\qquad</span> 语言 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first.c&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second.c&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third.c&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth.c&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        对于 Pascal 语言 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;first.pas&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;second.pas&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;third.pas&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;fourth.pas&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;center&#125;<br>编译选项<br>    <span class="hljs-keyword">\begin</span>&#123;center&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;|p&#123;3.1cm&#125;|p&#123;11.2cm&#125;&lt;<span class="hljs-keyword">\centering</span>|&#125;<br>        <span class="hljs-keyword">\hline</span><br>        对于 C++ <span class="hljs-keyword">\ </span>语言 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;-lm&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        对于 C <span class="hljs-keyword">\qquad</span> 语言 <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\texttt</span>&#123;-lm&#125; <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        对于 Pascal 语言 <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\hline</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;center&#125;<br>    <span class="hljs-keyword">\textbf</span>&#123;注意事项与提醒（请选手务必仔细阅读）&#125; <br>    <span class="hljs-keyword">\\</span><br>    <span class="hljs-keyword">\indent</span><br>    1. 文件名（程序名和输入输出文件名）必须使用英文小写。<span class="hljs-keyword">\par</span><br>    2. C/C++ 中函数 main() 的返回值类型必须是 int，程序正常结束时的返回值必须是 0。<span class="hljs-keyword">\par</span><br>    3. 提交的程序代码文件的放置位置请参照具体要求。<span class="hljs-keyword">\par</span><br>    4. 因违反以上三点而出现的错误或问题，申诉时一律不予受理。<span class="hljs-keyword">\par</span><br>    5. 若无特殊说明，结果的比较方式为全文比较（过滤行末空格及文末回车）。<span class="hljs-keyword">\par</span><br>    6. 程序可使用的栈内存空间限制与题目的内存限制一致。<span class="hljs-keyword">\par</span><br>    7. 只提供 Windows 格式附加样例文件。<span class="hljs-keyword">\par</span><br>    8. 评测在 Windows 下进行，各语言的编译器版本以其为准。<br>    <span class="hljs-comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="hljs-keyword">\newprob</span>&#123;First&#125;&#123;first&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Description. <span class="hljs-keyword">\par</span><br>求出<span class="hljs-keyword">\udot</span>&#123;至少&#125;有多少个数满足条件。<br><br><span class="hljs-keyword">\para</span>&#123;输入格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>从文件 <span class="hljs-keyword">\filename</span>&#123;first.in&#125; 中读入数据。 <span class="hljs-keyword">\par</span><br>包含一个正整数 <span class="hljs-built_in">$</span>n<span class="hljs-built_in">$</span>。<br><br><span class="hljs-keyword">\para</span>&#123;输出格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>输出到文件 <span class="hljs-keyword">\filename</span>&#123;first.out&#125; 中。 <span class="hljs-keyword">\par</span><br>Output. <br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输入&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Input.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输出&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Output.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;解释&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Note.<br><br><span class="hljs-keyword">\sample</span>&#123;2&#125;&#123;&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>见选手目录下的 <span class="hljs-keyword">\filename</span>&#123;first/first2.in&#125; 与 <span class="hljs-keyword">\filename</span>&#123;first/first2.ans&#125;。<br><br><span class="hljs-keyword">\para</span>&#123;数据范围&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br><span class="hljs-keyword">\begin</span>&#123;center&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;tabu&#125;&#123;c|c|c|c&#125;<br>        <span class="hljs-keyword">\tabucline</span>[2pt]&#123;-&#125;<br>        测试点编号 <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>n <span class="hljs-keyword">\le</span><span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>m <span class="hljs-keyword">\le</span><span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> 特殊限制 <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\tabucline</span>[1.2pt]&#123;-&#125;<br>        <span class="hljs-built_in">$</span>1 <span class="hljs-keyword">\sim</span> 4<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>15<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>2000<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;无&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\cline</span>&#123;1-3&#125;<br>        <span class="hljs-built_in">$</span>5 <span class="hljs-keyword">\sim</span> 8<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>2000<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>15<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\hline</span><br>        <span class="hljs-built_in">$</span>9 <span class="hljs-keyword">\sim</span> 12<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multicolumn</span>&#123;2&#125;&#123;c|&#125;&#123;<span class="hljs-built_in">$</span>100<span class="hljs-built_in">$</span>&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>c<span class="hljs-built_in">_</span>i = C<span class="hljs-built_in">_</span>j = 1<span class="hljs-built_in">$</span> <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\hline</span><br>        <span class="hljs-built_in">$</span>13 <span class="hljs-keyword">\sim</span> 16<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multicolumn</span>&#123;2&#125;&#123;c|&#125;&#123;<span class="hljs-keyword">\multirow</span>&#123;3&#125;&#123;*&#125;&#123;<span class="hljs-built_in">$</span>2000<span class="hljs-built_in">$</span>&#125;&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>w<span class="hljs-built_in">_</span>i = W<span class="hljs-built_in">_</span>j = 1<span class="hljs-built_in">$</span> <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\cline</span>&#123;1-1&#125; <span class="hljs-keyword">\cline</span>&#123;4-4&#125;<br>        <span class="hljs-built_in">$</span>17 <span class="hljs-keyword">\sim</span> 20<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multicolumn</span>&#123;2&#125;&#123;c|&#125;&#123;&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">$</span>v<span class="hljs-built_in">_</span>i = V<span class="hljs-built_in">_</span>j = 1<span class="hljs-built_in">$</span> <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\cline</span>&#123;1-1&#125; <span class="hljs-keyword">\cline</span>&#123;4-4&#125;<br>        <span class="hljs-built_in">$</span>21 <span class="hljs-keyword">\sim</span> 25<span class="hljs-built_in">$</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multicolumn</span>&#123;2&#125;&#123;c|&#125;&#123;&#125; <span class="hljs-built_in">&amp;</span> 无 <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\tabucline</span>[2pt]&#123;-&#125;<br>    <span class="hljs-keyword">\end</span>&#123;tabu&#125;<br><span class="hljs-keyword">\end</span>&#123;center&#125;<br>    <span class="hljs-comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="hljs-keyword">\newprob</span>&#123;Second&#125;&#123;second&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Description. <br><br><span class="hljs-keyword">\para</span>&#123;输入格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>从文件 <span class="hljs-keyword">\filename</span>&#123;second.in&#125; 中读入数据。 <span class="hljs-keyword">\par</span><br><br><span class="hljs-keyword">\para</span>&#123;输出格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>输出到文件 <span class="hljs-keyword">\filename</span>&#123;second.out&#125; 中。 <span class="hljs-keyword">\par</span><br>Output. <br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输入&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Input.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输出&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Output.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;解释&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Note.<br><br><span class="hljs-keyword">\sample</span>&#123;2&#125;&#123;&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>见选手目录下的 <span class="hljs-keyword">\filename</span>&#123;second/second2.in&#125; 与 <span class="hljs-keyword">\filename</span>&#123;second/second2.ans&#125;。<br><br><span class="hljs-keyword">\para</span>&#123;数据范围&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Constraint.<br>    <span class="hljs-comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="hljs-keyword">\newprob</span>&#123;Third&#125;&#123;third&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Description. <br><br><span class="hljs-keyword">\para</span>&#123;输入格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>从文件 <span class="hljs-keyword">\filename</span>&#123;third.in&#125; 中读入数据。 <span class="hljs-keyword">\par</span><br><br><span class="hljs-keyword">\para</span>&#123;输出格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>输出到文件 <span class="hljs-keyword">\filename</span>&#123;third.out&#125; 中。 <span class="hljs-keyword">\par</span><br>Output. <br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输入&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Input.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输出&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Output.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;解释&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Note.<br><br><span class="hljs-keyword">\sample</span>&#123;2&#125;&#123;&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>见选手目录下的 <span class="hljs-keyword">\filename</span>&#123;third/third2.in&#125; 与 <span class="hljs-keyword">\filename</span>&#123;third/third2.ans&#125;。<br><br><span class="hljs-keyword">\para</span>&#123;数据范围&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Constraint.<br>    <span class="hljs-comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="hljs-keyword">\newprob</span>&#123;Fourth&#125;&#123;fourth&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Description. <br><br><span class="hljs-keyword">\para</span>&#123;输入格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>从文件 <span class="hljs-keyword">\filename</span>&#123;fourth.in&#125; 中读入数据。 <span class="hljs-keyword">\par</span><br><br><span class="hljs-keyword">\para</span>&#123;输出格式&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>输出到文件 <span class="hljs-keyword">\filename</span>&#123;fourth.out&#125; 中。 <span class="hljs-keyword">\par</span><br>Output. <br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输入&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Input.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;输出&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;<br> Sample Output.<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br><br><span class="hljs-keyword">\sample</span>&#123;1&#125;&#123;解释&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Note.<br><br><span class="hljs-keyword">\sample</span>&#123;2&#125;&#123;&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>见选手目录下的 <span class="hljs-keyword">\filename</span>&#123;fourth/fourth2.in&#125; 与 <span class="hljs-keyword">\filename</span>&#123;fourth/fourth2.ans&#125;。<br><br><span class="hljs-keyword">\para</span>&#123;数据范围&#125; <span class="hljs-keyword">\\</span> <span class="hljs-keyword">\indent</span><br>Constraint.<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br><br><br></code></pre></td></tr></table></figure>
+</details>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#学习笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>各种模板的集合</div>
+      <div>https://aonynation.github.io/2022/11/06/mu_ban/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Beitragsautor</div>
+          <div>Aonynation</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Veröffentlicht am</div>
+          <div>2022年11月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Urheberrechtshinweis</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/06/ji_chu_zu_he_lian_xi_ti/" title="基础组合数练习题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">基础组合数练习题</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Inhaltsverzeichnis</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

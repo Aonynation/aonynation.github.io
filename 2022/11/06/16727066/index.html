@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：   \(i">
+    <meta name="description" content="题目描述 给你 \(n\) 个整数 \(a_i\) 叫你求： \[ \sum_{i_1|a_1}\sum_{i_2|a_2}\sum_{i_3|a_3}\cdots\sum_{i_n|a_n}\varphi(i_1i_2i_3\cdots i_n) \] 简要思路 发现对于欧拉函数 \(\varphi(n)\) 为积性函数，所以不难想到对于每一个质数 \(p\) 考虑贡献。 我们假">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基础组合数练习题">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/index.html">
+<meta property="og:title" content="【题解】DZY Loves Math V">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16727066/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：   \(i">
+<meta property="og:description" content="题目描述 给你 \(n\) 个整数 \(a_i\) 叫你求： \[ \sum_{i_1|a_1}\sum_{i_2|a_2}\sum_{i_3|a_3}\cdots\sum_{i_n|a_n}\varphi(i_1i_2i_3\cdots i_n) \] 简要思路 发现对于欧拉函数 \(\varphi(n)\) 为积性函数，所以不难想到对于每一个质数 \(p\) 考虑贡献。 我们假">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T03:33:28.216Z">
+<meta property="article:modified_time" content="2022-11-06T14:22:36.171Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>基础组合数练习题 - Aonynation&#39;s Blog</title>
+  <title>【题解】DZY Loves Math V - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基础组合数练习题"></span>
+            <span id="subtitle" data-typed-text="【题解】DZY Loves Math V"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k wörter
+          3.2k wörter
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          17 minuten
+          27 minuten
         
       </span>
     
@@ -272,82 +272,77 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">基础组合数练习题</h1>
+            <h1 style="display: none">【题解】DZY Loves Math V</h1>
             
             
               <div class="markdown-body">
                 
-                <p>题目很简单，求： <span class="math display">\[
-Ans=\frac{ \sum\limits_{ i=m }^n\binom{i-1} {m-1}\times i^k} {\binom{n}
-{m} }
-\]</span> 其中，给定 <span class="math inline">\(n\)</span> ，<span
-class="math inline">\(m\)</span> 和 <span
-class="math inline">\(k\)</span> 。<br />
-满足 <span class="math inline">\(m\leq n \leq 10^7 , k\leq 5000\)</span>
-，数据组数不超过 <span class="math inline">\(5000\)</span> 。</p>
-<p>前置知识：<br />
-</p>
-<ul>
-<li><p><span
-class="math inline">\(i^k=\sum\limits_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\times
-i^{\overline{j} }\)</span></p></li>
-<li><p><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/black-swallow/p/16068322.html#5112039">组合数公式全家桶</a></p></li>
-</ul>
-<p>容易发现 <span class="math inline">\(\binom{n} {m}\)</span>
-是一个定值，所以只需要化简分子。</p>
-<p><span class="math display">\[
-\begin{split}
-S&amp;=\sum\limits_{i=m}^n\binom{i-1} {m-1}\times i^k\\
-&amp;=\sum\limits_{i=m}^n\binom{i-1} {m-1}\times
-\sum\limits_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\times
-i^{\overline{j} }\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n\binom{i-1}
-{m-1}\times i^{\overline{j} }\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i-1)!} {(m-1)!(i-m)!}\times\frac{(i + j - 1)!} {(i-1)!}\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i + j - 1)!} {(m-1)!(i-m)!}\\
-\end{split}
-\]</span> 我们设 <span class="math inline">\(t= i - m\)</span> ，并用
-<span class="math inline">\(t\)</span> 代替式子中的 <span
-class="math inline">\(i\)</span> 。 <span class="math display">\[
+                <h3 id="题目描述">题目描述</h3>
+<p>给你 <span class="math inline">\(n\)</span> 个整数 <span
+class="math inline">\(a_i\)</span> 叫你求： <span
+class="math display">\[
+\sum_{i_1|a_1}\sum_{i_2|a_2}\sum_{i_3|a_3}\cdots\sum_{i_n|a_n}\varphi(i_1i_2i_3\cdots
+i_n)
+\]</span></p>
+<h3 id="简要思路">简要思路</h3>
+<p>发现对于欧拉函数 <span class="math inline">\(\varphi(n)\)</span>
+为积性函数，所以不难想到对于每一个质数 <span
+class="math inline">\(p\)</span> 考虑贡献。</p>
+<p>我们假设现在考虑到的质数为 <span class="math inline">\(p\)</span>
+，令对于每一个 <span class="math inline">\(a_i\)</span> 质数 <span
+class="math inline">\(p\)</span> 所对的最大指数为 <span
+class="math inline">\(b_i\)</span> 。<br />
+那么我们可以得到此时 <span class="math inline">\(p\)</span> 的贡献为：
+<span class="math display">\[
 \begin{split}
 S &amp;=
-\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i + j - 1)!} {(m-1)!(i-m)!}\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {(m-1)!\times t!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!\times (m+j-1)!}\times(m+j-1)!\\
-&amp;= \frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!\times (m+j-1)!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\sum_{i=0}^{n
-- m}\binom{t+m+j-1} {m+j-1}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\binom{m+j-1+n-m+1}
-{n-m}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\binom{n
-+ j} {n-m}\\
+\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+\varphi(p^{i_1}p^{i_2}p^{i_3}\cdots p^{i_n})\\
+&amp;=\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+\varphi(p^{i_1+i_2+i_3+\cdots+i_n})
 \end{split}
-\]</span></p>
-<p>发现只有一个和 <span class="math inline">\(i\)</span>
-有关的组合数，其他的可以直接预处理。<br />
-每次操作的复杂度是 <span class="math inline">\(O(k)\)</span> ，<span
-class="math inline">\(T\)</span> 组数据的话就是 <span
-class="math inline">\(O(Tk)\)</span> 。</p>
-<p>代码小学难度。</p>
+\]</span> 考虑到对于 <span class="math inline">\(\varphi(p^n)\)</span>
+有这样的公式： <span class="math display">\[
+\varphi(p^n)=p^n\times\frac{p-1}{p}
+\]</span> 所以上式可以表示为： <span class="math display">\[
+\begin{split}
+S&amp;=\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+(p^{i_1+i_2+i_3+\cdots+i_n}\times\frac{p-1}{p})\\
+&amp;=\frac{p-1}{p}\times\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}p^{i_1+i_2+i_3+\cdots+i_n}
+\end{split}
+\]</span> 看上去没有任何问题，但是发现当 <span
+class="math inline">\(i_1=i_2=i_3=\cdots=i_n=0\)</span>
+时有一定的缺陷，所以改成： <span class="math display">\[
+\begin{split}
+S&amp;=\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+(p^{i_1+i_2+i_3+\cdots+i_n}\times\frac{p-1}{p})\\
+&amp;=\frac{p-1}{p}\times\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}p^{i_1+i_2+i_3+\cdots+i_n}\\
+&amp;=\left[\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}p^{i_1+i_2+i_3+\cdots+i_n}-1\right]\times\frac{p-1}{p}+1
+\end{split}
+\]</span> 现在发现后面的那一部分包括那个 <span
+class="math inline">\(-1\)</span>
+都是死的，所要计算的也就是下面这个式子： <span class="math display">\[
+\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+p^{i_1+i_2+i_3+\cdots+i_n}
+\]</span> 我们尝试着把这个式子拆开来看一下： <span
+class="math display">\[
+\begin{split}
+S&#39;&amp;=\sum_{i_1=0}^{b_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+p^{i_1+i_2+i_3+\cdots+i_n}\\
+&amp;=\sum_{i_1=0}^{b_1}p^{i_1}\sum_{i_2=0}^{b_2}\sum_{i_3=0}^{b_3}\cdots\sum_{i_n=0}^{b_n}
+p^{i_2+i_3+\cdots+i_n}\\
+&amp;=\sum_{i_1=0}^{b_1}p^{i_1}\sum_{i_2=0}^{b_2}p^{i_2}\sum_{i_3=0}^{b_3}p^{i_3}
+\cdots\sum_{i_n=0}^{b_n}p^{i_n}\\
+&amp;=\prod_{i=1}^n(1+p+p^2+\cdots +p^{b_i})
+\end{split}
+\]</span> 然后对所有的质数 <span class="math inline">\(p\)</span>
+去一个乘积就可以了，代码很简单。</p>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> GCC optimize(2)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> File(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> M = <span class="hljs-number">1e7</span> + <span class="hljs-number">5</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">1e5</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-type">int</span> n, a[N], tag[M];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">power</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>  <span class="hljs-type">int</span> ret = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span> (n) &#123;<br>    <span class="hljs-keyword">if</span> (n &amp; <span class="hljs-number">1</span>) ret = <span class="hljs-number">1ll</span> * ret * a % mod;<br>    a = <span class="hljs-number">1ll</span> * a * a % mod;<br>    n /= <span class="hljs-number">2</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  std::cin &gt;&gt; n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= M - <span class="hljs-number">5</span>; i++) tag[i] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;a[i]);<br>  <span class="hljs-type">int</span> ans = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>    <span class="hljs-type">int</span> t = a[i], num = <span class="hljs-number">0</span>, mul = <span class="hljs-number">1</span>, ss = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">2</span>; j * j &lt;= t; j++) &#123;<br>      <span class="hljs-keyword">if</span> (t % j) <span class="hljs-keyword">continue</span>;<br>      num = <span class="hljs-number">0</span>; mul = <span class="hljs-number">1</span>; ss = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">while</span> (t % j == <span class="hljs-number">0</span>) t /= j, num ++;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt;= num; k ++) &#123;<br>        ss = (<span class="hljs-number">0ll</span> + ss + mul) % mod;<br>        mul = <span class="hljs-number">1ll</span> * mul * j % mod;<br>      &#125;<br>      tag[j] = <span class="hljs-number">1ll</span> * tag[j] * ss % mod;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (t &gt; <span class="hljs-number">1</span>) &#123;<br>      ss = <span class="hljs-number">1</span> + t;<br>      tag[t] = (<span class="hljs-number">1ll</span> * tag[t] * ss) % mod;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= M - <span class="hljs-number">5</span>; i++) &#123;<br>    <span class="hljs-keyword">if</span> (tag[i] == <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;<br>    <span class="hljs-type">int</span> mul = <span class="hljs-number">1ll</span> * (tag[i] - <span class="hljs-number">1</span>) * (i - <span class="hljs-number">1</span>) % mod * <span class="hljs-built_in">power</span>(i, mod - <span class="hljs-number">2</span>) % mod + <span class="hljs-number">1</span>;<br>    mul = (<span class="hljs-number">1ll</span> * mul % mod + mod) % mod;<br>    ans = <span class="hljs-number">1ll</span> * ans * mul % mod;<br>  &#125;<br>  std::cout &lt;&lt; ans &lt;&lt; std::endl;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</details>
 
                 
               </div>
@@ -372,8 +367,8 @@ class="math inline">\(O(Tk)\)</span> 。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基础组合数练习题</div>
-      <div>https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/</div>
+      <div>【题解】DZY Loves Math V</div>
+      <div>https://aonynation.github.io/2022/11/06/16727066/</div>
     </div>
     <div class="license-meta">
       
@@ -417,9 +412,9 @@ class="math inline">\(O(Tk)\)</span> 。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16749144/" title="luoguP7028 [NWRRC2017]Joker 题解">
+                      <a href="/2022/11/06/16579490/" title="组合计数入门题瞎做">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">luoguP7028 [NWRRC2017]Joker 题解</span>
+                        <span class="hidden-mobile">组合计数入门题瞎做</span>
                         <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
@@ -427,8 +422,8 @@ class="math inline">\(O(Tk)\)</span> 。</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/mu_ban/" title="各种模板的集合">
-                        <span class="hidden-mobile">各种模板的集合</span>
+                      <a href="/2022/11/06/16749085/" title="luoguP6965 [NEERC2016]Binary Code 题解">
+                        <span class="hidden-mobile">luoguP6965 [NEERC2016]Binary Code 题解</span>
                         <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
