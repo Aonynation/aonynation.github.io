@@ -6,15 +6,15 @@
   
   <title>基础组合数练习题 | Aonynation&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识： * \(i^k&#x3D;\">
+  <meta name="description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。\ 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：\  \(i^">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础组合数练习题">
 <meta property="og:url" content="https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识： * \(i^k&#x3D;\">
+<meta property="og:description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。\ 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：\  \(i^">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T02:30:32.028Z">
+<meta property="article:modified_time" content="2022-11-06T03:31:49.746Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -101,13 +101,17 @@ Ans=\frac{ \sum\limits_{ i=m }^n\binom{i-1} {m-1}\times i^k} {\binom{n}
 {m} }
 \]</span> 其中，给定 <span class="math inline">\(n\)</span> ，<span
 class="math inline">\(m\)</span> 和 <span
-class="math inline">\(k\)</span> 。 满足 <span
+class="math inline">\(k\)</span> 。\ 满足 <span
 class="math inline">\(m\leq n \leq 10^7 , k\leq 5000\)</span>
 ，数据组数不超过 <span class="math inline">\(5000\)</span> 。</p>
-<p>前置知识： * <span
+<p>前置知识：\</p>
+<ul>
+<li><p><span
 class="math inline">\(i^k=\sum\limits_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\times
-i^{\overline{j} }\)</span> * <a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/black-swallow/p/16068322.html#5112039">组合数公式全家桶</a></p>
+i^{\overline{j} }\)</span></p></li>
+<li><p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/black-swallow/p/16068322.html#5112039">组合数公式全家桶</a></p></li>
+</ul>
 <p>容易发现 <span class="math inline">\(\binom{n} {m}\)</span>
 是一个定值，所以只需要化简分子。</p>
 <p><span class="math display">\[
@@ -157,7 +161,7 @@ S &amp;=
 \end{split}
 \]</span></p>
 <p>发现只有一个和 <span class="math inline">\(i\)</span>
-有关的组合数，其他的可以直接预处理。 每次操作的复杂度是 <span
+有关的组合数，其他的可以直接预处理。\ 每次操作的复杂度是 <span
 class="math inline">\(O(k)\)</span> ，<span
 class="math inline">\(T\)</span> 组数据的话就是 <span
 class="math inline">\(O(Tk)\)</span> 。</p>
@@ -166,7 +170,7 @@ class="math inline">\(O(Tk)\)</span> 。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/" data-id="cla4sqoz60000pswd12t8fd4o" data-title="基础组合数练习题" class="article-share-link">Share</a>
+      <a data-url="https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/" data-id="cla4st8np00002wwd3f0l69fu" data-title="基础组合数练习题" class="article-share-link">Share</a>
       
       
       
