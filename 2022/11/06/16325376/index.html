@@ -23,13 +23,11 @@
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
 <meta property="og:description" content="引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:03:30.479Z">
+<meta property="article:modified_time" content="2022-11-06T15:06:32.125Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg">
   
   
   
@@ -121,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Startseite
+                Home
               </a>
             </li>
           
@@ -133,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archiv
+                Archives
               </a>
             </li>
           
@@ -145,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Kategorien
+                Categories
               </a>
             </li>
           
@@ -157,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Schlagwörter
+                Tags
               </a>
             </li>
           
@@ -169,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                Über
+                About
               </a>
             </li>
           
@@ -225,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.9k wörter
+          8.9k words
         
       </span>
     
@@ -236,7 +234,7 @@
         
         
         
-          74 minuten
+          75 mins
         
       </span>
     
@@ -307,9 +305,12 @@ f(x)=a_0+a_1x+a_2x^2+\cdots+a_nx^n⇔f(x)=\{(x_0,y_0),(x_1,y_1),(x_2,y_2),\cdots
 \]</span>
 上面讲到要把系数表示法转换成点值表示法。那么这是为什么呢？<br />
 下面就先来展示一下点值表示法的多项式乘法： <span class="math display">\[
-f(x)=\{(x_0,f(x_0)),(x_1,f(x_1)),(x_2,f(x_2)),\cdots,(x_n,f(x_n))\} \\
+f(x)=\{(x_0,f(x_0)),(x_1,f(x_1)),(x_2,f(x_2)),\cdots,(x_n,f(x_n))\}
+\]</span> <span class="math display">\[
 g(x)=\{(x_0,g(x_0)),(x_1,g(x_1)),(x_2,g(x_2)),\cdots,(x_n,g(x_n))\} \\
+\]</span> <span class="math display">\[
 F(x) = f(x)\times g(x)\\
+\]</span> <span class="math display">\[
 F(x)=\{(x_0,g(x_0)\times f(x_0)),(x_1,g(x_1)\times
 f(x_1)),\cdots,(x_n,g(x_n)\times f(x_n))\}
 \]</span> ## 复数 <span class="math inline">\(复数 = 实数 +
@@ -325,9 +326,6 @@ f(x_1)),\cdots,(x_n,g(x_n)\times f(x_n))\}
 class="math inline">\(b\)</span> 分别对应 <span
 class="math inline">\(x\)</span> 轴和 <span
 class="math inline">\(y\)</span> 轴。<br />
-就可以得到复数平面，大概长这样： <img
-src="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530000920404-1248954408.png" srcset="/img/loading.gif" lazyload
-alt="image" />
 其中横坐标是实数轴，纵坐标是虚数轴，这样就可以把每个虚数看为一个向量了。<br />
 对应的，虚数可以用普通坐标和极坐标表示：<br />
 <span class="math display">\[(x,y)\quad和\quad (r,\theta)\]</span>
@@ -337,6 +335,7 @@ alt="image" />
 ac+adi+bci+bdi^2\\
 &amp;=(ac+bd)+(ad+bc)i
 \end{split} \\\quad \\
+\]</span> <span class="math display">\[
 (r_1,\theta_1)\times(r_2,\theta_2)=(r_1\times r_2,\theta_1+\theta_2)
 \]</span> ## <span class="math inline">\(\tt DFT\)</span>
 （离散傅里叶变换）
@@ -349,6 +348,7 @@ ac+adi+bci+bdi^2\\
 个点，来进行表示。<br />
 形式化的，可以表示成这样： <span class="math display">\[
 F(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}+a_nx^n\\
+\]</span> <span class="math display">\[
 \rightarrow
 F(x)=\{(x_0,F(x_0)),(x_1,F(x_1)),(x_2,F(x_2)),\cdots,(x_n,F(x_n))\}
 \]</span> 然后可以惊喜的发现，随便带几个 <span
@@ -365,8 +365,7 @@ class="math inline">\(1\)</span> 。<br />
 class="math inline">\(-1\)</span> ，想一想可以发现其实 <span
 class="math inline">\(i\)</span> 和 <span
 class="math inline">\(-i\)</span> 也都可以。</del></p>
-<p>但是经过认真思考（看题解）可以发现下图的单位圆上所有的点都满足条件。
-<img src="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg" srcset="/img/loading.gif" lazyload width="70%" height="70%" /></p>
+<p>但是经过认真思考（看题解）可以发现下图的单位圆上所有的点都满足条件。</p>
 <p>为了方便，我们在取这 <span class="math inline">\(n\)</span>
 个点时会把这个单位圆平分。</p>
 <p>我们从 <span class="math inline">\((1, 0)\)</span>
@@ -405,6 +404,7 @@ class="math display">\[
 \omega_n^{k+\frac{n}{2}}=-\omega_n^k
 \]</span> 证明的话稍微写一下吧： <span class="math display">\[
 \omega_n^k=\cos\frac{k}{n}2\pi+i\times\sin\frac{k}{n}2\pi\\
+\]</span> <span class="math display">\[
 \begin{split}
 \omega_n^{k+\frac{n}{2}}&amp;=
 \cos\frac{k+\frac{n}{2}}{n}2\pi+i\times\sin\frac{k+\frac{n}{2}}{n}2\pi\\
@@ -450,12 +450,16 @@ F(x)
 和 <span class="math inline">\(F_2(x)\)</span> 。 <span
 class="math display">\[
 F_1(x)=a_0+a_2x^2+\cdots+a_{n-2}x^{n-2}\\
+\]</span> <span class="math display">\[
 F_2(x)=a_1+a_3x^2+\cdots+a_{n-1}x^{n-2}\\
+\]</span> <span class="math display">\[
 F(x)=F_1(x)+xF_2(x)
 \]</span> 发现这样的系数不连续，没有那么完美，于是我们再变化一下。 <span
 class="math display">\[
 F_1(x)=a_0+a_2x^1+\cdots+a_{n-2}x^{\frac{n}{2}-1}\\
+\]</span> <span class="math display">\[
 F_2(x)=a_1+a_3x^1+\cdots+a_{n-1}x^{\frac{n}{2}-1}\\
+\]</span> <span class="math display">\[
 F(x) = F_1(x^2)+xF_2(x^2)
 \]</span> 此时看可以发现这样的形式非常的优美。<br />
 接下来就是直接带入 <span class="math inline">\(\omega_n^i\)</span>
@@ -562,20 +566,20 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Author</div>
           <div>Aonynation</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Posted on</div>
           <div>2022年11月6日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licensed under</div>
           <div>
             
               
@@ -604,7 +608,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                       <a href="/2022/11/06/16105177/" title="行列式学习笔记（二）">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">行列式学习笔记（二）</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
@@ -613,7 +617,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                     
                       <a href="/2022/11/06/16489040/" title="CF1137E 做题报告">
                         <span class="hidden-mobile">CF1137E 做题报告</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -632,7 +636,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Inhaltsverzeichnis</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -693,7 +697,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -701,7 +705,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -923,7 +927,7 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
