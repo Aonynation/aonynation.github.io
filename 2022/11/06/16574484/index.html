@@ -16,15 +16,15 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="luogu P7045 「MCOI-03」金牌 题目链接 看到题解中介绍了一种用于找出序列中出现次数大于 \(\left\lfloor\dfrac{n}{2}\right\rfloor\) 的摩尔投票法。 先来贺一波题解给出摩尔投票法的具体操作： * 我们首先初始化变量 \(\text{ans&#x3D;}a_1\) , \(\text{cnt&#x3D;}1\) 。 * 从此序列的第二个数开始扫描，直">
+    <meta name="description" content="luogu P7045 「MCOI-03」金牌 题目链接 看到题解中介绍了一种用于找出序列中出现次数大于 \(\left\lfloor\dfrac{n}{2}\right\rfloor\) 的摩尔投票法。 先来贺一波题解给出摩尔投票法的具体操作：   我们首先初始化变量 \(\text{ans&#x3D;}a_1\) , \(\text{cnt&#x3D;}1\) 。  从此序列的第二个数开始扫描，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="交互入门题瞎做">
 <meta property="og:url" content="https://aonynation.github.io/2022/11/06/16574484/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="luogu P7045 「MCOI-03」金牌 题目链接 看到题解中介绍了一种用于找出序列中出现次数大于 \(\left\lfloor\dfrac{n}{2}\right\rfloor\) 的摩尔投票法。 先来贺一波题解给出摩尔投票法的具体操作： * 我们首先初始化变量 \(\text{ans&#x3D;}a_1\) , \(\text{cnt&#x3D;}1\) 。 * 从此序列的第二个数开始扫描，直">
+<meta property="og:description" content="luogu P7045 「MCOI-03」金牌 题目链接 看到题解中介绍了一种用于找出序列中出现次数大于 \(\left\lfloor\dfrac{n}{2}\right\rfloor\) 的摩尔投票法。 先来贺一波题解给出摩尔投票法的具体操作：   我们首先初始化变量 \(\text{ans&#x3D;}a_1\) , \(\text{cnt&#x3D;}1\) 。  从此序列的第二个数开始扫描，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T14:37:03.475Z">
+<meta property="article:modified_time" content="2022-11-06T14:42:10.345Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
@@ -119,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Startseite
+                Home
               </a>
             </li>
           
@@ -131,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archiv
+                Archives
               </a>
             </li>
           
@@ -143,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Kategorien
+                Categories
               </a>
             </li>
           
@@ -155,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Schlagwörter
+                Tags
               </a>
             </li>
           
@@ -167,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                Über
+                About
               </a>
             </li>
           
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k wörter
+          17k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          146 minuten
+          146 mins
         
       </span>
     
@@ -284,23 +284,31 @@ target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7045"><st
 class="math inline">\(\left\lfloor\dfrac{n}{2}\right\rfloor\)</span>
 的摩尔投票法。<br />
 先来贺一波题解给出摩尔投票法的具体操作：<br />
-* 我们首先初始化变量 <span class="math inline">\(\text{ans=}a_1\)</span>
-, <span class="math inline">\(\text{cnt=}1\)</span> 。<br />
-* 从此序列的第二个数开始扫描，直到第 <span
+</p>
+<ul>
+<li>我们首先初始化变量 <span
+class="math inline">\(\text{ans=}a_1\)</span> , <span
+class="math inline">\(\text{cnt=}1\)</span> 。<br />
+</li>
+<li>从此序列的第二个数开始扫描，直到第 <span
 class="math inline">\(n\)</span> 个数 <span
 class="math inline">\(a_n\)</span> ，我们假设现在扫描到了 <span
 class="math inline">\(a_i\)</span> 。<br />
-* 如果此时 <span class="math inline">\(\text{ans=}a_i\)</span> 那么
+</li>
+<li>如果此时 <span class="math inline">\(\text{ans=}a_i\)</span> 那么
 <span class="math inline">\(\text{cnt}\leftarrow \text{cnt}+ 1\)</span>
 否则 <span class="math inline">\(\text{cnt}\leftarrow \text{cnt}-
 1\)</span> 。<br />
-* 如果此时 <span class="math inline">\(\text{cnt=}0\)</span>
+</li>
+<li>如果此时 <span class="math inline">\(\text{cnt=}0\)</span>
 ，那么我们更新 <span class="math inline">\(\text{ans=}a_i\)</span>
 。<br />
-* 当我们全部扫完之后，<span class="math inline">\(\text{ans}\)</span>
+</li>
+<li>当我们全部扫完之后，<span class="math inline">\(\text{ans}\)</span>
 就是出现次数大于 <span
 class="math inline">\(\left\lfloor\dfrac{n}{2}\right\rfloor\)</span>
-的数 。</p>
+的数 。</li>
+</ul>
 <p>我们现在着手来考虑这个东西和题目有什么联系。<br />
 经过简单的思考，我们可以发现当存在一个数出现次数大于 <span
 class="math inline">\(\left\lfloor\dfrac{n}{2}\right\rfloor\)</span>
@@ -351,11 +359,14 @@ class="math inline">\(n-1\)</span> 次连边操作。<br />
 class="math inline">\(p\)</span> 然后连边。<br />
 那么怎么找到这样的点 <span class="math inline">\(p\)</span>
 呢？这里有一个显然的结论：<br />
-&gt; 对于点集 <span class="math inline">\(A\)</span> 和 <span
+</p>
+<blockquote>
+<p>对于点集 <span class="math inline">\(A\)</span> 和 <span
 class="math inline">\(B\)</span> ，如果 <span
 class="math inline">\(A\)</span> 和 <span
 class="math inline">\(B\)</span> 中的点有边相连，那么满足 <span
 class="math inline">\(ask(A)+ask(B)&lt; ask(A\cup B)\)</span></p>
+</blockquote>
 <p>运用这个结论，我们就可以找到上文所讲的 <span
 class="math inline">\(p\)</span> 。</p>
 <p>我们令根节点所在的点集为 <span class="math inline">\(A\)</span>
@@ -367,15 +378,20 @@ class="math inline">\(check(A,B)\)</span> 就可以知道是否有边。<br />
 n)\)</span> 的较大常数做法。<br />
 直接能够想到的是二分做法：（假设 <span class="math inline">\(B\)</span>
 集合的大小为 <span class="math inline">\(L\)</span>）<br />
-* 我们把 <span class="math inline">\(B\)</span> 按照大小平均分成两个集合
-<span class="math inline">\(B_1\)</span> 和 <span
-class="math inline">\(B_2\)</span> 。<br />
-* 分别查询 <span class="math inline">\(check(B_1,A)\)</span> 和 <span
+</p>
+<ul>
+<li>我们把 <span class="math inline">\(B\)</span>
+按照大小平均分成两个集合 <span class="math inline">\(B_1\)</span> 和
+<span class="math inline">\(B_2\)</span> 。<br />
+</li>
+<li>分别查询 <span class="math inline">\(check(B_1,A)\)</span> 和 <span
 class="math inline">\(check(B_2,A)\)</span>
 ，如果一个为真则取为真的，否则任意取一个。<br />
-* 不难发现，最后集合 <span class="math inline">\(B\)</span>
+</li>
+<li>不难发现，最后集合 <span class="math inline">\(B\)</span>
 只会剩下一个节点，那个节点就是 <span class="math inline">\(p\)</span>
-。复杂度 <span class="math inline">\(O(\log n)\)</span> 。</p>
+。复杂度 <span class="math inline">\(O(\log n)\)</span> 。</li>
+</ul>
 <p>找到了 <span class="math inline">\(p\)</span> ，我们还要知道 <span
 class="math inline">\(p\)</span>
 和根节点集合中的哪一个点有边，按照相似的方法即可。<br />
@@ -493,21 +509,17 @@ class="math inline">\(\text{F}\)</span> 其他的位仍然是 <span
 class="math inline">\(\text{T}\)</span> ，进行询问 <span
 class="math inline">\(\text{ret=ask(S)}\)</span> ，然后对 <span
 class="math inline">\(\text{ret}\)</span> 进行分讨。<br />
-* <span class="math inline">\(ret=num+2\)</span> 说明这两个猜对了，所以
-<span class="math inline">\(i\)</span> 和 <span class="math inline">\(i
-+ m\)</span> 这两位都是 <span class="math inline">\(\text{F}\)</span>
-。<br />
-* <span class="math inline">\(ret=num-2\)</span> 说明两个都猜错了，所以
-<span class="math inline">\(i\)</span> 和 <span class="math inline">\(i
-+ m\)</span> 这两位都是 <span class="math inline">\(\text{T}\)</span>
-。<br />
-* <span class="math inline">\(ret=num\)</span>
-说明一个猜对一个猜错了，我们先放一边，不进行考虑。<br />
-3. 令 <span class="math inline">\(S&#39;=m\times \text{F} + (n-m)\times
-\text{T}\)</span> ，进行询问 <span
+</p>
+<pre><code class="hljs">* $ret=num+2$ 说明这两个猜对了，所以 $i$ 和 $i + m$ 这两位都是 $\text&#123;F&#125;$ 。\
+* $ret=num-2$ 说明两个都猜错了，所以 $i$ 和 $i + m$ 这两位都是 $\text&#123;T&#125;$ 。\
+* $ret=num$ 说明一个猜对一个猜错了，我们先放一边，不进行考虑。\</code></pre>
+<ol start="3" type="1">
+<li><p>令 <span class="math inline">\(S&#39;=m\times \text{F} +
+(n-m)\times \text{T}\)</span> ，进行询问 <span
 class="math inline">\(\text{q3=ask(S&#39;)}\)</span> 。<br />
-4. 对于每一个 <span class="math inline">\(i\ (i\leq m \text{且第} \  i\
-\text{位还没有被确定})\)</span>，我们把 <span
+</p></li>
+<li><p>对于每一个 <span class="math inline">\(i\ (i\leq m \text{且第}
+\  i\ \text{位还没有被确定})\)</span>，我们把 <span
 class="math inline">\(S&#39;\)</span> 的第 <span
 class="math inline">\(i\)</span> 变成 <span
 class="math inline">\(\text{T}\)</span>，第 <span
@@ -515,19 +527,27 @@ class="math inline">\(i+m\)</span> 和 <span
 class="math inline">\(i+2m\)</span> 位变成 <span
 class="math inline">\(\text{T}\)</span> ，在对其进行询问 <span
 class="math inline">\(\text{ret=ask(S&#39;&#39;)}\)</span>。<br />
-* <span class="math inline">\(ret = q3+3\)</span> 三个都猜对了，答案就是
-<span class="math inline">\(\text{TFF}\)</span> 。  * <span
-class="math inline">\(ret = q3-3\)</span> 三个都猜错了，答案是 <span
-class="math inline">\(\text{FTT}\)</span> 。<br />
-* <span class="math inline">\(ret = q3+1\)</span>
+</p>
+<ul>
+<li><span class="math inline">\(ret = q3+3\)</span>
+三个都猜对了，答案就是 <span class="math inline">\(\text{TFF}\)</span>
+。 </li>
+<li><span class="math inline">\(ret = q3-3\)</span> 三个都猜错了，答案是
+<span class="math inline">\(\text{FTT}\)</span> 。<br />
+</li>
+<li><span class="math inline">\(ret = q3+1\)</span>
 对了两个错了一个，结合上述的分析以及 <strong>情况2</strong>
 的排查可以得出答案是 <span class="math inline">\(\text{TFT}\)</span>
 ，在这里不再证明。<br />
-* <span class="math inline">\(ret = q3-1\)</span>
+</li>
+<li><span class="math inline">\(ret = q3-1\)</span>
 对了一个错了两个，同理，答案是 <span
 class="math inline">\(\text{FTF}\)</span> 。<br />
-5. 对于所有还没有确定的，直接按照最暴力的方法去做就可以了。<br />
-</p>
+</li>
+</ul></li>
+<li><p>对于所有还没有确定的，直接按照最暴力的方法去做就可以了。<br />
+</p></li>
+</ol>
 <p>容易发现询问次数是 <span
 class="math inline">\(O(\left\lfloor\dfrac{n}{3}\right\rfloor)\)</span>
 级别的，没有任何问题。</p>
@@ -621,20 +641,20 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Author</div>
           <div>Aonynation</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Posted on</div>
           <div>2022年11月6日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licensed under</div>
           <div>
             
               
@@ -660,13 +680,19 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/11/06/16579490/" title="组合计数入门题瞎做">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">组合计数入门题瞎做</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
                       <a href="/2022/11/06/16653964/" title="AGC010F 题解">
                         <span class="hidden-mobile">AGC010F 题解</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -685,7 +711,7 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Inhaltsverzeichnis</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -746,7 +772,7 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -754,7 +780,7 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -976,7 +1002,7 @@ class="math inline">\(0\)</span> 所以我们可以维护一个拓扑排序。<b
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

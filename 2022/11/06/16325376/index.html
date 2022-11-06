@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/usericon/47531.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aonynation">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFT 学习笔记">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16325376/index.html">
+<meta property="og:site_name" content="Aonynation&#39;s Blog">
+<meta property="og:description" content="引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg">
+<meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-06T15:00:24.280Z">
+<meta property="article:author" content="Aonynation">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg">
+  
+  
+  
+  <title>FFT 学习笔记 - Aonynation&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"aonynation.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"cpp"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Aonynation&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FFT 学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-06 00:00" pubdate>
+          2022年11月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">FFT 学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="引入">引入</h1>
+<p>什么是 <span class="math inline">\(\text{FFT}\)</span> ？<br />
+反正我看到 <span class="math inline">\(\text{wiki}\)</span>
+上是一堆奇怪的东西。<br />
+</p>
+<blockquote>
+<p>快速傅里叶变换（英语：Fast Fourier Transform,
+FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积来快速计算此类变换。——
+<span class="math inline">\(\text{wikipedia}\)</span></p>
+</blockquote>
+<p>反正我没脑子我看不懂。<br />
+对我来说，<span class="math inline">\(\text{FFT}\)</span>
+就是能把多项式乘法从 <span class="math inline">\(O(n^2)\)</span> 变成
+<span class="math inline">\(O(n\log n)\)</span> 的神仙玩意。 # 正文 ##
+系数表示法和点值表示法
+对于系数表示法，就是用多项式的系数来表示这个多项式。<br />
+比如说： <span class="math display">\[
+f(x)=a_1x^3+a_2x^2+a_3x+a_4\Leftrightarrow f(x)=\{a_1,a_2,a_3,a_4\}
+\]</span>
+那么对于点值表示法，相对应的就是用该函数上的若干个点表示多项式。<br />
+学过小学数学的同学们一定知道：<span class="math inline">\(n+1\)</span>
+个点确定一个 <span class="math inline">\(n\)</span> 次多项式。<br />
+<del>证明的话可以考虑数学归纳法。/xyx</del><br />
+同样举一个例子，点值表示法是这样的： <span class="math display">\[
+f(x)=a_0+a_1x+a_2x^2+\cdots+a_nx^n⇔f(x)=\{(x_0,y_0),(x_1,y_1),(x_2,y_2),\cdots,(x_n,y_n)\}\\
+\]</span>
+上面讲到要把系数表示法转换成点值表示法。那么这是为什么呢？<br />
+下面就先来展示一下点值表示法的多项式乘法： <span class="math display">\[
+f(x)=\{(x_0,f(x_0)),(x_1,f(x_1)),(x_2,f(x_2)),\cdots,(x_n,f(x_n))\}\\
+g(x)=\{(x_0,g(x_0)),(x_1,g(x_1)),(x_2,g(x_2)),\cdots,(x_n,g(x_n))\}\\
+F(x) = f(x)\times g(x)\\
+F(x)=\{(x_0,g(x_0)\times f(x_0)),(x_1,g(x_1)\times
+f(x_1)),\cdots,(x_n,g(x_n)\times f(x_n))\}
+\]</span> ## 复数 <span class="math inline">\(复数 = 实数 +
+虚数\)</span><br />
+实在一点吧，直接上干货，我们定义 :<br />
+<span class="math display">\[i=\sqrt{-1}\]</span>
+这样我们就可以表示我们在实数范围内不能表示的数了。<br />
+那么如何表示一个复数呢：<br />
+<span class="math display">\[Num=a+bi\ \ (a,b \in
+\mathbb{R})\]</span><br />
+接着我们把 <span class="math inline">\(Num=a+bi\)</span>
+看成一个函数，把 <span class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 分别对应 <span
+class="math inline">\(x\)</span> 轴和 <span
+class="math inline">\(y\)</span> 轴。<br />
+就可以得到复数平面，大概长这样： <img
+src="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530000920404-1248954408.png" srcset="/img/loading.gif" lazyload
+alt="image" />
+其中横坐标是实数轴，纵坐标是虚数轴，这样就可以把每个虚数看为一个向量了。<br />
+对应的，虚数可以用普通坐标和极坐标表示：<br />
+<span class="math display">\[(x,y)\quad和\quad (r,\theta)\]</span>
+下面给出两个复数相乘的意义： <span class="math display">\[
+\begin{split}&amp;\quad
+(a+bi)\times(c+di)\\&amp;=
+ac+adi+bci+bdi^2\\
+&amp;=(ac+bd)+(ad+bc)i
+\end{split} \\\quad \\
+(r_1,\theta_1)\times(r_2,\theta_2)=(r_1\times r_2,\theta_1+\theta_2)
+\]</span> ## <span class="math inline">\(\tt DFT\)</span>
+（离散傅里叶变换）
+现在已经介绍完了<strong>点值表示法</strong>和<strong>复数</strong>的相关知识，接下来就是干货部分了。</p>
+<p>上面我们已经通过这样的例子说明了点值表示法算多项式乘法的方便。<br />
+接下来我们来看怎么先把多项式从系数表示法转换为点值表示法，这种过程叫
+<span class="math inline">\(\text{DFT}\)</span> 。</p>
+<p>所谓的点值表示法，也就是在 <span class="math inline">\(n\)</span>
+多项式上取 <span class="math inline">\(n+1\)</span>
+个点，来进行表示。<br />
+形式化的，可以表示成这样： <span class="math display">\[
+F(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}+a_nx^n\\
+\rightarrow
+F(x)=\{(x_0,F(x_0)),(x_1,F(x_1)),(x_2,F(x_2)),\cdots,(x_n,F(x_n))\}
+\]</span> 然后可以惊喜的发现，随便带几个 <span
+class="math inline">\(x_i\)</span> 进去在算算 <span
+class="math inline">\(F(x_i)\)</span> 就好了。<br />
+但是如果你小学毕业了，你就可以发现这样的话不如直接 <span
+class="math inline">\(O(n^2)\)</span> 暴力。</p>
+<p>所以该怎么办？<br />
+我们猜想是否存在一些 <span class="math inline">\(x\)</span> 使得 <span
+class="math inline">\(x^n\ (n\in \tt Z^+)\)</span> 的结果都是 <span
+class="math inline">\(1\)</span> 。<br />
+这看上去是一个非常好的思路，但是这样的数有多少个呢？<br />
+<del>我能脱口说出两个 <span class="math inline">\(1\)</span> 和 <span
+class="math inline">\(-1\)</span> ，想一想可以发现其实 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(-i\)</span> 也都可以。</del></p>
+<p>但是经过认真思考（看题解）可以发现下图的单位圆上所有的点都满足条件。
+<img src="https://img2022.cnblogs.com/blog/2808694/202205/2808694-20220530231356824-549546628.jpg" srcset="/img/loading.gif" lazyload width="70%" height="70%" /></p>
+<p>为了方便，我们在取这 <span class="math inline">\(n\)</span>
+个点时会把这个单位圆平分。</p>
+<p>我们从 <span class="math inline">\((1, 0)\)</span>
+这个点开始，按照逆时针的方向从 <span class="math inline">\(0\)</span>
+开始进行编号，形如 <span class="math inline">\(\omega_n^k\)</span>
+。<br />
+其中 <span class="math inline">\(n\)</span> 表示一共选择了 <span
+class="math inline">\(n\)</span> 个点，<span
+class="math inline">\(k\)</span> 表示当前点的编号。</p>
+<p>由我们之前介绍的复数乘法的 <strong>模长相乘，度数相加</strong>：
+<span class="math display">\[
+(r_1,\theta_1)\times(r_2,\theta_2)=(r_1\times r_2,\theta_1+\theta_2)
+\]</span> 并且结合单位圆的性质（所有的点到原点的距离为 <span
+class="math inline">\(1\)</span>）。<br />
+可以得到由 <span class="math inline">\(\omega_n^1\)</span> 转换到 <span
+class="math inline">\(\omega_n^k\)</span> 的公式： <span
+class="math display">\[
+(\omega_n^1)^k=\omega_n^k
+\]</span> 我们称 <span class="math inline">\(\omega_n^1\)</span> 为
+<span class="math inline">\(n\)</span> 次单位根。<br />
+所以可以发现，我们直接带入 <span
+class="math inline">\(\omega_n^i\)</span> 就可以了。 ###
+单位根的一些有用的性质 在了解一切的性质之前，我们要先知道单位根 <span
+class="math inline">\(\omega_n^i\)</span> 如何表示： <span
+class="math display">\[
+\omega_n^k=\cos\frac{k}{n}2\pi+i\times\sin\frac{k}{n}2\pi
+\]</span>
+这东西的证明你直接照着单位圆上画一个点然后三角函数入门知识即可。 ####
+性质一 <span class="math display">\[
+\omega_n^k=\omega_{2n}^{2k}
+\]</span> 证明的话直接照着上面给出的式子套即可，然后发现可以约分。<br />
+那我认为进一步的可以得到： <span class="math display">\[
+\omega_n^k=\omega_{Pn}^{Pk} \quad (p\in \tt Z^+)
+\]</span> 很显然不过好像没有什么大用。 #### 性质二 <span
+class="math display">\[
+\omega_n^{k+\frac{n}{2}}=-\omega_n^k
+\]</span> 证明的话稍微写一下吧： <span class="math display">\[
+\omega_n^k=\cos\frac{k}{n}2\pi+i\times\sin\frac{k}{n}2\pi\\
+\begin{split}
+\omega_n^{k+\frac{n}{2}}&amp;=
+\cos\frac{k+\frac{n}{2}}{n}2\pi+i\times\sin\frac{k+\frac{n}{2}}{n}2\pi\\
+&amp;=\cos(\frac{k}{n}2\pi+\pi)+i\times\sin(\frac{k}{n}2\pi+\pi)
+\end{split}
+\]</span>
+都化成这一步了就不在进行下一步证明，还看不懂的建议重修初中数学。 ####
+性质三 <span class="math display">\[
+\omega_n^0=\omega_n^n
+\]</span> 比较憨，我就不讲为什么了。 ### <span class="math inline">\(\tt
+FFT\)</span> （快速傅里叶变换）
+<del>他来了，他来了，等到现在他终于来了。。。。</del></p>
+<p>之前讲到我们直接带入 <span class="math inline">\(\omega_n^i\)</span>
+来计算点值。<br />
+是的，我认为这种方法高效，巧妙，逼格高，体现了人类智慧。<br />
+但是等等，虽然算系数的过程免掉了，但是对于每一个 <span
+class="math inline">\(\omega_n^i\)</span> 我们还是要 <span
+class="math inline">\(O(n)\)</span> 算结果啊。<br />
+然后我搬来搬手指算了一下，发现一共有 <span
+class="math inline">\(n\)</span> 个 <span
+class="math inline">\(\omega_n^i\)</span> 的值，然后就又 <span
+class="math inline">\(O(n^2)\)</span> 了。<br />
+所以我们该怎么办？</p>
+<p>认真地看看题解，发现可以从分治的角度入手。<br />
+<strong>注意：以下的内容保证 <span class="math inline">\(n\)</span> 为
+<span class="math inline">\(2\)</span> 的整数次方。</strong><br />
+我们设一个多项式： <span class="math display">\[
+\begin{split}
+F(x)&amp;=\sum_{i=0}^{n-1}a_ix^i\\
+&amp;=a_0 + a_1x + a_2x^2 + \cdots + a_{n-1}x^{n-1}
+\end{split}
+\]</span> 然后想办法把 <span class="math inline">\(F(x)\)</span>
+分成两个部分。<br />
+这里采用的方法是按照 <span class="math inline">\(F(x)\)</span>
+下标的奇偶性分成两个部分。 <span class="math display">\[
+\begin{split}
+F(x)
+&amp;=a_0 + a_1x + a_2x^2 + \cdots + a_{n-1}x^{n-1}\\
+&amp;=(a_0+a_2x^2+\cdots+a_{n-2}x^{n-2})+x(a_1+a_3x^2+\cdots+a_{n-1}x^{n-2})
+\end{split}
+\]</span> 接下来我们发现拆出来的这两个多项式的结构是一模一样的。<br />
+我们再分别设这两个多项式为 <span class="math inline">\(F_1(x)\)</span>
+和 <span class="math inline">\(F_2(x)\)</span> 。 <span
+class="math display">\[
+F_1(x)=a_0+a_2x^2+\cdots+a_{n-2}x^{n-2}\\
+F_2(x)=a_1+a_3x^2+\cdots+a_{n-1}x^{n-2}\\
+F(x)=F_1(x)+xF_2(x)
+\]</span> 发现这样的系数不连续，没有那么完美，于是我们再变化一下。 <span
+class="math display">\[
+F_1(x)=a_0+a_2x^1+\cdots+a_{n-2}x^{\frac{n}{2}-1}\\
+F_2(x)=a_1+a_3x^1+\cdots+a_{n-1}x^{\frac{n}{2}-1}\\
+F(x) = F_1(x^2)+xF_2(x^2)
+\]</span> 此时看可以发现这样的形式非常的优美。<br />
+接下来就是直接带入 <span class="math inline">\(\omega_n^i\)</span>
+的操作了。<br />
+我们接着设 <span class="math inline">\(k&lt;\frac{n}{2}\)</span> 然后把
+<span class="math inline">\(\omega_n^k\)</span> 直接带入。 <span
+class="math display">\[
+\begin{split}
+F(\omega_n^k) &amp;= F_1((\omega_n^k)^2)+\omega_n^kF_2((\omega_n^k)^2)\\
+&amp;=F_1(\omega_{n}^{2k})+\omega_n^kF_2(\omega_{n}^{2k})\\
+&amp;=F_1(\omega_{\frac{n}{2}}^{k})+\omega_n^kF_2(\omega_{\frac{n}{2}}^{k})
+\end{split}
+\]</span> 第一步直接带入，有问题的话小学建议重修。<br />
+第二步的话我之前写过，公式是这样的： <span class="math display">\[
+(\omega_n^1)^k=\omega_n^k
+\]</span> 当然，在这里运用是具有普遍性的，有问题的话直接推一下。<br />
+至于第三步，直接算比例我认为会更加快速一些。 对于 <span
+class="math inline">\(F(\omega_n^{k+\frac{n}{2}})\)</span> 直接带入：
+<span class="math display">\[
+\begin{split}
+F(\omega_n^{k+\frac{n}{2}}) &amp;=
+F_1((\omega_n^{k+\frac{n}{2}})^2)+\omega_n^{k+\frac{n}{2}}F_2((\omega_n^{k+\frac{n}{2}})^2)\\
+&amp;=F_1(\omega_n^{2k+n})+\omega_n^{k+\frac{n}{2}}F_2(\omega_n^{2k+n})\\
+&amp;=F_1(\omega_n^{2k}\omega_n^n)-\omega_n^{k}F_2(\omega_n^{2k}\omega_n^n)\\
+&amp;=F_1(\omega_n^{2k})-\omega_n^{k}F_2(\omega_n^{2k})\\
+&amp;=F_1(\omega_{\frac{n}{2}}^{k})-\omega_{n}^{k}F_2(\omega_{\frac{n}{2}}^{k})\\
+\end{split}
+\]</span>
+每一步一一介绍比较麻烦，大家直接手头一下或者翻翻前面的公式。<br />
+观察第一个式子和第二个式子，发现唯一不一样的地方就是符号了。<br />
+然后直接分治求解即可，时间复杂度 <span class="math inline">\(O(n\log
+n)\)</span> 。</p>
+<h3 id="tt-iff-快速傅里叶逆变换"><span class="math inline">\(\tt
+IFF\)</span> (快速傅里叶逆变换)</h3>
+<p>就是把点值表示法转换成为我们要的系数表示法。<br />
+这里给出结论，证明的话属实比较恶心，所以我就不证明了。<br />
+</p>
+<blockquote>
+<p>一个多项式在分治的过程中乘上单位根的共轭复数，分治完的每一项除以
+<span class="math inline">\(n\)</span> 即为原多项式的每一项系数</p>
+</blockquote>
+<p>也就是再做一遍 <span class="math inline">\(\tt FFT\)</span>
+输出时每一位除以 <span class="math inline">\(n\)</span> 就可以了。 ###
+代码实现及其优化 #### Code 复数类型封装 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">cp</span> &#123;<br>  <span class="hljs-type">double</span> x, y;<br>  <span class="hljs-built_in">cp</span> (<span class="hljs-type">double</span> xx = <span class="hljs-number">0</span>, <span class="hljs-type">double</span> yy = <span class="hljs-number">0</span>) &#123;x = xx; y = yy;&#125;;<br><br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> +(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x + q.x, p.y + q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> -(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x - q.x, p.y - q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> *(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x * q.x - p.y * q.y, p.y * q.x + p.x * q.y);&#125;<br>&#125;a[N], b[N];<br></code></pre></td></tr></table></figure> #### Code 无优化
+不是我写的代码，反正就是照着之前的公式模拟，看看就好了。</p>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;complex&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> cp complex<span class="hljs-string">&lt;double&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fft</span><span class="hljs-params">(cp *a, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> inv)</span> <span class="hljs-comment">//inv是取共轭复数的符号</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>)<span class="hljs-keyword">return</span>;<br>  <span class="hljs-type">int</span> mid = n / <span class="hljs-number">2</span>;<br>  <span class="hljs-type">static</span> cp b[MAXN];<br>  <span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, mid - <span class="hljs-number">1</span>)b[i] = a[i * <span class="hljs-number">2</span>], b[i + mid] = a[i * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>];<br>  <span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>)a[i] = b[i];<br>  <span class="hljs-built_in">fft</span>(a, mid, inv), <span class="hljs-built_in">fft</span>(a + mid, mid, inv); <span class="hljs-comment">//分治</span><br>  <span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, mid - <span class="hljs-number">1</span>)<br>  &#123;<br>    <span class="hljs-function">cp <span class="hljs-title">x</span><span class="hljs-params">(cos(<span class="hljs-number">2</span> * pi * i / n), inv * sin(<span class="hljs-number">2</span> * pi * i / n))</span></span>; <span class="hljs-comment">//inv取决是否取共轭复数</span><br>    b[i] = a[i] + x * a[i + mid], b[i + mid] = a[i] - x * a[i + mid];<br>  &#125;<br>  <span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>)a[i] = b[i];<br>&#125;<br><br>cp a[MAXN], b[MAXN];<br><span class="hljs-type">int</span> c[MAXN];<br><span class="hljs-built_in">fft</span>(a, n, <span class="hljs-number">1</span>), <span class="hljs-built_in">fft</span>(b, n, <span class="hljs-number">1</span>); <span class="hljs-comment">//1系数转点值</span><br><span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>)a[i] *= b[i];<br><span class="hljs-built_in">fft</span>(a, n, <span class="hljs-number">-1</span>); <span class="hljs-comment">//-1点值转系数</span><br><span class="hljs-built_in">fo</span>(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>)c[i] = (<span class="hljs-type">int</span>)(a[i].<span class="hljs-built_in">real</span>() / n + <span class="hljs-number">0.5</span>); <span class="hljs-comment">//注意精度</span><br><br></code></pre></td></tr></table></figure>
+</details>
+<p>注意：<span class="math inline">\(\tt FFT\)</span> 之前要先把 <span
+class="math inline">\(n\)</span> 调成 <span
+class="math inline">\(2\)</span> 的整数次幂。<br />
+很显然上面的那个是连模板题都过不了的。<br />
+所以在这里我们才需要去考虑怎么去优化 <span class="math inline">\(\tt
+FFT\)</span> 。</p>
+<blockquote>
+<p>观察一下原序列和反转后的序列，需要求的序列实际是原序列下标的二进制反转！
+因此我们对序列按照下标的奇偶性分类的过程其实是没有必要的。 这样我们可以
+<span class="math inline">\(O(n)\)</span>
+的利用某种操作得到我们要求的序列，然后不断向上合并就好了。 —— <span
+class="math inline">\(\tt luogu\)</span> 某题解</p>
+</blockquote>
+<h3 id="code-有优化可过">Code 有优化，可过</h3>
+<details>
+<summary>
+点击查看代码
+</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> file(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Enter putchar(<span class="hljs-string">&#x27;\n&#x27;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> quad putchar(<span class="hljs-string">&#x27; &#x27;</span>)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 3000005</span><br><br><span class="hljs-keyword">namespace</span> IO &#123;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(T &amp;a)</span></span>;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, <span class="hljs-keyword">class</span> ...rest&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(T &amp;a, rest &amp;...x)</span></span>;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(T x)</span></span>;<br><br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">cp</span> &#123;<br>  <span class="hljs-type">double</span> x, y;<br>  <span class="hljs-built_in">cp</span> (<span class="hljs-type">double</span> xx = <span class="hljs-number">0</span>, <span class="hljs-type">double</span> yy = <span class="hljs-number">0</span>) &#123;x = xx; y = yy;&#125;;<br><br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> +(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x + q.x, p.y + q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> -(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x - q.x, p.y - q.y);&#125;<br>  <span class="hljs-keyword">friend</span> cp <span class="hljs-keyword">operator</span> *(cp p, cp q) &#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">cp</span>(p.x * q.x - p.y * q.y, p.y * q.x + p.x * q.y);&#125;<br>&#125;a[N], b[N];<br><br><span class="hljs-type">const</span> <span class="hljs-type">double</span> pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1.0</span>);<br><br><span class="hljs-type">int</span> n1, n2, n, rev[N], c[N];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">FFT</span><span class="hljs-params">(cp *a, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> inv)</span> </span>&#123;<br>  <span class="hljs-type">int</span> bit = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> ((<span class="hljs-number">1</span> &lt;&lt; bit) &lt; n) bit++;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i) &#123;<br>    rev[i] = (rev[i &gt;&gt; <span class="hljs-number">1</span>] &gt;&gt; <span class="hljs-number">1</span>) | ((i &amp; <span class="hljs-number">1</span>) &lt;&lt; (bit - <span class="hljs-number">1</span>));<br>    <span class="hljs-keyword">if</span> (i &lt; rev[i])<br>      std::<span class="hljs-built_in">swap</span>(a[rev[i]], a[i]);<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> mid = <span class="hljs-number">1</span>; mid &lt; n; mid &lt;&lt;= <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-function">cp <span class="hljs-title">temp</span><span class="hljs-params">(cos(pi / mid), inv * sin(pi / mid))</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i += mid * <span class="hljs-number">2</span>) &#123;<br>      <span class="hljs-function">cp <span class="hljs-title">omega</span><span class="hljs-params">(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)</span></span>;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; mid; ++j, omega = omega * temp) &#123;<br>        cp x = a[i + j], y = omega * a[i + j + mid];<br>        a[i + j] = x + y;<br>        a[i + j + mid] = x - y;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  <span class="hljs-comment">// file(&quot;P3803&quot;);</span><br>  IO::<span class="hljs-built_in">read</span>(n1, n2);<br>  n = std::<span class="hljs-built_in">max</span>(n1, n2);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, num; i &lt;= n1; ++i) IO::<span class="hljs-built_in">read</span>(num), a[i].x = num;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, num; i &lt;= n2; ++i) IO::<span class="hljs-built_in">read</span>(num), b[i].x = num;<br>  n = n1 + n2;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">30</span>; ++i)<br>    <span class="hljs-keyword">if</span> ((<span class="hljs-number">1</span> &lt;&lt; i) &gt; n) &#123;<br>      n = (<span class="hljs-number">1</span> &lt;&lt; i);<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br><br>  <span class="hljs-built_in">FFT</span>(a, n, <span class="hljs-number">1</span>); <span class="hljs-built_in">FFT</span>(b, n, <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) a[i] = a[i] * b[i];<br>  <span class="hljs-built_in">FFT</span>(a, n, <span class="hljs-number">-1</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n1 + n2; ++i)<br>    c[i] = (<span class="hljs-type">int</span>)(a[i].x / n + <span class="hljs-number">0.5</span>);<br>  <br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n1 + n2; ++i)<br>    IO::<span class="hljs-built_in">write</span>(c[i]), quad;<br>  Enter;<br>&#125;<br><br><span class="hljs-keyword">namespace</span> IO &#123;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(T &amp;a)</span> </span>&#123;<br>  T s = <span class="hljs-number">0</span>, t = <span class="hljs-number">1</span>;<br>  <span class="hljs-type">char</span> c = <span class="hljs-built_in">getchar</span>();<br>  <span class="hljs-keyword">while</span> ((c &lt; <span class="hljs-string">&#x27;0&#x27;</span> || c &gt; <span class="hljs-string">&#x27;9&#x27;</span>) &amp;&amp; c != <span class="hljs-string">&#x27;-&#x27;</span>)<br>    c = <span class="hljs-built_in">getchar</span>();<br>  <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;-&#x27;</span>)<br>    c = <span class="hljs-built_in">getchar</span>(), t = <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">while</span> (c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>)<br>    s = (s &lt;&lt; <span class="hljs-number">1</span>) + (s &lt;&lt; <span class="hljs-number">3</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>  a = s * t;<br>&#125;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, <span class="hljs-keyword">class</span> ...rest&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(T &amp;a, rest &amp;...x)</span> </span>&#123;<br>  <span class="hljs-built_in">read</span>(a);<br>  <span class="hljs-built_in">read</span>(x...);<br>&#125;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(T x)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;0&#x27;</span>);<br>  <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>), x = -x;<br>  <span class="hljs-type">int</span> top = <span class="hljs-number">0</span>, sta[<span class="hljs-number">55</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>  <span class="hljs-keyword">while</span> (x) <br>    sta[++top] = x % <span class="hljs-number">10</span>, x /= <span class="hljs-number">10</span>;<br>  <span class="hljs-keyword">while</span> (top)<br>    <span class="hljs-built_in">putchar</span>(sta[top] + <span class="hljs-string">&#x27;0&#x27;</span>), top--;<br>  <span class="hljs-keyword">return</span> ;<br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</details>
+<p>在这里推荐 <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347514286">某知乎专栏</a> ，把 <span
+class="math inline">\(\tt FFT\)</span> 优化讲的很清楚。</p>
+<p><span class="math inline">\(\tt NTT\)</span> 还是会看的，但是 <span
+class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#学习笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FFT 学习笔记</div>
+      <div>https://aonynation.github.io/2022/11/06/16325376/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aonynation</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>2022年11月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/06/16105177/" title="行列式学习笔记（二）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">行列式学习笔记（二）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/06/16489040/" title="CF1137E 做题报告">
+                        <span class="hidden-mobile">CF1137E 做题报告</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

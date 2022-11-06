@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：   \(i">
+    <meta name="description" content="题目链接 本人再次认为是一道不错的题目，可能是我菜。 判定可行解 首先假定我们已经得到了 \(a\) 和 \(b\) 这两个序列，我们如何判断是否是有解的。 从图论的角度去分解这个问题，我们设当前序列为 \(c\) 。 当 \(c_i&#x3D;c_j\) 时，我们连一条 \((i,j)\) 双向边，代表第 \(i\) 位和第 \(j\) 位的数字应是相同的。 很显然，这几条边把相同数字的点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基础组合数练习题">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/index.html">
+<meta property="og:title" content="AGC005D 做题体验">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16536257/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目很简单，求： \[ Ans&#x3D;\frac{ \sum\limits_{ i&#x3D;m }^n\binom{i-1} {m-1}\times i^k} {\binom{n} {m} } \] 其中，给定 \(n\) ，\(m\) 和 \(k\) 。 满足 \(m\leq n \leq 10^7 , k\leq 5000\) ，数据组数不超过 \(5000\) 。 前置知识：   \(i">
+<meta property="og:description" content="题目链接 本人再次认为是一道不错的题目，可能是我菜。 判定可行解 首先假定我们已经得到了 \(a\) 和 \(b\) 这两个序列，我们如何判断是否是有解的。 从图论的角度去分解这个问题，我们设当前序列为 \(c\) 。 当 \(c_i&#x3D;c_j\) 时，我们连一条 \((i,j)\) 双向边，代表第 \(i\) 位和第 \(j\) 位的数字应是相同的。 很显然，这几条边把相同数字的点">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T03:33:28.216Z">
+<meta property="article:modified_time" content="2022-11-06T14:43:31.429Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>基础组合数练习题 - Aonynation&#39;s Blog</title>
+  <title>AGC005D 做题体验 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基础组合数练习题"></span>
+            <span id="subtitle" data-typed-text="AGC005D 做题体验"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.5k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          17 mins
+          22 mins
         
       </span>
     
@@ -272,82 +272,60 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">基础组合数练习题</h1>
+            <h1 style="display: none">AGC005D 做题体验</h1>
             
             
               <div class="markdown-body">
                 
-                <p>题目很简单，求： <span class="math display">\[
-Ans=\frac{ \sum\limits_{ i=m }^n\binom{i-1} {m-1}\times i^k} {\binom{n}
-{m} }
-\]</span> 其中，给定 <span class="math inline">\(n\)</span> ，<span
-class="math inline">\(m\)</span> 和 <span
-class="math inline">\(k\)</span> 。<br />
-满足 <span class="math inline">\(m\leq n \leq 10^7 , k\leq 5000\)</span>
-，数据组数不超过 <span class="math inline">\(5000\)</span> 。</p>
-<p>前置知识：<br />
+                <p><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT2062"><strong>题目链接</strong></a>
+本人再次认为是一道不错的题目，可能是我菜。</p>
+<h4 id="判定可行解">判定可行解</h4>
+<p>首先假定我们已经得到了 <span class="math inline">\(a\)</span> 和
+<span class="math inline">\(b\)</span>
+这两个序列，我们如何判断是否是有解的。</p>
+<p>从图论的角度去分解这个问题，我们设当前序列为 <span
+class="math inline">\(c\)</span> 。<br />
+当 <span class="math inline">\(c_i=c_j\)</span> 时，我们连一条 <span
+class="math inline">\((i,j)\)</span> 双向边，代表第 <span
+class="math inline">\(i\)</span> 位和第 <span
+class="math inline">\(j\)</span> 位的数字应是相同的。<br />
+很显然，这几条边把相同数字的点都连上了边，那么如果整张图中只有一个连通块时，说明都是一种数值。<br />
+那么该如何连边，在这道题中非常显然，对于回文串连边即可。<br />
+因为对于一个长度为 <span class="math inline">\(Len\)</span>
+的回文串，我们能够连 <span
+class="math inline">\(⌊\frac{Len}{2}⌋\)</span> 这样的边。<br />
+所以如果 <span class="math inline">\(Len\)</span>
+为奇数，就不能恰好连完所以的边，我们设奇数段的个数为 <span
+class="math inline">\(p\)</span> 。<br />
+那么很显然，一共会连出来 <span
+class="math inline">\(\frac{n-p}{2}\)</span>
+条边，因为要求只有一个连通块所以边数至少为 <span
+class="math inline">\(n-1\)</span> ，可以得出 <span
+class="math inline">\(p\leq 2\)</span> 的结论。</p>
+<p>到现在为止，我们已经判断了是否有可行解的情况，现在考虑构造方案。 ####
+<span class="math inline">\(p = 0\)</span> 先从 <span
+class="math inline">\(p=0\)</span> 也就是说 <span
+class="math inline">\(a\)</span> 中没有奇数元素的情况进行构造。<br />
+我们发现 <span class="math inline">\(a\)</span>
+可以保持不动，最主要的是要把相邻组的数字和同一组不同对的数组搞成一样。<br />
+这里直接给出结论： <span class="math display">\[
+B=\{A_1+1,A_2,A_3,\cdots,A_{m-1},A_m-1\}
+\]</span> <strong>注意，当 <span class="math inline">\(A_m-1 =0\)</span>
+的时候直接把最后一位省略即可。</strong> #### <span
+class="math inline">\(p=1\)</span> 和 <span
+class="math inline">\(p=2\)</span> 其实我们只要构造出 <span
+class="math inline">\(A\)</span> 那么 <span
+class="math inline">\(B\)</span> 直接按照上述的情况构造即可。<br />
+当 <span class="math inline">\(p=1\)</span> 时，我们可以把奇数的元素
+<span class="math inline">\(A_{odd}\)</span> 放到 <span
+class="math inline">\(A\)</span> 的最后一个位置。<br />
+同样的，对于 <span class="math inline">\(p=2\)</span> 的情况，我们把
+<span class="math inline">\(A_{odd}\)</span>
+分别放到第一位和最后一位。<br />
 </p>
-<ul>
-<li><p><span
-class="math inline">\(i^k=\sum\limits_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\times
-i^{\overline{j} }\)</span></p></li>
-<li><p><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/black-swallow/p/16068322.html#5112039">组合数公式全家桶</a></p></li>
-</ul>
-<p>容易发现 <span class="math inline">\(\binom{n} {m}\)</span>
-是一个定值，所以只需要化简分子。</p>
-<p><span class="math display">\[
-\begin{split}
-S&amp;=\sum\limits_{i=m}^n\binom{i-1} {m-1}\times i^k\\
-&amp;=\sum\limits_{i=m}^n\binom{i-1} {m-1}\times
-\sum\limits_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\times
-i^{\overline{j} }\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n\binom{i-1}
-{m-1}\times i^{\overline{j} }\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i-1)!} {(m-1)!(i-m)!}\times\frac{(i + j - 1)!} {(i-1)!}\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i + j - 1)!} {(m-1)!(i-m)!}\\
-\end{split}
-\]</span> 我们设 <span class="math inline">\(t= i - m\)</span> ，并用
-<span class="math inline">\(t\)</span> 代替式子中的 <span
-class="math inline">\(i\)</span> 。 <span class="math display">\[
-\begin{split}
-S &amp;=
-\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=m}^n
-\frac{(i + j - 1)!} {(m-1)!(i-m)!}\\
-&amp;=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {(m-1)!\times t!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!\times (m+j-1)!}\times(m+j-1)!\\
-&amp;= \frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\sum_{i=0}^{n
-- m}
-\frac{(t + m + j - 1)!} {t!\times (m+j-1)!}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\sum_{i=0}^{n
-- m}\binom{t+m+j-1} {m+j-1}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\binom{m+j-1+n-m+1}
-{n-m}\\
-&amp;=\frac{1}
-{(m-1)!}\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}(-1)^{k-j}(m+j-1)!\binom{n
-+ j} {n-m}\\
-\end{split}
-\]</span></p>
-<p>发现只有一个和 <span class="math inline">\(i\)</span>
-有关的组合数，其他的可以直接预处理。<br />
-每次操作的复杂度是 <span class="math inline">\(O(k)\)</span> ，<span
-class="math inline">\(T\)</span> 组数据的话就是 <span
-class="math inline">\(O(Tk)\)</span> 。</p>
-<p>代码小学难度。</p>
+<p>上述的思路仔细思索还是不难理解的。<br />
+具体细节可以看一下代码: <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> File(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Enter putchar(<span class="hljs-string">&#x27;\n&#x27;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> quad putchar(<span class="hljs-string">&#x27; &#x27;</span>)</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">105</span>;<br><br><span class="hljs-type">int</span> n, m, a[N], s, b[N];<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  std::cin &gt;&gt; n &gt;&gt; m;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cin &gt;&gt; a[i];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) s += (a[i] &amp; <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> (s &gt; <span class="hljs-number">2</span>) &#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Impossible&quot;</span> &lt;&lt; std::endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (m == <span class="hljs-number">1</span>) &#123;<br>    std::cout &lt;&lt; a[<span class="hljs-number">1</span>] &lt;&lt; std::endl;<br>    <span class="hljs-keyword">if</span> (a[<span class="hljs-number">1</span>] == <span class="hljs-number">1</span>) &#123;<br>      std::cout &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; std::endl &lt;&lt; <span class="hljs-number">1</span>;<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    std::cout &lt;&lt; <span class="hljs-number">2</span> &lt;&lt; std::endl;<br>    std::cout &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; a[<span class="hljs-number">1</span>] - <span class="hljs-number">1</span> &lt;&lt; std::endl;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s == <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i ++) std::cout &lt;&lt; a[i], quad; Enter;<br>    a[<span class="hljs-number">1</span>] ++; a[m] --;<br>    <span class="hljs-keyword">if</span> (a[m] == <span class="hljs-number">0</span>) m --;<br>    std::cout &lt;&lt; m &lt;&lt; std::endl;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cout &lt;&lt; a[i], quad;<br>    Enter;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s == <span class="hljs-number">1</span>) &#123;<br>    std::<span class="hljs-built_in">stable_sort</span>(a + <span class="hljs-number">1</span>, a + <span class="hljs-number">1</span> + m, [](<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> q) &#123;<span class="hljs-keyword">return</span> p % <span class="hljs-number">2</span> &lt; q % <span class="hljs-number">2</span>;&#125;);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cout &lt;&lt; a[i], quad; Enter;<br>    a[<span class="hljs-number">1</span>] ++; a[m] --;<br>    <span class="hljs-keyword">if</span> (a[m] == <span class="hljs-number">0</span>) m --;<br>    std::cout &lt;&lt; m &lt;&lt; std::endl;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cout &lt;&lt; a[i], quad;<br>    Enter;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-type">int</span> first = <span class="hljs-number">-1</span>, last = <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;<br>      <span class="hljs-keyword">if</span> (a[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>      <span class="hljs-keyword">if</span> (first == <span class="hljs-number">-1</span>) first = a[i];<br>      <span class="hljs-keyword">else</span> &#123;last = a[i]; <span class="hljs-keyword">break</span>;&#125;<br>    &#125; <br>    <span class="hljs-type">int</span> tot = <span class="hljs-number">1</span>;<br>    b[<span class="hljs-number">1</span>] = first;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) <br>      <span class="hljs-keyword">if</span> (a[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) b[++tot] = a[i];<br>    b[++tot] = last;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cout &lt;&lt; b[i], quad; Enter;<br>    b[<span class="hljs-number">1</span>] ++; b[m] --;<br>    <span class="hljs-keyword">if</span> (b[m] == <span class="hljs-number">0</span>) m --;<br>    std::cout &lt;&lt; m &lt;&lt; std::endl;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) std::cout &lt;&lt; b[i], quad;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 
                 
               </div>
@@ -372,8 +350,8 @@ class="math inline">\(O(Tk)\)</span> 。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基础组合数练习题</div>
-      <div>https://aonynation.github.io/2022/11/06/ji_chu_zu_he_lian_xi_ti/</div>
+      <div>AGC005D 做题体验</div>
+      <div>https://aonynation.github.io/2022/11/06/16536257/</div>
     </div>
     <div class="license-meta">
       
@@ -417,9 +395,9 @@ class="math inline">\(O(Tk)\)</span> 。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16749144/" title="luoguP7028 [NWRRC2017]Joker 题解">
+                      <a href="/2022/11/06/16526794/" title="范德蒙德卷积 学习笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">luoguP7028 [NWRRC2017]Joker 题解</span>
+                        <span class="hidden-mobile">范德蒙德卷积 学习笔记</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -427,8 +405,8 @@ class="math inline">\(O(Tk)\)</span> 。</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/mu_ban/" title="各种模板的集合">
-                        <span class="hidden-mobile">各种模板的集合</span>
+                      <a href="/2022/11/06/16579490/" title="组合计数入门题瞎做">
+                        <span class="hidden-mobile">组合计数入门题瞎做</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
