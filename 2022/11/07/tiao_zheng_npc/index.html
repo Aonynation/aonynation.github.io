@@ -24,7 +24,7 @@
 <meta property="og:description" content="简要题意 构造一个点数尽量多的无向完全图，并给其中的每一条边染色，颜色数不超过 \(k\) ，使得没有同色三元环。 对于不同的 \(k\) 题目给出了目标答案 \(n_0\) 。 解题报告 非常神秘的一道题目，考场上只会 \(16\) pts 的手玩部分。 \(k&#x3D;1,n&#x3D;2\) 非常简单，没有任何悬念，直接连一个 \(1\rightarrow 2\) 的边即可。 \(k&#x3D;2,n">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T14:58:14.179Z">
+<meta property="article:modified_time" content="2022-11-08T14:01:26.353Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          32 分钟
+          34 分钟
         
       </span>
     
@@ -343,6 +343,23 @@ class="math inline">\(col_i=col_{n-i}\)</span> 。<br />
 </details>
 <h3 id="k6"><span class="math inline">\(k=6\)</span></h3>
 <p>最后一个包是在是太逆天了，反正我没看懂神秘的结论。</p>
+<p>还是先把结论放一下把，主要思想是根据 <span
+class="math inline">\(k=5\)</span> 的部分直接推到 <span
+class="math inline">\(k=6\)</span> 的部分。<br />
+感性理解一下发现按照下面的这个方法构造是正确的：<br />
+我们令 <span class="math inline">\(c_i\)</span> 表示 <span
+class="math inline">\(k=5\)</span> 时的差的颜色，<span
+class="math inline">\(cc_i\)</span> 表示 <span
+class="math inline">\(k=6\)</span> 时的差的颜色。</p>
+<p><span class="math display">\[
+cc_i=
+\begin{cases}
+c_i \quad (1\leq i &lt; n)\\
+5\quad (n\leq i &lt; 2n)\\
+c_{i-(2n-1)}\quad (2n\leq i &lt; 3n-2)
+\end{cases}
+\]</span></p>
+<p>代码非常简单，就不放了。</p>
 
                 
               </div>
@@ -422,8 +439,8 @@ class="math inline">\(col_i=col_{n-i}\)</span> 。<br />
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16172438/" title="素数个数的证明">
-                        <span class="hidden-mobile">素数个数的证明</span>
+                      <a href="/2022/11/06/16155981/" title="高斯约旦消元法学习笔记">
+                        <span class="hidden-mobile">高斯约旦消元法学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
