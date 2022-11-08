@@ -24,7 +24,7 @@
 <meta property="og:description" content="引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-08T16:00:00.685Z">
+<meta property="article:modified_time" content="2022-11-08T16:02:37.931Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -297,7 +297,8 @@ F(x) = f(x)\times g(x)\\
 \]</span> <span class="math display">\[
 F(x)=\{(x_0,g(x_0)\times f(x_0)),(x_1,g(x_1)\times
 f(x_1)),\cdots,(x_n,g(x_n)\times f(x_n))\}
-\]</span> ## 复数</p>
+\]</span></p>
+<h2 id="复数">复数</h2>
 <p><span class="math inline">\(\text{复数 = 实数 + 虚数}\)</span><br />
 实在一点吧，直接上干货，我们定义 :<br />
 <span class="math display">\[i=\sqrt{-1}\]</span>
@@ -321,8 +322,9 @@ ac+adi+bci+bdi^2\\
 \end{split} \\\quad \\
 \]</span> <span class="math display">\[
 (r_1,\theta_1)\times(r_2,\theta_2)=(r_1\times r_2,\theta_1+\theta_2)
-\]</span> ## <span class="math inline">\(\tt DFT\)</span>
-（离散傅里叶变换）</p>
+\]</span></p>
+<h2 id="tt-dft-离散傅里叶变换"><span class="math inline">\(\tt
+DFT\)</span> （离散傅里叶变换）</h2>
 <p>现在已经介绍完了<strong>点值表示法</strong>和<strong>复数</strong>的相关知识，接下来就是干货部分了。</p>
 <p>上面我们已经通过这样的例子说明了点值表示法算多项式乘法的方便。<br />
 接下来我们来看怎么先把多项式从系数表示法转换为点值表示法，这种过程叫
@@ -597,9 +599,9 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16155981/" title="高斯约旦消元法学习笔记">
+                      <a href="/2022/11/06/16172438/" title="素数个数的证明">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">高斯约旦消元法学习笔记</span>
+                        <span class="hidden-mobile">素数个数的证明</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -607,8 +609,8 @@ class="math inline">\(\tt FFT\)</span> 把我给些虚脱了。。。</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16172438/" title="素数个数的证明">
-                        <span class="hidden-mobile">素数个数的证明</span>
+                      <a href="/2022/11/06/16348650/" title="ARC087D 补题记录">
+                        <span class="hidden-mobile">ARC087D 补题记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
