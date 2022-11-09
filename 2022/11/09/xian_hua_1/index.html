@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目链接 简要题意： 给你一个\(N\)个节点的树，求一个\(1\cdots N\)的排列\((p_1,p_2,\cdots p_N)\) ，使得\(\sum dist(i,p_i)\)最大。 求这样的排列的个数。答案对\(10^9+7\)取模。 分析 先考虑怎么构造出 \(\sum dist(i,p_i)\) 最大的 \(p\) 。 先取出一条边，把它断开，使得原树分成两个部分">
+    <meta name="description" content="今天的信息量比较多，感觉人脑不太能处理过来。 今天没有联考，下午最后两堂课又可以不上，基本上都是在机房度过的一天。 因为一些超自然的原因，现在机房的人员非常神秘：超级飞侠，海绵宝宝，沸羊羊，啊~ 等申必词汇成为高频词。 早上有一辆自行车的人研究机房接线板开关对电脑的影响 （想关别人电脑把自己电脑给关了。 信息的大规模输入是从下午开始的。 C 同学 luogu 因被加入代码公开计划苦等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARC087D 补题记录">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/06/16348650/index.html">
+<meta property="og:title" content="2022.11.9 闲话">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/09/xian_hua_1/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目链接 简要题意： 给你一个\(N\)个节点的树，求一个\(1\cdots N\)的排列\((p_1,p_2,\cdots p_N)\) ，使得\(\sum dist(i,p_i)\)最大。 求这样的排列的个数。答案对\(10^9+7\)取模。 分析 先考虑怎么构造出 \(\sum dist(i,p_i)\) 最大的 \(p\) 。 先取出一条边，把它断开，使得原树分成两个部分">
+<meta property="og:description" content="今天的信息量比较多，感觉人脑不太能处理过来。 今天没有联考，下午最后两堂课又可以不上，基本上都是在机房度过的一天。 因为一些超自然的原因，现在机房的人员非常神秘：超级飞侠，海绵宝宝，沸羊羊，啊~ 等申必词汇成为高频词。 早上有一辆自行车的人研究机房接线板开关对电脑的影响 （想关别人电脑把自己电脑给关了。 信息的大规模输入是从下午开始的。 C 同学 luogu 因被加入代码公开计划苦等">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:14:58.770Z">
+<meta property="article:published_time" content="2022-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-09T15:53:35.152Z">
 <meta property="article:author" content="Aonynation">
-<meta property="article:tag" content="题解">
+<meta property="article:tag" content="闲话">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>ARC087D 补题记录 - Aonynation&#39;s Blog</title>
+  <title>2022.11.9 闲话 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ARC087D 补题记录"></span>
+            <span id="subtitle" data-typed-text="2022.11.9 闲话"></span>
           
         </div>
 
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          1.1k 字
         
       </span>
     
@@ -256,57 +256,51 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ARC087D 补题记录</h1>
+            <h1 style="display: none">2022.11.9 闲话</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="题目链接"><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT3728">题目链接</a></h3>
-<p>简要题意：<br />
-给你一个<span class="math inline">\(N\)</span>个节点的树，求一个<span
-class="math inline">\(1\cdots N\)</span>的排列<span
-class="math inline">\((p_1,p_2,\cdots p_N)\)</span> ，使得<span
-class="math inline">\(\sum dist(i,p_i)\)</span>最大。</p>
-<p>求这样的排列的个数。答案对<span
-class="math inline">\(10^9+7\)</span>取模。</p>
-<h3 id="分析">分析</h3>
-<p>先考虑怎么构造出 <span class="math inline">\(\sum
-dist(i,p_i)\)</span> 最大的 <span class="math inline">\(p\)</span>
-。</p>
-<p>先取出一条边，把它断开，使得原树分成两个部分 <span
-class="math inline">\(S_1\)</span> 和 <span
-class="math inline">\(S_2\)</span> 。<br />
-在最多的情况下，每一个都会走到另一个集合，所以路过切断边的次数是 <span
-class="math inline">\(2\times\min\{|S_1|,|S_2|\}\)</span> 。</p>
-<p>现在取出当前树的重心，至于为什么是重心：<br />
-考虑对于每一条边的贡献，及是之前讲的 <span
-class="math inline">\(2\times\min\{|S_1|,|S_2|\}\)</span>
-，我们要让贡献最大，显然要让 <span class="math inline">\(|S_1|\)</span>
-和 <span class="math inline">\(|S_2|\)</span> 尽可能平衡。<br />
-自然而然就可以想到重心。</p>
-<p>我们设当前子树为 <span class="math inline">\(S\)</span>
-，对于子树内的节点 <span class="math inline">\(u\)</span>
-可以得到最大的构造方案是： <span class="math display">\[
-\forall u\in S,p_u\notin S
-\]</span></p>
-<p>接下来考虑容斥求方案数。<br />
-我们设 <span class="math inline">\(f_i\)</span> 表示有 <span
-class="math inline">\(i\)</span>
-个数不满足条件，其他随便选的方案数。<br />
-那么： <span class="math display">\[
-Ans = \sum_{i=0}^n(-1)^if_i(n-i)!
-\]</span> 至于为什么有 <span class="math inline">\((n-i)!\)</span>
-是因为剩下的随便排列都是可以的。<br />
+                <p>今天的信息量比较多，感觉人脑不太能处理过来。</p>
+<p>今天没有联考，下午最后两堂课又可以不上，基本上都是在机房度过的一天。<br />
+因为一些超自然的原因，现在机房的人员非常神秘：超级飞侠，海绵宝宝，沸羊羊，啊~
+等申必词汇成为高频词。<br />
+早上有一辆自行车的人研究机房接线板开关对电脑的影响
+<del>（想关别人电脑把自己电脑给关了。</del></p>
+<p>信息的大规模输入是从下午开始的。<br />
+C 同学 luogu 因被加入代码公开计划苦等 31 days
+之后再次被一个平常经常被他欺负的 Y 同学加入代码公开。<br />
+当场就破防了，就地物理解决后两人发生了争执，可能双方都认为是对方的错误。。。</p>
+<p>经过我严谨的思考，我悟出了以下的道理：</p>
+<ul>
+<li><p>不光是成年人，高中生的破防也往往就在那一刻。</p></li>
+<li><p>不要去惹别人，开开心心对待每个人。</p></li>
+<li><p>自己选择不公开代码，不开完隐没人帮你开完全隐私保护。</p></li>
+<li><p>不要公开自己对着别人卷，自己偷偷卷别人就不会有戒备的心理。</p></li>
+<li><p>加强抗打击能力，这一点我做的很好，他们说我是 gay
+就让他们说去呗，我在外国还是政治正确呢。</p></li>
+</ul>
+<p>但我是真的不能理解为什么会有人说我是 gay
+，不过没关系我已经没有上次闲话时那么过激了，反正我自己知道我很正常。</p>
+<p>晚上自习的时候之前的组内成员来这里摆烂，听说班主任会放弃很用功但是跟不上的同学，感觉很恐怖。。。<br />
+不过这种事情跟我没关系，因为我只可能是态度不认真。。。 /qd /xyx</p>
+<hr />
+<p>组内还有个男同学喜欢用一些轻率的语言跟唯一的一个女生开黄腔，美其名学调戏，我觉得差不多得了。<br />
+这样的人大概觉得自己很牛逼，是的你牛逼，你是最棒的，你觉得别人都和你一样牛逼，但是我觉得你这样的人还是少一点比较好，因为我们都没有你这么厉害！<br />
+如果是我，我不会对任何一个女生说出这种东西，就是让我去吃电脑，我也不会对旁边的女生将这种不要脸的东西讲出来。<br />
+觉得我是 gay 有问题是吧，我想跟你说，就算我是 gay
+我也比你这种流氓行为要好很多！</p>
+<p>你说你和她很熟，是的，我不否认你和她坐了三年的同桌，但是你是否考虑过别人的感受。<br />
+对，你是新时代的人，是我们太迂腐了，不懂得你的开放思想和进步的思维，还是那句话，我们配不上你，我们太封建，真的！<br />
+或者是你喜欢那个女生，那我非常抱歉，但是我认为你应该学会去关心她而不是去干你这种事，如果是我，我是不会忍心说出这种话的。<br />
+你认为我讲的不对，认为我多管闲事，其实我前面在讲反话，我认为你很牛逼，很棒，真的！<br />
+你认为我是 gay
+觉得我不懂正常人的思维，那我真的很抱歉，我无法体会一个正常人的思维，我向你道歉，向全人类道歉！</p>
+<p>我相信超级飞侠不会对海绵宝宝这样做，因为海绵宝宝和沸羊羊是好朋友，沸羊羊和懒羊羊是好朋友，懒羊羊和小灰灰是好朋友。。。。<br />
 </p>
-<p>我们考虑每一个与 <span class="math inline">\(\text{root}\)</span>
-连边的子树，设其大小为 <span class="math inline">\(\text{size}\)</span>
-。<br />
-可以得到这个子树中<br />
-<span
-class="math display">\[f_i=C_{\text{size}}^i\prod_{j=size-i+1}^jj\]</span>
-也是比较好理解的，小学乘法原理即可。</p>
-<p>最后背包一下，具体可看代码。 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> file(a) freopen(a<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin), freopen(a<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Enter putchar(<span class="hljs-string">&#x27;\n&#x27;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> quad putchar(<span class="hljs-string">&#x27; &#x27;</span>)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long </span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5005</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br><span class="hljs-type">int</span> n, siz[N], w[N], root, fac[N], f[N], ans, inv[N];<br>std::vector &lt;<span class="hljs-type">int</span>&gt; dis[N];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">power</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> n)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> m)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">get_root</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> father)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> father)</span></span>;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>  <span class="hljs-comment">// file(&quot;AT3728&quot;);</span><br>  f[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; fac[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; inv[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  std::cin &gt;&gt; n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    fac[i] = fac[i - <span class="hljs-number">1</span>] * i % mod;<br>  inv[n] = <span class="hljs-built_in">power</span>(fac[n], mod - <span class="hljs-number">2</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">1</span>; i--)<br>    inv[i] = inv[i + <span class="hljs-number">1</span>] * (i + <span class="hljs-number">1</span>) % mod;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, x, y; i &lt; n; i++) &#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld&quot;</span>, &amp;x, &amp;y);<br>    dis[x].<span class="hljs-built_in">emplace_back</span>(y);<br>    dis[y].<span class="hljs-built_in">emplace_back</span>(x);<br>  &#125;<br>  <span class="hljs-built_in">get_root</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>  <span class="hljs-built_in">memset</span>(siz, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(siz));<br>  <span class="hljs-built_in">dfs</span>(root, <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t : dis[root]) &#123;<br>    <span class="hljs-type">int</span> x = siz[t];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = n; j &gt;= <span class="hljs-number">0</span>; j--) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= std::<span class="hljs-built_in">min</span>(j, x); k++) &#123;<br>        <span class="hljs-type">int</span> mul = <span class="hljs-built_in">C</span>(x, k) * fac[x] % mod * inv[x - k] % mod;<br>        f[j] = (f[j] + f[j - k] * mul % mod) % mod;<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;<br>    <span class="hljs-type">int</span> flag = <span class="hljs-number">1</span>, num;<br>    <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) flag = <span class="hljs-number">-1</span>;<br>    num = f[i] * fac[n - i] % mod;<br>    ans = ans + flag * num;<br>    ans = (ans % mod + mod) % mod;<br>  &#125;<br>  std::cout &lt;&lt; ans &lt;&lt; std::endl;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">power</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>  <span class="hljs-type">int</span> ret = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span> (n) &#123;<br>    <span class="hljs-keyword">if</span> (n &amp; <span class="hljs-number">1</span>) ret = ret * a % mod;<br>    a = a * a % mod;<br>    n /= <span class="hljs-number">2</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> m)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; m) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-type">int</span> ret = fac[n];<br>  ret = ret * inv[m] % mod;<br>  ret = ret * inv[n - m] % mod;<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">get_root</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> father)</span> </span>&#123;<br>  siz[now] = <span class="hljs-number">1</span>; w[now] = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t : dis[now]) &#123;<br>    <span class="hljs-keyword">if</span> (t == father) <span class="hljs-keyword">continue</span>;<br>    <span class="hljs-built_in">get_root</span>(t, now);<br>    siz[now] += siz[t];<br>    w[now] = std::<span class="hljs-built_in">max</span>(w[now], siz[t]);<br>  &#125;<br>  w[now] = std::<span class="hljs-built_in">max</span>(w[now], n - siz[now]);<br>  <span class="hljs-keyword">if</span> (w[now] &lt;= n / <span class="hljs-number">2</span>) root = now;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> father)</span> </span>&#123;<br>  siz[now] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t : dis[now]) &#123;<br>    <span class="hljs-keyword">if</span> (t == father) <span class="hljs-keyword">continue</span>;<br>    <span class="hljs-built_in">dfs</span>(t, now);<br>    siz[now] += siz[t];<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>乐死了，高中生的快乐就像超级飞侠一样，在困难的时候海绵宝宝。</p>
+<p>—— 该睡觉了，依古比古！<br />
+—— 准备好了，船长！</p>
 
                 
               </div>
@@ -319,7 +313,7 @@ class="math display">\[f_i=C_{\text{size}}^i\prod_{j=size-i+1}^jj\]</span>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
+        <a href="/tags/%E9%97%B2%E8%AF%9D/">#闲话</a>
       
     </div>
   
@@ -331,8 +325,8 @@ class="math display">\[f_i=C_{\text{size}}^i\prod_{j=size-i+1}^jj\]</span>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ARC087D 补题记录</div>
-      <div>https://aonynation.github.io/2022/11/06/16348650/</div>
+      <div>2022.11.9 闲话</div>
+      <div>https://aonynation.github.io/2022/11/09/xian_hua_1/</div>
     </div>
     <div class="license-meta">
       
@@ -344,7 +338,7 @@ class="math display">\[f_i=C_{\text{size}}^i\prod_{j=size-i+1}^jj\]</span>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月6日</div>
+          <div>2022年11月9日</div>
         </div>
       
       
@@ -376,18 +370,12 @@ class="math display">\[f_i=C_{\text{size}}^i\prod_{j=size-i+1}^jj\]</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/16325376/" title="FFT 学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FFT 学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/16526794/" title="范德蒙德卷积 学习笔记">
-                        <span class="hidden-mobile">范德蒙德卷积 学习笔记</span>
+                      <a href="/2022/11/08/gou_zao_zhen/" title="联考 阵">
+                        <span class="hidden-mobile">联考 阵</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
