@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目描述 你要求一个这样的东西，其中 \(f_i\) 是一个已知的序列。 \[ Ans&#x3D;\frac{1}{n}\sum_{i&#x3D;1}^n f_{\gcd(i,n)} \] \(n\leq 10^6\) 且询问次数不超过 \(10^5\) 。 解题思路 看上去像是一个莫比乌斯反演，但是事实证明没有那么恐怖。 可以考虑对于一个最大公约数的贡献次数，不妨设 \(x&#x3D;\gcd(i,n)\">
+    <meta name="description" content="题目描述 求： \[ Ans &#x3D; \sum_{i&#x3D;1}^n \text{Fib}_i ^ k \bmod (10^9+9) \] \(n\leq 10^18, k\leq 10^5\) 解题报告 一开始一直以为是构造矩阵这种神秘的做法。 结果发现正解更为神秘。。。 首先先来一波 Fibonacci 数列的通项公式： \[ F_i&#x3D;\frac{1}{\sqrt{5}}\left[">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单函数计算题（一）">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/11/11_11_1/index.html">
+<meta property="og:title" content="Fibonacci 数列前 n 项的 k 次方和">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/12/11_12_1/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目描述 你要求一个这样的东西，其中 \(f_i\) 是一个已知的序列。 \[ Ans&#x3D;\frac{1}{n}\sum_{i&#x3D;1}^n f_{\gcd(i,n)} \] \(n\leq 10^6\) 且询问次数不超过 \(10^5\) 。 解题思路 看上去像是一个莫比乌斯反演，但是事实证明没有那么恐怖。 可以考虑对于一个最大公约数的贡献次数，不妨设 \(x&#x3D;\gcd(i,n)\">
+<meta property="og:description" content="题目描述 求： \[ Ans &#x3D; \sum_{i&#x3D;1}^n \text{Fib}_i ^ k \bmod (10^9+9) \] \(n\leq 10^18, k\leq 10^5\) 解题报告 一开始一直以为是构造矩阵这种神秘的做法。 结果发现正解更为神秘。。。 首先先来一波 Fibonacci 数列的通项公式： \[ F_i&#x3D;\frac{1}{\sqrt{5}}\left[">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-11T16:13:12.440Z">
+<meta property="article:published_time" content="2022-11-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-12T02:38:36.399Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>简单函数计算题（一） - Aonynation&#39;s Blog</title>
+  <title>Fibonacci 数列前 n 项的 k 次方和 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="简单函数计算题（一）"></span>
+            <span id="subtitle" data-typed-text="Fibonacci 数列前 n 项的 k 次方和"></span>
           
         </div>
 
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          473 字
+          1k 字
         
       </span>
     
@@ -256,39 +256,52 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">简单函数计算题（一）</h1>
+            <h1 style="display: none">Fibonacci 数列前 n 项的 k 次方和</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="题目描述">题目描述</h2>
-<p>你要求一个这样的东西，其中 <span class="math inline">\(f_i\)</span>
-是一个已知的序列。</p>
-<p><span class="math display">\[
-Ans=\frac{1}{n}\sum_{i=1}^n f_{\gcd(i,n)}
+<p>求： <span class="math display">\[
+Ans = \sum_{i=1}^n \text{Fib}_i ^ k \bmod (10^9+9)
 \]</span></p>
-<p><span class="math inline">\(n\leq 10^6\)</span> 且询问次数不超过
-<span class="math inline">\(10^5\)</span> 。</p>
-<h2 id="解题思路">解题思路</h2>
-<p>看上去像是一个莫比乌斯反演，但是事实证明没有那么恐怖。</p>
-<p>可以考虑对于一个最大公约数的贡献次数，不妨设 <span
-class="math inline">\(x=\gcd(i,n)\)</span> 。<br />
-那么一个非常显然的东西，对于 <span class="math inline">\(x\)</span>
-的贡献次数是 <span class="math inline">\(\varphi (\frac{n}{x})\)</span>
-。</p>
-<p>所以现在要求的变成这样的东西： <span class="math display">\[
-Ans = \frac{1}{n}\sum_{i|n}\varphi (\frac{n}{i})\times f_i
+<p><span class="math inline">\(n\leq 10^18, k\leq 10^5\)</span></p>
+<h2 id="解题报告">解题报告</h2>
+<p>一开始一直以为是构造矩阵这种神秘的做法。<br />
+结果发现正解更为神秘。。。</p>
+<p>首先先来一波 Fibonacci 数列的通项公式： <span class="math display">\[
+F_i=\frac{1}{\sqrt{5}}\left[ \left( \frac{1+\sqrt{5}}{2}\right)^i-\left(
+\frac{\sqrt{5} - 1}{2})\right)^i \right]
 \]</span></p>
-<p>然后显然要支持较小的复杂度求出一个数 <span
-class="math inline">\(x\)</span> 的 <span
-class="math inline">\(\varphi(x)\)</span> 。<br />
-可以尝试线性复杂度 <span class="math inline">\(O(n)\)</span> 求 <span
-class="math inline">\(\varphi(x)\)</span> 。<br />
-但是更容易的是直接调和级数 <span class="math inline">\(O(n\ln
-n)\)</span> 求出 <span class="math inline">\(\varphi(x)\)</span> 。</p>
-<p>之后我又想到了整数分块，其实直接枚举约束就可以了。<br />
-由此可以看出，此题难度在于知道 <span
-class="math inline">\(\varphi(x)\)</span> 是什么东西。</p>
+<p>为了方便，我们令 <span
+class="math inline">\(\alpha=\frac{1+\sqrt{5}}{2},\beta =
+\frac{1-\sqrt{5}}{2}\)</span> 。 那么式子就变成了这样： <span
+class="math display">\[
+F_i=\frac{1}{\sqrt{5}}(\alpha^n+\beta^n)
+\]</span> 根据题目要求进行变换： <span class="math display">\[
+\begin{split}
+Ans&amp;=\sum_{i=1}^n \text{Fib}_i ^ k\\
+&amp;=\sum_{i=1}^n \frac{1}{\sqrt{5}}(\alpha^i+\beta^i)\\
+&amp;= \frac{1}{(\sqrt{5})^k}\sum_{i=1}^n (\alpha^i+\beta^i)^k
+\end{split}
+\]</span></p>
+<p>现在的问题就是求出 <span
+class="math inline">\((\alpha^i+\beta^i)^k\)</span> 。<br />
+考虑直接二项式定理，暴力展开 ： <span class="math display">\[
+\begin{split}
+&amp;(\alpha^i+\beta^i)^k\\
+=&amp;(-1)^0\binom{k}{0}\alpha^{ik}\beta^{0n}+(-1)^1\binom{k}{1}\alpha^{i(k
+- 1)}\beta^{n}+(-1)^2\binom{k}{2}\alpha^{i(k-2)}\beta^{2n}+\cdots
+\end{split}
+\]</span> 稍微计算一下，就可以发现其实对于每一个项数都满足等比数列。
+<span class="math display">\[
+\frac{(-1)^i\binom{k}{i}\alpha^{(k-i)(n+1)}\beta^{i(n+1)}}{(-1)^i\binom{k}{i}\alpha^{(k-i)n}\beta^{in}}=\alpha^{k-i}\beta^i
+\]</span></p>
+<p>之后直接算就可以了。<br />
+对于 <span class="math inline">\(\sqrt{5}\)</span>
+的处理可以直接在网上找一下二次剩余，发现 <span
+class="math inline">\(383008016^2 \bmod 10^9+9=5\)</span> 。</p>
+<p>代码难度也不大。</p>
 
                 
               </div>
@@ -313,8 +326,8 @@ class="math inline">\(\varphi(x)\)</span> 是什么东西。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>简单函数计算题（一）</div>
-      <div>https://aonynation.github.io/2022/11/11/11_11_1/</div>
+      <div>Fibonacci 数列前 n 项的 k 次方和</div>
+      <div>https://aonynation.github.io/2022/11/12/11_12_1/</div>
     </div>
     <div class="license-meta">
       
@@ -326,7 +339,7 @@ class="math inline">\(\varphi(x)\)</span> 是什么东西。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月11日</div>
+          <div>2022年11月12日</div>
         </div>
       
       
@@ -358,18 +371,12 @@ class="math inline">\(\varphi(x)\)</span> 是什么东西。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/12/11_12_1/" title="Fibonacci 数列前 n 项的 k 次方和">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Fibonacci 数列前 n 项的 k 次方和</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/09/xian_hua_1/" title="2022.11.9 闲话">
-                        <span class="hidden-mobile">2022.11.9 闲话</span>
+                      <a href="/2022/11/11/11_11_1/" title="简单函数计算题（一）">
+                        <span class="hidden-mobile">简单函数计算题（一）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
