@@ -24,7 +24,7 @@
 <meta property="og:description" content="题目描述 求： \[ Ans &#x3D; \sum_{i&#x3D;1}^n \text{Fib}_i ^ k \bmod (10^9+9) \] \(n\leq 10^18, k\leq 10^5\) 解题报告 一开始一直以为是构造矩阵这种神秘的做法。 结果发现正解更为神秘。。。 首先先来一波 Fibonacci 数列的通项公式： \[ F_i&#x3D;\frac{1}{\sqrt{5}}\left[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-12T02:38:36.399Z">
+<meta property="article:modified_time" content="2022-11-19T13:35:06.905Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +271,7 @@ Ans = \sum_{i=1}^n \text{Fib}_i ^ k \bmod (10^9+9)
 结果发现正解更为神秘。。。</p>
 <p>首先先来一波 Fibonacci 数列的通项公式： <span class="math display">\[
 F_i=\frac{1}{\sqrt{5}}\left[ \left( \frac{1+\sqrt{5}}{2}\right)^i-\left(
-\frac{\sqrt{5} - 1}{2})\right)^i \right]
+\frac{\sqrt{5} - 1}{2}\right)^i \right]
 \]</span></p>
 <p>为了方便，我们令 <span
 class="math inline">\(\alpha=\frac{1+\sqrt{5}}{2},\beta =
