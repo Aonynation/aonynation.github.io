@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="题目链接 解题报告 预处理最大团 定义 \(f(S)\) 表示点集为 \(S\) 时最大团的大小，\(E(x)\) 表示和 \(x\) 相连的点的集合。 考虑用 \(\tt dp\) 解决问题，枚举当前点集 \(S\) 中的一个点 \(x\) ，考虑 \(x\) 是否在最大团里面。 那么可以得到这样的方程： \[ f(S)&#x3D;\max\{1+f(S\cap E(x)),f(S-\{x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2022.11.9 闲话">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/09/xian_hua_1/index.html">
+<meta property="og:title" content="luogu P7347 题解">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/11/11_20_1/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="题目链接 解题报告 预处理最大团 定义 \(f(S)\) 表示点集为 \(S\) 时最大团的大小，\(E(x)\) 表示和 \(x\) 相连的点的集合。 考虑用 \(\tt dp\) 解决问题，枚举当前点集 \(S\) 中的一个点 \(x\) ，考虑 \(x\) 是否在最大团里面。 那么可以得到这样的方程： \[ f(S)&#x3D;\max\{1+f(S\cap E(x)),f(S-\{x">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-09T15:58:32.024Z">
+<meta property="article:published_time" content="2022-11-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-20T14:45:51.587Z">
 <meta property="article:author" content="Aonynation">
-<meta property="article:tag" content="闲话">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>2022.11.9 闲话 - Aonynation&#39;s Blog</title>
+  <title>luogu P7347 题解 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2022.11.9 闲话"></span>
+            <span id="subtitle" data-typed-text="luogu P7347 题解"></span>
           
         </div>
 
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.4k 字
+          680 字
         
       </span>
     
@@ -256,25 +256,61 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2022.11.9 闲话</h1>
+            <h1 style="display: none">luogu P7347 题解</h1>
             
             
-              
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="348dadadd6dc68948b4a97439f94c77fe6651a0623aa885163bb720d0fec2058">42ee34116d8c35b46747bfaea3ea3bdd7ae5ce15309f9f348549596dc4446ab9045329c2471bf634d6b013787aa76cf9096e180ec9aacd76f578cd0d09b1686902b4628f39b0dea3ec38c86e032fccbe6328359647443cd00662327a664f58d60d91e675c1f834eec492163574a8485c8b3b28c768ef11ee19c7a1af8961724a43a431d2c04470fbe4603da241cfadd7c4333ed1392ede03097266ec6b303b80effbe3026b277d3de909f9b7dbf56a1ad55f1b69d46d6c4d4144a71c2e0521eb3a582b42647675629100da0e43807f4bd9b3ff051acd0c2ba4664494655ed051f1f89b9ab04fceaab268749228adf3e533720b36604d5a0f7dae7a49eb744b9845cc92cd10149246c339db02a2c9c1f858ed97957fec450e67f4ec2ccc502f9ae651e0107ff26cc20fda9a02abb3b45748ceb7446a159327525c1e820d96cd096c0472aa9dc6f3896be8393dea2264df569df424f5afa99e5d92d34004bc2affdb82f227c4d35c40bf221ad0d9868324339e9a5aa51206461e9d474850525ed78baa5e5e7c14f39e558814811627bbadba0c7c046b9d2a4ae8a501fc2fd471291d9962419f703e6c94ba77ae31a4cb408a9b5945c8afef29a4cc1f6ba3d7a227ab9f53d0fd73f9dc6bb73af36431330724358ad6797bba9d590cd081b241cc7ea3cd34c46be4fb25ab3e4e60ab4d0019c32783b5ff8ce2948c895275275adb43f841de4e61dbae32b212443742c279b0cecd64c54f6c0e3db8b28d21014b68dadc23064142dc9f37509586db244008fbd208af5ea6bef45fa452b6205c5bf91881bf9d619ef8fecf0e98ae2dad6d469bc44caa2b6a0f346431d395d85e29e26170c4f7fb61ac4b96b23855ff2332e8b595310dd9fbca08e593d42848b1db4d943a5bc2898e43f451647df07df5ab2bcbf6a3541c01ab6856155b9845ce0b93221891637ed0b86ff3bd7996f0e688d71d0c32bed95493a45833a3bc41fdafb6635d712774ac09fbbcbbfda5e93259cb055bc87c7f0a5a4df30a159ff0d7d329dd003eaee0aa95dd3f4e364fb48546567bf0090caa279b23a71671398dcc5aa129b3279417129921667944b4c42742601c5353418b1b6bf31aa2d71b68819ce08a2150717b0097bc2474a57e4197ef177c0ba33eff88ec079887a76713a2ae044cb73de6b2a6b820fb6dfc38819cbe5053627e1f76906e6fe85ff36073eed3f531d3d81ad8011aed3aae7e08aaeb544710c0ebcb907d1d303de984e21e402bc4680ff26847b7fea7ef6597ddea41787755c21957f2713a252a2d7b15fa49ce4cf7ffcaa1a53a7e623bbde21140e30df3aef436266ff7ffcd88ff8fb63bf7d7cfc562eaf96b3f7e45d2f351f361d40eabfd38ce25e3b333b981cfafc9c31a8e00c1862d1df81c51233342bb1df40a7b49e62cfbd9e1dfd3aa2177ad9fed98c10ccfc3ac598293dee46bfac978b13bcb1a98c8f02160192a3ff13d7911c6661d15072f9ab6eb84daa9875da99079fa31051fe42fad74fc3f21944c5815bf786cc83929e96b040783c1eeb8ac0c48974d0428cd9feaa29f426d069b78c8d9f9bf69a34661fa0f550aad2500d1acc8778907d706d7e045a963e043cf29339bb2081b3180be2b53628d8ca51439212cfd71ed2bf244710c33cdbd707c3d1c6a191c289b3659918be7ccfa9294a787195582df81857dbf771f127d05e0661c7588055a869f81f9b58bcd2a31cc271cb2a94a2cc504cc4431c97cd53fbd96e9682cf218842ca46f77ebd244e909cd2f8b4f68adb579e06a84bcde54d907b3d6a70953d1077099ae1ef40ff408584606d6c69a774df9c5f867ecdf919897b259821f20201df9a2a454d7fb72882c7efd263ff752976dd19774047519ec5f80f6e1e5942bd508e4a78728deffbc7556b01034b5b517645a497fb44cfcbf0555e6f48bff56f80c4a2c9371beef2583cc23bee8bab389f279053e546370de698a75ec3427d7c7295d771a5c9aefed338fa25a4deb162026adddaa14f7b40426627a7a67395cae84d2a314e733062c6af0c95e7fe84355148f0f19fdb934f5e901f32f1061718e0d5021d9cb6588f104419ffeebe779f1651bff91bd8e19459596eeb6af3c141431ecb1b556ce8e2234d56caa57d77de5d59722ee762f230e83bce34a2be35b0d807430eadaf7b3f4bbc04bf2a85837a2717bcf758f2260be41a52db6c3120fddb9f31dfe024feeea6ad6273890f5ad5e84fa92ad504cee0c3b89ef1c58c9a1a96359d99ce82bab4adddea061056bac0b253152676f4e74ca09af4dcdcd5fdd22b4fe426a469e851fd35d6bd1328e9d3e57d3c208d7fecd71255e833a9e1cd7f43dc6ccabc31af62faebfd92ea33a96431f6fd2c1749f06d30d1c8c3b924bc480380a0fb7c3fa41ad901e4095c4b6f5bf23cbda235e1a5f30cce04e5a5a92a4b714d6633fe6dbadd59ee52b95412f77486bc7fad50929009a4ca75204b13798e3e4e22c2451745908d35c7968b9db076021d1899f57ef06f32bbf5d9fd4d82616fe3e41458301611058ab82c989598ba7e57b5f190c695f0384ad92734464816407906a45446e8d3d6b61c233a57c4cfcb4482f50c132adc16ad0e5bee73088d48a63cd98f7be7ed19219a63038379eba6f89abfa35e5ded17469ed97c5456a61a289733a996b7903966d68e27e496fb6c8960051cbb8b5f3084c0031388151760c0781808f2c4ac2904c163e9aa41c5599746385967c0a9b542868f6519bc562fd328ec0043b5bb3224c2c53154e6d15079d4aaba50c8deffe2d468806d3935dbedcb91125c544440533db7161263fdad58eff4feb5491cca7883850e43e41fc28a850cb3f36f30f9e67bbf607addf80d13211b0a4cecd789b7ac23f9af87ee555af67ff4867ac1e6407a09c6fba004c91d2364bc04120d82cd899082dcb3fc6d3153f853c72dcfb5cb659a1c57e4744e6cb7b995ad035787d8dbec446daec3aca96aab00d3f2c39121b2bd89ee60c80e57cf7e57352bb1d3e9ccee697c9041a6a7c342c019e15cce4064243a0a08c5c1093477a21e4b49256bd50f1d833e2e5ffa8a754c618ad479ec66af13d892328aebff08e881d5769529a0d43156cd00dbb71eb0c1209c50cdbf1884520786412f80257f1bc0a7e5d196691abfb1b1d2ae70a814ecb86e27ea64b758a31aac1da915c8019becfcc69db67658605da84ea1b26620aa1cc113d680c57e25b62469388c2d1571e5c61a487a23a1b7865be85fcfbf5d9aeb6974e876293bd16f1e5e0a5ce24679338955c27553001132fed9ba3b65e556316c44a585870233a1a495f08d0db76a08c0a4a856d6d871dc6785f9966ce040a2bf77072086c4747073ed2c7acb958518160423e22030e4db9cb170ae762d06ceb6594dae65960ca25403b42ef022954f33d368bd9417bec04c0830feb4cb937ccae2b86917ca5c1c12648d22ff15ce5f1a483989283b58e7890d1d7461b818b7b1056a04ea650f93564522797b51d39e6b5298ddd011019183e55ca5e478c32a754d091bc6305eced7267fee6b3e19f69a8e8e6ae3d4739279f147db8235f9f2001113c22479bf7e84d2fd54a836299d8e8100769016197449e7039151f4fdeb0d4bbe06164f2c885d227d25b83b0a084a832e68a41b22976d55d1b7dfab6d1d3edeba56d611470f010bd3fb26f9477ba1ca17dd2b56c27bc570d234e6311f78c6c465e01b449d9fcecf7fa6c3e8976993031a1cecb80ff98274c5a4ac308c862417f4b2829eb7696f7b772050e71c18a9ea59257480358af393aa15437aa95d8782c9b2825afecc462f069f5a8639ff6d3042d1b7a03a8623d0ae5f9835f09f5f14ea4009ccea3ea2a76f09f98575570bf748f2dd7daf75af2d684c0b9ffa8e277f8d6d2b95121ab10dc4b3c844b730b7c8dcc0b967f0c7105d861d72d344b78d817e260f14c8855105db584f094553c8442b71946903f9ea085dae5ff279654d4027311933d7d959287905e6e5ae0c3bde165aabcbf09933b1e2edfd8340d411294f7b7199b849e876c0423a6a76f3e2bd75effe0ea52bc50319565213fdb0f49c21e463da1476231a6e223b3a0f14a01954faa8d95d94e52bbb9e5eaa66b632d9872497b35eca682d2d600d9fb80dd3da61856b51e1976ee93995a691debb8e2504773af3819f6eeddad2d16af00c04f2789f474ef7a74a8d82dfc06f4d487804d719aa37940eb215931699b1b3dace0ccea505eb34de4cdd7271fe353c1928bb05de2e6e459ef95d87b9a6e339232ea229ba9d5b1dfac4aafe23f8144a399cf4a7c55462c9f487f69305ea388b3e414c33d95cd5d101a1b1c191eef259257b8a2c62a28de7ec87a578a35352edad2b7d14f1c8b808cee29399f091cde8b0a481c772eeb86f946ea380b2f6252de2dbaace7f69e0fa789b91588e695e0cf36e6a89f8ea4bcbca3f20eaae5e0bd9d76a597c6816451f3f6d654c666e3aba39520305c5e130598ecc9311ee14fd9c13818a766531d48e5aa9cc051905dcbcdc6035fc80b2c65d68672471462716d57fca9e3df6ba20dcf8fd7de2eb91b3ef6c6331785e3d8706e3cb2274dc777a1d48951787635e155def9f7d63fc8c6bad18424949ccc8707a7b4fe4ce48f0fcdbc2f8fe8968aed990748f3bd6dda60658e60768e5c54c952a70db77df72cacc410dfe390af57692641902f7482bb2fd459064a2ab31260fa6eac5959648944ee956cdb92976970119650ca13d97b7b26d98d29be063998d47fdac1d0edf8f4592cfafee4826a9ca80570657ab34f55f5b619537278e7e6c483639851a69c0a484e98fa5d775d6e4a05000d5d74032a77ce9dfe23a809513d267af23b043aa92cc28df42a454d373cb0f3363e20724e8035d1136f64c340591ff1d8adf842c28f621438df4e89c0cb2d19d41ed01fe24e7359004bac2adcc104d71994cd4a64a1d8c8acbe6540e03e505e201469a553c1929e5fbf88900079285f3ea2c2208765a9bcec4fcb2b448825f38b14d7c81b31fa002f504dc7d6381b7075d7adf40243715c284bc28b86d9db661aa5e6e136bd54d2dc6861b34e631275cfcab278d3121ac3ee0f76c79fdcba59865f3aabefeadf9338c213e9c96d01028c89ff2735792669d381b5352fa5ba87bd9aa9722e2ba866f8b79b8f19d48cc07a8684d50dcc5b2f0474abb09a25247bbb2e7c9e7874be71e4c3cb8343d4c42a8b1d</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-              
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7347">题目链接</a></p>
+<h2 id="解题报告">解题报告</h2>
+<h3 id="预处理最大团">预处理最大团</h3>
+<p>定义 <span class="math inline">\(f(S)\)</span> 表示点集为 <span
+class="math inline">\(S\)</span> 时最大团的大小，<span
+class="math inline">\(E(x)\)</span> 表示和 <span
+class="math inline">\(x\)</span> 相连的点的集合。<br />
+考虑用 <span class="math inline">\(\tt dp\)</span>
+解决问题，枚举当前点集 <span class="math inline">\(S\)</span> 中的一个点
+<span class="math inline">\(x\)</span> ，考虑 <span
+class="math inline">\(x\)</span> 是否在最大团里面。<br />
+那么可以得到这样的方程： <span class="math display">\[
+f(S)=\max\{1+f(S\cap E(x)),f(S-\{x\})\}
+\]</span></p>
+<p><span class="math inline">\(\max\)</span> 中的两项分别表示 <span
+class="math inline">\(x\)</span> 在最大团中和不在最大团中。</p>
+<ul>
+<li><p><span class="math inline">\(1+f(S\cap E(x))\)</span>
+表示在最大团中那么答案一定是 <span class="math inline">\(\{x\}\)</span>
+加上它所连的点集。</p></li>
+<li><p><span class="math inline">\(f(S-\{x\})\)</span> 表示 <span
+class="math inline">\(x\)</span> 不在最大团里面，那么答案就和 <span
+class="math inline">\(x\)</span> 无关。</p></li>
+</ul>
+<h3 id="计算答案">计算答案</h3>
+<p>设当前是第 <span class="math inline">\(y\)</span>
+轮，结束后剩下的点集大小为 <span class="math inline">\(x\)</span>
+，这种状态的方案数是 ： <span class="math display">\[
+y^{n-x}\times[(k-y+1)^x-(k-y)^x]
+\]</span></p>
+<p>考虑每个点在哪一个回合被删除，即可证明上述方程的正确性。</p>
+<p>我们在定义 <span class="math inline">\(F(n)=\sum f(S)\)</span> 表示
+<span class="math inline">\(n\)</span>
+个点的点集的最大团的数目之和。<br />
+那么我们所要求的的东西就是 <span class="math display">\[
+\sum_{x=1}^n F(x)\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]
+\]</span></p>
+<p>前面的东西可以复杂度很小的方式计算，所以目标缩小成这样： <span
+class="math display">\[
+\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]
+\]</span> 发现这是一个关于 <span class="math inline">\(k\)</span> 的
+<span class="math inline">\(n+1\)</span> 次多项式，直接暴力算出 <span
+class="math inline">\(n+2\)</span> 个值后可以直接拉格朗日插值。</p>
+<h3 id="参考">参考</h3>
+<p><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/nederland/mcoi-r4-a-solution">鏡音リン
+MCOI R4 A solution</a></p>
 
-              
+                
+              </div>
             
             <hr/>
             <div>
@@ -284,7 +320,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%97%B2%E8%AF%9D/">#闲话</a>
+        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
       
     </div>
   
@@ -296,8 +332,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2022.11.9 闲话</div>
-      <div>https://aonynation.github.io/2022/11/09/xian_hua_1/</div>
+      <div>luogu P7347 题解</div>
+      <div>https://aonynation.github.io/2022/11/11/11_20_1/</div>
     </div>
     <div class="license-meta">
       
@@ -309,7 +345,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月9日</div>
+          <div>2022年11月11日</div>
         </div>
       
       
@@ -341,9 +377,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/11/11_20_1/" title="luogu P7347 题解">
+                      <a href="/2022/11/11/11_11_1/" title="简单函数计算题（一）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">luogu P7347 题解</span>
+                        <span class="hidden-mobile">简单函数计算题（一）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -351,8 +387,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/08/gou_zao_zhen/" title="联考 阵">
-                        <span class="hidden-mobile">联考 阵</span>
+                      <a href="/2022/11/09/xian_hua_1/" title="2022.11.9 闲话">
+                        <span class="hidden-mobile">2022.11.9 闲话</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -526,23 +562,6 @@
   
 
 
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
 
 
   

@@ -363,6 +363,52 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/11/11/11_20_1/" target="_self">
+          <img src="https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png" srcset="/img/loading.gif" lazyload alt="luogu P7347 题解">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/11/11_20_1/" target="_self">
+          luogu P7347 题解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2022/11/11/11_20_1/" target="_self">
+        <div>
+          题目链接 解题报告 预处理最大团 定义 \(f(S)\) 表示点集为 \(S\) 时最大团的大小，\(E(x)\) 表示和 \(x\) 相连的点的集合。 考虑用 \(\tt dp\) 解决问题，枚举当前点集 \(S\) 中的一个点 \(x\) ，考虑 \(x\) 是否在最大团里面。 那么可以得到这样的方程： \[ f(S)=\max\{1+f(S\cap E(x)),f(S-\{x
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-11 00:00" pubdate>
+              2022-11-11
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2022/11/09/xian_hua_1/" target="_self">
           <img src="https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png" srcset="/img/loading.gif" lazyload alt="2022.11.9 闲话">
         </a>
@@ -593,69 +639,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/11/06/16348650/" target="_self">
-          <img src="https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png" srcset="/img/loading.gif" lazyload alt="ARC087D 补题记录">
+        <a href="/2022/11/06/16172438/" target="_self">
+          <img src="https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png" srcset="/img/loading.gif" lazyload alt="素数个数的证明">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/11/06/16348650/" target="_self">
-          ARC087D 补题记录
+        <a href="/2022/11/06/16172438/" target="_self">
+          素数个数的证明
         </a>
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/11/06/16348650/" target="_self">
+      <a class="index-excerpt " href="/2022/11/06/16172438/" target="_self">
         <div>
-          题目链接 简要题意： 给你一个\(N\)个节点的树，求一个\(1\cdots N\)的排列\((p_1,p_2,\cdots p_N)\) ，使得\(\sum dist(i,p_i)\)最大。 求这样的排列的个数。答案对\(10^9+7\)取模。 分析 先考虑怎么构造出 \(\sum dist(i,p_i)\) 最大的 \(p\) 。 先取出一条边，把它断开，使得原树分成两个部分
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-11-06 00:00" pubdate>
-              2022-11-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/11/06/16325376/" target="_self">
-          <img src="https://cdn.luogu.com.cn/upload/image_hosting/n1pkyksq.png" srcset="/img/loading.gif" lazyload alt="FFT 学习笔记">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/11/06/16325376/" target="_self">
-          FFT 学习笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/11/06/16325376/" target="_self">
-        <div>
-          引入 什么是 \(\text{FFT}\) ？ 反正我看到 \(\text{wiki}\) 上是一堆奇怪的东西。   快速傅里叶变换（英语：Fast Fourier Transform, FFT），是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积
+          前言 颓废的时候发现了这个非常有趣的问题，在这里分享一下。 当然，原题给出了 \(7\) 种证明，没脑子选手冥思苦想一年只看懂两种。 正文 第一种证明 我们考虑假设素数的个数是有限个。 那么我们运用一个集合 \(\mathbb{P} = \{p_1,p_2,p_3,\cdots ,p_{m-1},p_m \}\) 来表示。 现在考虑构造一个数 \(n\) ，使得： \[ \be
         </div>
       </a>
 
