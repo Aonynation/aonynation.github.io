@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>luogu P7347 题解</title>
+    <link href="/2022/11/20/11_20_1/"/>
+    <url>/2022/11/20/11_20_1/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P7347">题目链接</a></p><h2 id="解题报告">解题报告</h2><h3 id="预处理最大团">预处理最大团</h3><p>定义 <span class="math inline">\(f(S)\)</span> 表示点集为 <spanclass="math inline">\(S\)</span> 时最大团的大小，<spanclass="math inline">\(E(x)\)</span> 表示和 <spanclass="math inline">\(x\)</span> 相连的点的集合。<br />考虑用 <span class="math inline">\(\tt dp\)</span>解决问题，枚举当前点集 <span class="math inline">\(S\)</span> 中的一个点<span class="math inline">\(x\)</span> ，考虑 <spanclass="math inline">\(x\)</span> 是否在最大团里面。<br />那么可以得到这样的方程： <span class="math display">\[f(S)=\max\{1+f(S\cap E(x)),f(S-\{x\})\}\]</span></p><p><span class="math inline">\(\max\)</span> 中的两项分别表示 <spanclass="math inline">\(x\)</span> 在最大团中和不在最大团中。</p><ul><li><p><span class="math inline">\(1+f(S\cap E(x))\)</span>表示在最大团中那么答案一定是 <span class="math inline">\(\{x\}\)</span>加上它所连的点集。</p></li><li><p><span class="math inline">\(f(S-\{x\})\)</span> 表示 <spanclass="math inline">\(x\)</span> 不在最大团里面，那么答案就和 <spanclass="math inline">\(x\)</span> 无关。</p></li></ul><h3 id="计算答案">计算答案</h3><p>设当前是第 <span class="math inline">\(y\)</span>轮，结束后剩下的点集大小为 <span class="math inline">\(x\)</span>，这种状态的方案数是 ： <span class="math display">\[y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span></p><p>考虑每个点在哪一个回合被删除，即可证明上述方程的正确性。</p><p>我们在定义 <span class="math inline">\(F(n)=\sum f(S)\)</span> 表示<span class="math inline">\(n\)</span>个点的点集的最大团的数目之和。<br />那么我们所要求的的东西就是 <span class="math display">\[\sum_{x=1}^n F(x)\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span></p><p>前面的东西可以复杂度很小的方式计算，所以目标缩小成这样： <spanclass="math display">\[\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span> 发现这是一个关于 <span class="math inline">\(k\)</span> 的<span class="math inline">\(n+1\)</span> 次多项式，直接暴力算出 <spanclass="math inline">\(n+2\)</span> 个值后可以直接拉格朗日插值。</p><h3 id="参考">参考</h3><p><ahref="https://www.luogu.com.cn/blog/nederland/mcoi-r4-a-solution">鏡音リンMCOI R4 A solution</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>题解</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>多重集合下的组合数问题</title>
     <link href="/2022/11/19/11_19_1/"/>
     <url>/2022/11/19/11_19_1/</url>
@@ -47,25 +66,6 @@
     <url>/2022/11/11/11_11_1/</url>
     
     <content type="html"><![CDATA[<h2 id="题目描述">题目描述</h2><p>你要求一个这样的东西，其中 <span class="math inline">\(f_i\)</span>是一个已知的序列。</p><p><span class="math display">\[Ans=\frac{1}{n}\sum_{i=1}^n f_{\gcd(i,n)}\]</span></p><p><span class="math inline">\(n\leq 10^6\)</span> 且询问次数不超过<span class="math inline">\(10^5\)</span> 。</p><h2 id="解题思路">解题思路</h2><p>看上去像是一个莫比乌斯反演，但是事实证明没有那么恐怖。</p><p>可以考虑对于一个最大公约数的贡献次数，不妨设 <spanclass="math inline">\(x=\gcd(i,n)\)</span> 。<br />那么一个非常显然的东西，对于 <span class="math inline">\(x\)</span>的贡献次数是 <span class="math inline">\(\varphi (\frac{n}{x})\)</span>。</p><p>所以现在要求的变成这样的东西： <span class="math display">\[Ans = \frac{1}{n}\sum_{i|n}\varphi (\frac{n}{i})\times f_i\]</span></p><p>然后显然要支持较小的复杂度求出一个数 <spanclass="math inline">\(x\)</span> 的 <spanclass="math inline">\(\varphi(x)\)</span> 。<br />可以尝试线性复杂度 <span class="math inline">\(O(n)\)</span> 求 <spanclass="math inline">\(\varphi(x)\)</span> 。<br />但是更容易的是直接调和级数 <span class="math inline">\(O(n\lnn)\)</span> 求出 <span class="math inline">\(\varphi(x)\)</span> 。</p><p>之后我又想到了整数分块，其实直接枚举约束就可以了。<br />由此可以看出，此题难度在于知道 <spanclass="math inline">\(\varphi(x)\)</span> 是什么东西。</p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>题解</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>luogu P7347 题解</title>
-    <link href="/2022/11/11/11_20_1/"/>
-    <url>/2022/11/11/11_20_1/</url>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P7347">题目链接</a></p><h2 id="解题报告">解题报告</h2><h3 id="预处理最大团">预处理最大团</h3><p>定义 <span class="math inline">\(f(S)\)</span> 表示点集为 <spanclass="math inline">\(S\)</span> 时最大团的大小，<spanclass="math inline">\(E(x)\)</span> 表示和 <spanclass="math inline">\(x\)</span> 相连的点的集合。<br />考虑用 <span class="math inline">\(\tt dp\)</span>解决问题，枚举当前点集 <span class="math inline">\(S\)</span> 中的一个点<span class="math inline">\(x\)</span> ，考虑 <spanclass="math inline">\(x\)</span> 是否在最大团里面。<br />那么可以得到这样的方程： <span class="math display">\[f(S)=\max\{1+f(S\cap E(x)),f(S-\{x\})\}\]</span></p><p><span class="math inline">\(\max\)</span> 中的两项分别表示 <spanclass="math inline">\(x\)</span> 在最大团中和不在最大团中。</p><ul><li><p><span class="math inline">\(1+f(S\cap E(x))\)</span>表示在最大团中那么答案一定是 <span class="math inline">\(\{x\}\)</span>加上它所连的点集。</p></li><li><p><span class="math inline">\(f(S-\{x\})\)</span> 表示 <spanclass="math inline">\(x\)</span> 不在最大团里面，那么答案就和 <spanclass="math inline">\(x\)</span> 无关。</p></li></ul><h3 id="计算答案">计算答案</h3><p>设当前是第 <span class="math inline">\(y\)</span>轮，结束后剩下的点集大小为 <span class="math inline">\(x\)</span>，这种状态的方案数是 ： <span class="math display">\[y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span></p><p>考虑每个点在哪一个回合被删除，即可证明上述方程的正确性。</p><p>我们在定义 <span class="math inline">\(F(n)=\sum f(S)\)</span> 表示<span class="math inline">\(n\)</span>个点的点集的最大团的数目之和。<br />那么我们所要求的的东西就是 <span class="math display">\[\sum_{x=1}^n F(x)\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span></p><p>前面的东西可以复杂度很小的方式计算，所以目标缩小成这样： <spanclass="math display">\[\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]\]</span> 发现这是一个关于 <span class="math inline">\(k\)</span> 的<span class="math inline">\(n+1\)</span> 次多项式，直接暴力算出 <spanclass="math inline">\(n+2\)</span> 个值后可以直接拉格朗日插值。</p><h3 id="参考">参考</h3><p><ahref="https://www.luogu.com.cn/blog/nederland/mcoi-r4-a-solution">鏡音リンMCOI R4 A solution</a></p>]]></content>
     
     
     
