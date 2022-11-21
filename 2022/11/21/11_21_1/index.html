@@ -16,22 +16,22 @@
   <meta name="author" content="Aonynation">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目链接 解题报告 预处理最大团 定义 \(f(S)\) 表示点集为 \(S\) 时最大团的大小，\(E(x)\) 表示和 \(x\) 相连的点的集合。 考虑用 \(\tt dp\) 解决问题，枚举当前点集 \(S\) 中的一个点 \(x\) ，考虑 \(x\) 是否在最大团里面。 那么可以得到这样的方程： \[ f(S)&#x3D;\max\{1+f(S\cap E(x)),f(S-\{x">
+    <meta name="description" content="题目链接 解题报告 首先第一步是吧题中的三角形稍微变化一下，会发现变成这样的一个优美的网格图：  把所有斜着的边删掉就是半个个网格图。 容易联想到卡特兰数的其中一种运用 ：  为了方便描述，我们令 \((x,y)\) 表示目标节点在当前网格图中的坐标。 因为卡特兰数及其类似的方法无法处理斜边的情况，且走斜边的条数最大值是 \(\sqrt n\) 级别的。 所以可以考虑直接枚举">
 <meta property="og:type" content="article">
-<meta property="og:title" content="luogu P7347 题解">
-<meta property="og:url" content="https://aonynation.github.io/2022/11/20/11_20_1/index.html">
+<meta property="og:title" content="luogu P5014 题">
+<meta property="og:url" content="https://aonynation.github.io/2022/11/21/11_21_1/index.html">
 <meta property="og:site_name" content="Aonynation&#39;s Blog">
-<meta property="og:description" content="题目链接 解题报告 预处理最大团 定义 \(f(S)\) 表示点集为 \(S\) 时最大团的大小，\(E(x)\) 表示和 \(x\) 相连的点的集合。 考虑用 \(\tt dp\) 解决问题，枚举当前点集 \(S\) 中的一个点 \(x\) ，考虑 \(x\) 是否在最大团里面。 那么可以得到这样的方程： \[ f(S)&#x3D;\max\{1+f(S\cap E(x)),f(S-\{x">
+<meta property="og:description" content="题目链接 解题报告 首先第一步是吧题中的三角形稍微变化一下，会发现变成这样的一个优美的网格图：  把所有斜着的边删掉就是半个个网格图。 容易联想到卡特兰数的其中一种运用 ：  为了方便描述，我们令 \((x,y)\) 表示目标节点在当前网格图中的坐标。 因为卡特兰数及其类似的方法无法处理斜边的情况，且走斜边的条数最大值是 \(\sqrt n\) 级别的。 所以可以考虑直接枚举">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-20T14:46:25.061Z">
+<meta property="article:published_time" content="2022-11-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-21T16:07:51.363Z">
 <meta property="article:author" content="Aonynation">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>luogu P7347 题解 - Aonynation&#39;s Blog</title>
+  <title>luogu P5014 题 - Aonynation&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="luogu P7347 题解"></span>
+            <span id="subtitle" data-typed-text="luogu P5014 题"></span>
           
         </div>
 
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          680 字
+          724 字
         
       </span>
     
@@ -256,58 +256,57 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">luogu P7347 题解</h1>
+            <h1 style="display: none">luogu P5014 题</h1>
             
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7347">题目链接</a></p>
+                <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5014">题目链接</a></p>
 <h2 id="解题报告">解题报告</h2>
-<h3 id="预处理最大团">预处理最大团</h3>
-<p>定义 <span class="math inline">\(f(S)\)</span> 表示点集为 <span
-class="math inline">\(S\)</span> 时最大团的大小，<span
-class="math inline">\(E(x)\)</span> 表示和 <span
-class="math inline">\(x\)</span> 相连的点的集合。<br />
-考虑用 <span class="math inline">\(\tt dp\)</span>
-解决问题，枚举当前点集 <span class="math inline">\(S\)</span> 中的一个点
-<span class="math inline">\(x\)</span> ，考虑 <span
-class="math inline">\(x\)</span> 是否在最大团里面。<br />
-那么可以得到这样的方程： <span class="math display">\[
-f(S)=\max\{1+f(S\cap E(x)),f(S-\{x\})\}
+<p>首先第一步是吧题中的三角形稍微变化一下，会发现变成这样的一个优美的网格图：</p>
+<p><img
+src="https://pic.imgdb.cn/item/637b902b16f2c2beb1cdaab0.png" srcset="/img/loading.gif" lazyload /></p>
+<p>把所有斜着的边删掉就是半个个网格图。<br />
+容易联想到卡特兰数的其中一种运用 ：</p>
+<p><img
+src="https://pic.imgdb.cn/item/637b86c416f2c2beb1bdd369.png" srcset="/img/loading.gif" lazyload /></p>
+<p>为了方便描述，我们令 <span class="math inline">\((x,y)\)</span>
+表示目标节点在当前网格图中的坐标。</p>
+<p>因为卡特兰数及其类似的方法无法处理斜边的情况，且走斜边的条数最大值是
+<span class="math inline">\(\sqrt n\)</span> 级别的。<br />
+所以可以考虑直接枚举一共走了多少条斜边 <span
+class="math inline">\(k\)</span> ，那么就是向上走了 <span
+class="math inline">\(x-k-1\)</span> 步，向右走了 <span
+class="math inline">\(y-k-1\)</span> 步。<br />
+那么在总共 <span class="math inline">\(x+y-k-2\)</span> 步中选择 <span
+class="math inline">\(k\)</span> 步走斜边的方案是 <span
+class="math inline">\(\binom{x+y-k-2}{k}\)</span> 。</p>
+<p>现在考虑删掉所走过的斜边，计算后面的方案数。<br />
+容易得到，总的方案数就是从 <span class="math inline">\(x+y-2k-2\)</span>
+中选择 <span class="math inline">\(x-k-1\)</span> 步上走或者 <span
+class="math inline">\(y-k-1\)</span> 步右走。<br />
+所以方案数是 ：</p>
+<p><span class="math display">\[
+\binom{x+y-2k-2}{x-k-1}=\binom{x+y-2k-2}{y-k-1}
 \]</span></p>
-<p><span class="math inline">\(\max\)</span> 中的两项分别表示 <span
-class="math inline">\(x\)</span> 在最大团中和不在最大团中。</p>
-<ul>
-<li><p><span class="math inline">\(1+f(S\cap E(x))\)</span>
-表示在最大团中那么答案一定是 <span class="math inline">\(\{x\}\)</span>
-加上它所连的点集。</p></li>
-<li><p><span class="math inline">\(f(S-\{x\})\)</span> 表示 <span
-class="math inline">\(x\)</span> 不在最大团里面，那么答案就和 <span
-class="math inline">\(x\)</span> 无关。</p></li>
-</ul>
-<h3 id="计算答案">计算答案</h3>
-<p>设当前是第 <span class="math inline">\(y\)</span>
-轮，结束后剩下的点集大小为 <span class="math inline">\(x\)</span>
-，这种状态的方案数是 ： <span class="math display">\[
-y^{n-x}\times[(k-y+1)^x-(k-y)^x]
+<p>至于不合法的方案，一个非常显然的限制就是轨迹不能越过 <span
+class="math inline">\(x=y\)</span> 这条线。<br />
+换句话说就是任意一个前缀的向上走的步数不可以大于向右走的步数。<br />
+翻转一个不合法的路径，发现向上走了 <span
+class="math inline">\(x+1\)</span> 步，向右走了 <span
+class="math inline">\(y\)</span> 步，所以方案数为 <span
+class="math inline">\(\binom{x+y}{x+1}\)</span> 。</p>
+<p>直接把上述的结论带入本题： <span class="math display">\[
+Ans=\sum_{k=0}^{y-1}\binom{x+y-k-2}{i}\times\left[\binom{x+y-2k-2}{x-i-1}-\binom{x+y-2k-2}{x-i}\right]
 \]</span></p>
-<p>考虑每个点在哪一个回合被删除，即可证明上述方程的正确性。</p>
-<p>我们在定义 <span class="math inline">\(F(n)=\sum f(S)\)</span> 表示
-<span class="math inline">\(n\)</span>
-个点的点集的最大团的数目之和。<br />
-那么我们所要求的的东西就是 <span class="math display">\[
-\sum_{x=1}^n F(x)\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]
-\]</span></p>
-<p>前面的东西可以复杂度很小的方式计算，所以目标缩小成这样： <span
-class="math display">\[
-\sum_{y=1}^k y^{n-x}\times[(k-y+1)^x-(k-y)^x]
-\]</span> 发现这是一个关于 <span class="math inline">\(k\)</span> 的
-<span class="math inline">\(n+1\)</span> 次多项式，直接暴力算出 <span
-class="math inline">\(n+2\)</span> 个值后可以直接拉格朗日插值。</p>
-<h3 id="参考">参考</h3>
+<h2 id="code">Code</h2>
+<p>口胡的，没写代码。</p>
+<h2 id="参考">参考</h2>
 <p><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/nederland/mcoi-r4-a-solution">鏡音リン
-MCOI R4 A solution</a></p>
+target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0">卡塔兰数
+—— 维基百科，自由的百科全书</a><br />
+<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/1437orz/solution-p5014">题解
+P5014【水の三角(修改版)】—— GIFBMP</a></p>
 
                 
               </div>
@@ -332,8 +331,8 @@ MCOI R4 A solution</a></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>luogu P7347 题解</div>
-      <div>https://aonynation.github.io/2022/11/20/11_20_1/</div>
+      <div>luogu P5014 题</div>
+      <div>https://aonynation.github.io/2022/11/21/11_21_1/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +344,7 @@ MCOI R4 A solution</a></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月20日</div>
+          <div>2022年11月21日</div>
         </div>
       
       
@@ -377,18 +376,12 @@ MCOI R4 A solution</a></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/21/11_21_1/" title="luogu P5014 题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">luogu P5014 题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/19/11_19_1/" title="多重集合下的组合数问题">
-                        <span class="hidden-mobile">多重集合下的组合数问题</span>
+                      <a href="/2022/11/20/11_20_1/" title="luogu P7347 题解">
+                        <span class="hidden-mobile">luogu P7347 题解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

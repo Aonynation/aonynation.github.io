@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>luogu P5014 题</title>
+    <link href="/2022/11/21/11_21_1/"/>
+    <url>/2022/11/21/11_21_1/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P5014">题目链接</a></p><h2 id="解题报告">解题报告</h2><p>首先第一步是吧题中的三角形稍微变化一下，会发现变成这样的一个优美的网格图：</p><p><imgsrc="https://pic.imgdb.cn/item/637b902b16f2c2beb1cdaab0.png" /></p><p>把所有斜着的边删掉就是半个个网格图。<br />容易联想到卡特兰数的其中一种运用 ：</p><p><imgsrc="https://pic.imgdb.cn/item/637b86c416f2c2beb1bdd369.png" /></p><p>为了方便描述，我们令 <span class="math inline">\((x,y)\)</span>表示目标节点在当前网格图中的坐标。</p><p>因为卡特兰数及其类似的方法无法处理斜边的情况，且走斜边的条数最大值是<span class="math inline">\(\sqrt n\)</span> 级别的。<br />所以可以考虑直接枚举一共走了多少条斜边 <spanclass="math inline">\(k\)</span> ，那么就是向上走了 <spanclass="math inline">\(x-k-1\)</span> 步，向右走了 <spanclass="math inline">\(y-k-1\)</span> 步。<br />那么在总共 <span class="math inline">\(x+y-k-2\)</span> 步中选择 <spanclass="math inline">\(k\)</span> 步走斜边的方案是 <spanclass="math inline">\(\binom{x+y-k-2}{k}\)</span> 。</p><p>现在考虑删掉所走过的斜边，计算后面的方案数。<br />容易得到，总的方案数就是从 <span class="math inline">\(x+y-2k-2\)</span>中选择 <span class="math inline">\(x-k-1\)</span> 步上走或者 <spanclass="math inline">\(y-k-1\)</span> 步右走。<br />所以方案数是 ：</p><p><span class="math display">\[\binom{x+y-2k-2}{x-k-1}=\binom{x+y-2k-2}{y-k-1}\]</span></p><p>至于不合法的方案，一个非常显然的限制就是轨迹不能越过 <spanclass="math inline">\(x=y\)</span> 这条线。<br />换句话说就是任意一个前缀的向上走的步数不可以大于向右走的步数。<br />翻转一个不合法的路径，发现向上走了 <spanclass="math inline">\(x+1\)</span> 步，向右走了 <spanclass="math inline">\(y\)</span> 步，所以方案数为 <spanclass="math inline">\(\binom{x+y}{x+1}\)</span> 。</p><p>直接把上述的结论带入本题： <span class="math display">\[Ans=\sum_{k=0}^{y-1}\binom{x+y-k-2}{i}\times\left[\binom{x+y-2k-2}{x-i-1}-\binom{x+y-2k-2}{x-i}\right]\]</span></p><h2 id="code">Code</h2><p>口胡的，没写代码。</p><h2 id="参考">参考</h2><p><ahref="https://zh.wikipedia.org/zh-cn/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0">卡塔兰数—— 维基百科，自由的百科全书</a><br /><a href="https://www.luogu.com.cn/blog/1437orz/solution-p5014">题解P5014【水の三角(修改版)】—— GIFBMP</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>题解</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>luogu P7347 题解</title>
     <link href="/2022/11/20/11_20_1/"/>
     <url>/2022/11/20/11_20_1/</url>
